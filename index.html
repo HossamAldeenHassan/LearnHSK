@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSK1 — الحرير الأحمر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red:       #c0392b;
+    --red-dark:  #96281b;
+    --red-light: #e74c3c;
+    --gold:      #d4a843;
+    --gold-light:#f0c060;
+    --bg:        #0e0e0f;
+    --bg2:       #161618;
+    --bg3:       #1e1e21;
+    --bg4:       #252529;
+    --border:    #2e2e33;
+    --text:      #e8e8ea;
+    --text2:     #9a9aa5;
+    --text3:     #5c5c68;
+    --correct:   #27ae60;
+    --wrong:     #e74c3c;
+    --radius:    12px;
+    --shadow:    0 4px 24px rgba(0,0,0,0.5);
+  }
+  .light-mode {
+    --bg:        #f5f0eb;
+    --bg2:       #ede8e0;
+    --bg3:       #e5dfd4;
+    --bg4:       #dcd4c6;
+    --border:    #ccc4b4;
+    --text:      #1a1a1e;
+    --text2:     #5a5260;
+    --text3:     #9a9098;
+    --shadow:    0 4px 24px rgba(0,0,0,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; }
+  body {
+    font-family: 'Noto Naskh Arabic', serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+    direction: rtl;
+  }
+
+  .chinese-text, .hanzi-big, .quiz-prompt-hanzi, .word-block, .built-word,
+  .mistake-hanzi, .weak-hanzi, .feedback-answer, .pinyin-text, .quiz-prompt-pinyin {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: center;
+  }
+  .arabic-text, .arabic-big, .quiz-prompt-arabic, .arabic, .built-area .arabic,
+  .quiz-choice.arabic, .mistake-arabic, .weak-arabic {
+    direction: rtl;
+    unicode-bidi: isolate;
+    text-align: center;
+  }
+
+  .app-header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .app-logo { display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.1rem; color: var(--red-light); }
+  .app-logo span { font-size:1.4rem; }
+  .header-actions { display:flex; gap:8px; align-items:center; }
+
+  .main-content { max-width:800px; margin:0 auto; padding:20px 16px 40px; }
+
+  .btn {
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    padding:10px 20px; border-radius:var(--radius); border:none; cursor:pointer;
+    font-family:inherit; font-size:0.95rem; font-weight:600; transition:all 0.18s; text-decoration:none;
+  }
+  .btn-primary { background:var(--red); color:#fff; }
+  .btn-primary:hover { background:var(--red-light); transform:translateY(-1px); }
+  .btn-secondary { background:var(--bg3); color:var(--text); border:1px solid var(--border); }
+  .btn-secondary:hover { background:var(--bg4); }
+  .btn-gold { background:var(--gold); color:#1a1a1e; }
+  .btn-gold:hover { background:var(--gold-light); }
+  .btn-ghost { background:transparent; color:var(--text2); border:1px solid var(--border); }
+  .btn-ghost:hover { color:var(--text); background:var(--bg3); }
+  .btn-sm { padding:6px 14px; font-size:0.85rem; }
+  .btn-lg { padding:14px 28px; font-size:1.05rem; }
+  .btn-icon { padding:8px; border-radius:8px; background:var(--bg3); border:1px solid var(--border); color:var(--text2); cursor:pointer; font-size:1.1rem; transition:all 0.18s; }
+  .btn-icon:hover { color:var(--text); background:var(--bg4); }
+  .btn-correct { background:var(--correct)!important; color:#fff!important; }
+  .btn-wrong { background:var(--wrong)!important; color:#fff!important; }
+
+  .view { display:none; animation:fadeIn 0.3s; }
+  .view.active { display:block; }
+  @keyframes fadeIn { from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:translateY(0); } }
+
+  .home-hero { text-align:center; padding:32px 0 28px; }
+  .home-hero h1 { font-size:2rem; font-weight:700; color:var(--red-light); margin-bottom:6px; line-height:1.2; }
+  .home-hero p { color:var(--text2); font-size:1rem; }
+
+  .nav-tabs { display:flex; gap:4px; background:var(--bg2); border-radius:14px; padding:4px; margin-bottom:8px; border:1px solid var(--border); flex-wrap:wrap; }
+  .nav-tab {
+    flex:1; min-width:fit-content; padding:9px 8px; border-radius:10px; border:none; background:transparent; color:var(--text2);
+    font-family:inherit; font-size:0.85rem; font-weight:600; cursor:pointer; transition:all 0.2s; text-align:center; white-space:nowrap;
+  }
+  .nav-tab.active { background:var(--red); color:#fff; }
+  .nav-tab:hover:not(.active) { background:var(--bg3); color:var(--text); }
+
+  .card { background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:20px; margin-bottom:16px; }
+  .card-title { font-size:0.85rem; color:var(--text2); font-weight:600; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.05em; }
+
+  .lesson-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; }
+  .lesson-btn {
+    aspect-ratio:1; border-radius:10px; border:1.5px solid var(--border); background:var(--bg3); color:var(--text2);
+    font-family:inherit; font-size:0.9rem; font-weight:600; cursor:pointer; transition:all 0.18s;
+  }
+  .lesson-btn.selected { border-color:var(--red); background:rgba(192,57,43,0.2); color:var(--red-light); }
+  .lesson-btn:hover:not(.selected) { background:var(--bg4); color:var(--text); }
+  .select-all-row { display:flex; gap:8px; margin-bottom:10px; }
+
+  .type-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .type-btn {
+    padding:12px 16px; border-radius:10px; border:1.5px solid var(--border); background:var(--bg3); color:var(--text);
+    font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer; transition:all 0.18s; display:flex; align-items:center; gap:8px;
+  }
+  .type-btn.selected { border-color:var(--gold); background:rgba(212,168,67,0.15); }
+  .type-btn:hover:not(.selected) { background:var(--bg4); }
+  .type-icon { font-size:1.2rem; }
+
+  .form-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .form-group { display:flex; flex-direction:column; gap:6px; flex:1; min-width:140px; }
+  .form-label { font-size:0.85rem; color:var(--text2); font-weight:600; }
+  .form-select, .form-input {
+    background:var(--bg3); border:1px solid var(--border); border-radius:8px; color:var(--text);
+    font-family:inherit; font-size:0.95rem; padding:9px 12px; width:100%; direction:rtl;
+  }
+  .form-select:focus, .form-input:focus { outline:none; border-color:var(--red); }
+
+  .start-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:4px; flex-wrap:wrap; }
+  .count-preview { color:var(--text2); font-size:0.9rem; }
+  .count-preview strong { color:var(--gold); }
+
+  .session-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+  .session-title { font-size:1rem; font-weight:700; color:var(--text2); }
+  .progress-text { font-size:0.9rem; color:var(--gold); font-weight:700; }
+  .progress-bar-wrap { height:4px; background:var(--bg3); border-radius:4px; margin-bottom:24px; overflow:hidden; }
+  .progress-bar-fill { height:100%; background:linear-gradient(90deg, var(--red), var(--gold)); border-radius:4px; transition:width 0.4s; }
+
+  .flashcard-wrap { perspective:1000px; margin-bottom:20px; cursor:pointer; }
+  .flashcard {
+    background:var(--bg2); border:1px solid var(--border); border-radius:20px; min-height:260px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px 24px;
+    text-align:center; transition:transform 0.5s, box-shadow 0.2s; position:relative; transform-style:preserve-3d; box-shadow:var(--shadow); user-select:none;
+  }
+  .flashcard:hover { box-shadow:0 8px 40px rgba(0,0,0,0.6); }
+  .flashcard.flipped { transform:rotateY(180deg); }
+  .card-face { position:absolute; width:100%; height:100%; backface-visibility:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px 24px; border-radius:20px; }
+  .card-back { transform:rotateY(180deg); }
+
+  .hanzi-big { font-family:'Noto Serif SC', serif; font-size:3.5rem; line-height:1.2; color:var(--text); margin-bottom:8px; direction: ltr; }
+  .pinyin-text { font-size:1rem; color:var(--text2); margin-bottom:4px; letter-spacing:0.05em; direction: ltr; }
+  .arabic-big { font-size:1.8rem; font-weight:600; color:var(--text); line-height:1.4; direction: rtl; }
+  .speaker-tag { position:absolute; top:14px; left:14px; background:var(--red); color:#fff; border-radius:6px; padding:3px 10px; font-size:0.8rem; font-weight:700; }
+  .flip-hint { position:absolute; bottom:14px; color:var(--text3); font-size:0.8rem; }
+  .card-type-badge { font-size:0.75rem; background:var(--bg4); color:var(--text3); border-radius:6px; padding:2px 8px; margin-bottom:12px; }
+
+  .flashcard-actions { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:4px; }
+
+  .quiz-question-card { background:var(--bg2); border:1px solid var(--border); border-radius:20px; padding:32px 24px; text-align:center; margin-bottom:20px; box-shadow:var(--shadow); min-height:160px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; }
+  .quiz-type-label { font-size:0.8rem; color:var(--red-light); font-weight:700; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; }
+  .quiz-prompt-hanzi { font-family:'Noto Serif SC', serif; font-size:2.8rem; color:var(--text); direction: ltr; }
+  .quiz-prompt-arabic { font-size:1.6rem; font-weight:600; color:var(--text); direction: rtl; }
+  .quiz-prompt-pinyin { font-size:0.95rem; color:var(--text2); direction: ltr; }
+
+  .quiz-input-wrap { display:flex; gap:10px; margin-bottom:16px; }
+  .quiz-input {
+    flex:1; background:var(--bg3); border:1.5px solid var(--border); border-radius:10px; color:var(--text); font-family:'Noto Serif SC','Noto Naskh Arabic',serif; font-size:1.1rem; padding:12px 16px; text-align:center; direction: auto;
+  }
+  .quiz-input:focus { outline:none; border-color:var(--red); }
+  .quiz-input.correct { border-color:var(--correct); background:rgba(39,174,96,0.12); }
+  .quiz-input.wrong { border-color:var(--wrong); background:rgba(231,76,60,0.12); }
+
+  .quiz-choices { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
+  .quiz-choice {
+    padding:14px 12px; border-radius:12px; border:1.5px solid var(--border); background:var(--bg3); color:var(--text); font-family:inherit; font-size:1rem; font-weight:600; cursor:pointer; transition:all 0.2s; text-align:center;
+  }
+  .quiz-choice:hover:not(:disabled) { background:var(--bg4); border-color:var(--red); }
+  .quiz-choice.correct-choice { border-color:var(--correct); background:rgba(39,174,96,0.2); }
+  .quiz-choice.wrong-choice { border-color:var(--wrong); background:rgba(231,76,60,0.15); }
+  .quiz-choice:disabled { cursor:default; }
+
+  .tf-choices { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
+  .tf-btn {
+    padding:18px; border-radius:14px; border:2px solid var(--border); background:var(--bg3); color:var(--text); font-family:inherit; font-size:1.3rem; font-weight:700; cursor:pointer; transition:all 0.2s;
+  }
+  .tf-btn:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 4px 16px rgba(0,0,0,0.3); }
+  .tf-btn.correct-choice { border-color:var(--correct); background:rgba(39,174,96,0.2); color:var(--correct); }
+  .tf-btn.wrong-choice { border-color:var(--wrong); background:rgba(231,76,60,0.15); color:var(--wrong); }
+
+  .feedback-row { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:10px; margin-bottom:14px; font-weight:600; }
+  .feedback-correct { background:rgba(39,174,96,0.15); border:1px solid var(--correct); color:var(--correct); }
+  .feedback-wrong { background:rgba(231,76,60,0.12); border:1px solid var(--wrong); color:var(--wrong); }
+  .feedback-icon { font-size:1.3rem; }
+  .feedback-answer { font-family:'Noto Serif SC', serif; direction: ltr; }
+
+  .listen-btn-wrap { margin:12px 0; }
+  .audio-warn { color:var(--gold); font-size:0.85rem; margin-top:6px; }
+
+  .results-hero { text-align:center; padding:24px 0; }
+  .results-score { font-size:4rem; font-weight:700; color:var(--gold); line-height:1; margin-bottom:6px; }
+  .results-label { color:var(--text2); font-size:1rem; }
+  .results-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:20px 0; }
+  .results-stat { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:16px 12px; text-align:center; }
+  .results-stat .num { font-size:1.8rem; font-weight:700; }
+  .results-stat .lbl { font-size:0.8rem; color:var(--text2); margin-top:2px; }
+  .correct-num { color:var(--correct); }
+  .wrong-num { color:var(--wrong); }
+
+  .mistakes-list { display:flex; flex-direction:column; gap:10px; margin-top:12px; }
+  .mistake-item { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:12px 16px; }
+  .mistake-q { font-size:0.8rem; color:var(--text2); margin-bottom:4px; }
+  .mistake-hanzi { font-family:'Noto Serif SC', serif; font-size:1.4rem; margin-bottom:4px; direction: ltr; }
+  .mistake-line { display:flex; align-items:center; gap:8px; font-size:0.9rem; }
+  .mistake-user { color:var(--wrong); direction: ltr; }
+  .mistake-correct { color:var(--correct); direction: ltr; }
+  .results-actions { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:20px; }
+
+  .stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px; }
+  .stat-card { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:4px; }
+  .stat-card .icon { font-size:1.5rem; }
+  .stat-card .val { font-size:2rem; font-weight:700; }
+  .stat-card .desc { color:var(--text2); font-size:0.85rem; }
+  .weak-list { display:flex; flex-direction:column; gap:8px; }
+  .weak-item {
+    background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .weak-hanzi { font-family:'Noto Serif SC', serif; font-size:1.3rem; direction: ltr; }
+  .weak-arabic { font-size:0.95rem; color:var(--text2); direction: rtl; }
+  .weak-badge { background:var(--wrong); color:#fff; border-radius:6px; padding:2px 8px; font-size:0.8rem; font-weight:700; }
+  .reset-btn-wrap { margin-top:20px; text-align:center; }
+
+  .divider { height:1px; background:var(--border); margin:16px 0; }
+  .empty-state { text-align:center; padding:40px 20px; color:var(--text3); font-size:0.95rem; }
+  .loading { text-align:center; padding:60px 20px; color:var(--text2); font-size:1rem; }
+  .toast {
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px); background:var(--bg4); color:var(--text); border:1px solid var(--border); border-radius:10px; padding:10px 20px; font-size:0.9rem; z-index:9999; transition:transform 0.3s; pointer-events:none;
+  }
+  .toast.show { transform:translateX(-50%) translateY(0); }
+
+  .word-blocks { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:16px; direction:ltr; unicode-bidi:isolate; }
+  .word-block {
+    background:var(--bg3); border:1.5px solid var(--border); border-radius:10px; padding:10px 16px; font-size:1.2rem; font-weight:600; cursor:pointer; transition:all 0.2s; color:var(--text); font-family:'Noto Serif SC', serif; user-select:none; direction: ltr; unicode-bidi:isolate;
+  }
+  .word-block:hover { background:var(--bg4); border-color:var(--red); }
+  .built-area { min-height:60px; border:2px dashed var(--border); border-radius:12px; padding:12px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; align-items:center; margin-bottom:12px; direction:ltr; unicode-bidi:isolate; }
+  .built-word {
+    background:var(--gold); color:#1a1a1e; padding:8px 14px; border-radius:8px; font-size:1.2rem; font-weight:600; font-family:'Noto Serif SC', serif; cursor:pointer; transition:all 0.2s; direction: ltr; unicode-bidi:isolate;
+  }
+  .built-word:hover { background:var(--gold-light); }
+  .reset-build { margin-bottom:12px; }
+  .cloze-blank {
+    display:inline-block; background:var(--bg3); border-bottom:2px solid var(--red); border-radius:4px; padding:2px 8px; margin:0 4px; color:var(--text2); font-weight:700; font-size:1.2rem;
+  }
+
+  /* ── Speaking Mode ─────────────────────────── */
+  #speakingView {
+    display:none;
+  }
+  #speakingView.active {
+    display:flex;
+    flex-direction:column;
+    min-height:calc(100vh - 56px);
+    animation:fadeIn 0.3s;
+  }
+  .speak-card {
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:32px 24px;
+    text-align:center;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    margin-bottom:20px;
+  }
+  .speak-hanzi {
+    font-family:'Noto Serif SC', serif;
+    font-size:3.5rem;
+    color:var(--text);
+    direction:ltr;
+    line-height:1.2;
+  }
+  .speak-pinyin {
+    font-size:1.1rem;
+    color:var(--text2);
+    direction:ltr;
+    letter-spacing:0.06em;
+  }
+  .speak-arabic {
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--text);
+    direction:rtl;
+    line-height:1.4;
+  }
+  .speak-step-label {
+    font-size:0.8rem;
+    color:var(--red-light);
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-bottom:4px;
+  }
+  .speak-mic-btn {
+    width:88px;
+    height:88px;
+    border-radius:50%;
+    border:3px solid var(--red);
+    background:rgba(192,57,43,0.15);
+    color:var(--red-light);
+    font-size:2rem;
+    cursor:pointer;
+    transition:all 0.2s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:12px auto;
+    animation: none;
+  }
+  .speak-mic-btn:hover {
+    background:rgba(192,57,43,0.28);
+    transform:scale(1.05);
+  }
+  .speak-mic-btn.recording {
+    border-color:var(--red-light);
+    background:rgba(231,76,60,0.25);
+    animation: pulse-ring 1s infinite;
+  }
+  @keyframes pulse-ring {
+    0%   { box-shadow:0 0 0 0 rgba(231,76,60,0.5); }
+    70%  { box-shadow:0 0 0 16px rgba(231,76,60,0); }
+    100% { box-shadow:0 0 0 0 rgba(231,76,60,0); }
+  }
+  .speak-result-box {
+    border-radius:14px;
+    padding:16px 20px;
+    text-align:center;
+    font-size:1.1rem;
+    font-weight:600;
+    margin-bottom:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    direction:rtl;
+  }
+  .speak-result-box.excellent { background:rgba(39,174,96,0.15); border:1.5px solid var(--correct); color:var(--correct); }
+  .speak-result-box.good      { background:rgba(212,168,67,0.15); border:1.5px solid var(--gold);    color:var(--gold); }
+  .speak-result-box.retry     { background:rgba(231,76,60,0.12);  border:1.5px solid var(--wrong);   color:var(--wrong); }
+  .speak-result-box.fallback  { background:var(--bg3); border:1.5px solid var(--border); color:var(--text2); }
+  .speak-bottom-bar {
+    margin-top:auto;
+    padding:16px 0 8px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+  }
+  .speak-bottom-bar .btn { width:100%; max-width:380px; min-height:52px; font-size:1.05rem; }
+  .speak-nav-row { display:flex; gap:10px; width:100%; max-width:380px; }
+  .speak-nav-row .btn { flex:1; min-height:48px; }
+  .speak-countdown {
+    font-size:4rem;
+    font-weight:700;
+    color:var(--gold);
+    text-align:center;
+    line-height:1;
+    min-height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .speak-progress-row {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:12px;
+  }
+
+  @media (max-width:480px) {
+    .lesson-grid { grid-template-columns:repeat(5,1fr); }
+    .type-grid { grid-template-columns:1fr 1fr; }
+    .results-grid { grid-template-columns:repeat(3,1fr); }
+    .stats-grid { grid-template-columns:1fr 1fr; }
+    .hanzi-big { font-size:2.8rem; }
+    .quiz-prompt-hanzi { font-size:2.2rem; }
+    .flashcard-actions { grid-template-columns:1fr 1fr; }
+    .flashcard-actions .btn:last-child { grid-column:1/-1; }
+  }
+  @media (max-width:768px) {
+    #quizView {
+      display:flex;
+      flex-direction:column;
+      min-height:calc(100vh - 56px);
+    }
+    #quizView .quiz-action-spacer {
+      flex:1;
+    }
+    .quiz-sticky-bar {
+      position:sticky;
+      bottom:0;
+      background:var(--bg);
+      border-top:1px solid var(--border);
+      padding:10px 16px;
+      padding-bottom:calc(10px + env(safe-area-inset-bottom, 0px));
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      z-index:50;
+    }
+    .quiz-sticky-bar .btn {
+      width:100%;
+      min-height:48px;
+      font-size:1rem;
+    }
+    /* Keep non-sticky elements their normal flow */
+    #typeAnswerWrap .quiz-input-wrap,
+    #dictationWrap .quiz-input-wrap {
+      flex-direction:column;
+    }
+    #typeAnswerWrap .quiz-input-wrap .btn,
+    #dictationWrap .quiz-input-wrap .btn {
+      width:100%;
+      min-height:48px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="app-logo"><span>🎋</span> الحرير الأحمر — HSK1</div>
+  <div class="header-actions">
+    <button class="btn-icon" id="statsBtn" title="الإحصائيات">📊</button>
+    <button class="btn-icon" id="darkToggle" title="تبديل الوضع">🌙</button>
+  </div>
+</header>
+
+<div class="main-content">
+
+  <!-- HOME VIEW -->
+  <div class="view active" id="homeView">
+    <div class="home-hero"><h1>تعلّم الصينية بالعربية</h1><p>HSK1 — مفردات، جمل، حوارات</p></div>
+
+    <div class="nav-tabs" id="modeTabsBar">
+      <button class="nav-tab active" data-mode="flashcard">🃏 البطاقات</button>
+      <button class="nav-tab" data-mode="quiz_ar_zh">✍️ عربي→صيني</button>
+      <button class="nav-tab" data-mode="quiz_zh_ar">✍️ صيني→عربي</button>
+      <button class="nav-tab" data-mode="quiz_tf">✅ صح/خطأ</button>
+      <button class="nav-tab" data-mode="quiz_listen">🎧 استماع</button>
+    </div>
+    <div class="nav-tabs" id="extraModeTabs" style="margin-top:8px;">
+      <button class="nav-tab" data-mode="quiz_build">🧩 ترتيب الكلمات</button>
+      <button class="nav-tab" data-mode="quiz_cloze">📝 أكمل الفراغ</button>
+      <button class="nav-tab" data-mode="quiz_dictation">🎤 اكتب ما تسمع</button>
+      <button class="nav-tab" data-mode="quiz_tone">🎵 تمييز النغمات</button>
+    </div>
+    <div class="nav-tabs" id="speakingModeTabs" style="margin-top:8px;">
+      <button class="nav-tab" id="speakingModeBtn" onclick="startSpeakingMode()">🗣️ تقييم النطق</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">اختر الدروس</div>
+      <div class="select-all-row">
+        <button class="btn btn-secondary btn-sm" id="selectAllLessons">الكل</button>
+        <button class="btn btn-ghost btn-sm" id="clearAllLessons">إلغاء</button>
+      </div>
+      <div class="lesson-grid" id="lessonGrid"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">نوع المحتوى</div>
+      <div class="type-grid" id="typeGrid">
+        <button class="type-btn selected" data-type="word"><span class="type-icon">📝</span> مفردات</button>
+        <button class="type-btn selected" data-type="sentence"><span class="type-icon">📖</span> جمل</button>
+        <button class="type-btn selected" data-type="dialogue"><span class="type-icon">💬</span> حوارات</button>
+        <button class="type-btn selected" data-type="mixed"><span class="type-icon">🎲</span> مزيج</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">خيارات الجلسة</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">عدد البطاقات</label>
+          <select class="form-select" id="countSelect">
+            <option value="all">الكل</option>
+            <option value="10">10</option>
+            <option value="20" selected>20</option>
+            <option value="30">30</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">الترتيب</label>
+          <select class="form-select" id="orderSelect">
+            <option value="random" selected>عشوائي</option>
+            <option value="sequential">تسلسلي</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">مراجعة سريعة</div>
+      <div class="form-row" style="justify-content:center;">
+        <button class="btn btn-secondary" onclick="startReview('today')">📅 مراجعة اليوم</button>
+        <button class="btn btn-secondary" onclick="startReview('mistakes')">❌ الأخطاء فقط</button>
+        <button class="btn btn-secondary" onclick="startReview('difficult')">😰 الصعب فقط</button>
+        <button class="btn btn-secondary" onclick="startReview('mixed')">🔀 مراجعة مختلطة</button>
+      </div>
+    </div>
+
+    <div class="start-bar">
+      <span class="count-preview">البطاقات المتاحة: <strong id="availableCount">0</strong></span>
+      <button class="btn btn-primary btn-lg" id="startBtn">ابدأ الجلسة ←</button>
+    </div>
+  </div>
+
+  <!-- FLASHCARD VIEW -->
+  <div class="view" id="flashcardView">
+    <div class="session-header">
+      <span class="session-title">وضع البطاقات</span>
+      <span class="progress-text" id="fcProgress">0 / 0</span>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="fcProgressBar" style="width:0%"></div></div>
+
+    <div class="flashcard-wrap" id="flashcardWrap" onclick="flipCard()">
+      <div class="flashcard" id="flashcard">
+        <div class="card-face card-front" id="cardFront"></div>
+        <div class="card-face card-back" id="cardBack"></div>
+      </div>
+    </div>
+
+    <div class="flashcard-actions">
+      <button class="btn btn-ghost" onclick="markCard('difficult')">😰 صعب</button>
+      <button class="btn btn-primary" onclick="nextCard()">التالي ←</button>
+      <button class="btn btn-secondary" onclick="markCard('known')">✅ أعرفه</button>
+    </div>
+    <div style="text-align:center;margin-top:14px;"><button class="btn btn-ghost btn-sm" onclick="endSession()">إنهاء الجلسة</button></div>
+  </div>
+
+  <!-- QUIZ VIEW -->
+  <div class="view" id="quizView">
+    <div class="session-header">
+      <span class="session-title" id="quizModeLabel">اختبار</span>
+      <span class="progress-text" id="quizProgress">0 / 0</span>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="quizProgressBar" style="width:0%"></div></div>
+
+    <div class="quiz-question-card" id="quizQuestionCard"></div>
+
+    <div id="typeAnswerWrap" style="display:none">
+      <div class="quiz-input-wrap">
+        <input class="quiz-input" id="quizInput" type="text" placeholder="اكتب الإجابة هنا" autocomplete="off" autocorrect="off">
+        <button class="btn btn-primary" onclick="submitTypeAnswer()">تحقق</button>
+      </div>
+    </div>
+
+    <div id="mcWrap" style="display:none">
+      <div class="quiz-choices" id="quizChoices"></div>
+    </div>
+
+    <div id="tfWrap" style="display:none">
+      <div class="tf-choices">
+        <button class="tf-btn" onclick="submitTF(true)">✓ صحيح</button>
+        <button class="tf-btn" onclick="submitTF(false)">✗ خطأ</button>
+      </div>
+    </div>
+
+    <div id="buildWrap" style="display:none">
+      <div class="built-area" id="builtArea"></div>
+      <div class="word-blocks" id="wordBlocks"></div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn btn-ghost btn-sm" onclick="resetBuild()">إعادة ضبط</button>
+        <button class="btn btn-primary" onclick="submitBuild()">إرسال</button>
+      </div>
+    </div>
+
+    <!-- Dictation UI: unique input id to avoid conflict -->
+    <div id="dictationWrap" style="display:none">
+      <div style="margin:12px 0; text-align:center;">
+        <button class="btn btn-secondary btn-sm" onclick="speakItem()">🔊 إعادة التشغيل</button>
+      </div>
+      <div class="quiz-input-wrap">
+        <input class="quiz-input" id="dictationInput" type="text" placeholder="اكتب ما تسمعه" autocomplete="off" autocorrect="off" dir="ltr">
+        <button class="btn btn-primary" onclick="submitDictationAnswer()">تحقق</button>
+      </div>
+    </div>
+
+    <!-- Tone recognition UI -->
+    <div id="toneWrap" style="display:none">
+      <div id="toneCharDisplay" class="quiz-prompt-hanzi" style="font-size:3rem; margin:12px 0;"></div>
+      <div class="quiz-choices" id="toneChoices"></div>
+      <div style="text-align:center; margin-top:8px;">
+        <button class="btn btn-ghost btn-sm" onclick="speakItem()">🔊 استمع</button>
+      </div>
+    </div>
+
+    <div id="feedbackWrap" style="display:none"></div>
+
+    <div class="quiz-sticky-bar">
+      <button class="btn btn-primary btn-lg" id="nextQuizBtn" style="display:none" onclick="handleNext()">التالي ←</button>
+      <button class="btn btn-ghost btn-sm" onclick="endSession()">إنهاء الجلسة</button>
+    </div>
+  </div>
+
+  <!-- RESULTS VIEW -->
+  <div class="view" id="resultsView">
+    <div class="results-hero"><div class="results-score" id="resultsScore">0%</div><div class="results-label">نتيجة الجلسة</div></div>
+    <div class="results-grid">
+      <div class="results-stat"><div class="num" id="totalQ">0</div><div class="lbl">إجمالي</div></div>
+      <div class="results-stat"><div class="num correct-num" id="correctQ">0</div><div class="lbl">صحيح</div></div>
+      <div class="results-stat"><div class="num wrong-num" id="wrongQ">0</div><div class="lbl">خطأ</div></div>
+    </div>
+    <div id="mistakesSection" style="display:none">
+      <div class="card-title" style="margin-bottom:10px;">الأخطاء</div>
+      <div class="mistakes-list" id="mistakesList"></div>
+    </div>
+    <div class="results-actions">
+      <button class="btn btn-primary btn-lg" onclick="retryMistakes()">إعادة الأخطاء</button>
+      <button class="btn btn-secondary btn-lg" onclick="showHome()">جلسة جديدة</button>
+    </div>
+  </div>
+
+  <!-- STATS VIEW -->
+  <div class="view" id="statsView">
+    <div class="session-header" style="margin-bottom:16px">
+      <span class="session-title" style="font-size:1.1rem;color:var(--text)">📊 الإحصائيات</span>
+      <button class="btn btn-ghost btn-sm" onclick="showHome()">← رجوع</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card"><div class="icon">📚</div><div class="val" id="statStudied">0</div><div class="desc">عناصر مدروسة</div></div>
+      <div class="stat-card"><div class="icon">🎯</div><div class="val" id="statAccuracy">0%</div><div class="desc">دقة الإجابات</div></div>
+      <div class="stat-card"><div class="icon">✅</div><div class="val" id="statKnown">0</div><div class="desc">معروف</div></div>
+      <div class="stat-card"><div class="icon">😰</div><div class="val" id="statDifficult">0</div><div class="desc">صعب</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">العناصر الضعيفة (أكثر من <span id="thresholdLabel">2</span> خطأ)</div>
+      <div style="margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+        <label class="form-label">الحد الأدنى للأخطاء:</label>
+        <input type="number" class="form-input" id="weakThreshold" value="2" min="1" max="20" style="width:70px" oninput="renderStats()">
+      </div>
+      <div class="weak-list" id="weakList"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">إكمال الدروس</div>
+      <div id="lessonCompletion"></div>
+    </div>
+
+    <div class="reset-btn-wrap">
+      <button class="btn btn-ghost btn-sm" onclick="confirmReset()">🗑 إعادة تعيين التقدم</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- SPEAKING MODE VIEW -->
+<div class="view" id="speakingView">
+  <div class="speak-progress-row">
+    <button class="btn btn-ghost btn-sm" onclick="exitSpeakingMode()">← رجوع</button>
+    <span class="progress-text" id="speakProgress">1 / 0</span>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="speakProgressBar" style="width:0%"></div></div>
+
+  <div class="speak-card" id="speakWordCard">
+    <div class="speak-step-label" id="speakStepLabel">استمع</div>
+    <div class="speak-hanzi"  id="speakHanzi">你好</div>
+    <div class="speak-pinyin" id="speakPinyin">nǐ hǎo</div>
+    <div class="speak-arabic" id="speakArabic">مرحباً</div>
+  </div>
+
+  <!-- Phase area: changes per step -->
+  <div id="speakPhaseArea">
+    <!-- step: listen -->
+    <div id="speakStepListen" style="text-align:center;">
+      <button class="btn btn-secondary" style="min-height:48px;margin-bottom:12px;" onclick="speakCurrentWord()">🔊 استمع مجدداً</button>
+      <br>
+      <button class="btn btn-primary btn-lg" style="margin-top:4px;" onclick="goToSpeakRecord()">🎤 ابدأ التحدث</button>
+    </div>
+
+    <!-- step: record -->
+    <div id="speakStepRecord" style="display:none;text-align:center;">
+      <div class="speak-countdown" id="speakCountdown"></div>
+      <div id="speakMicArea">
+        <button class="speak-mic-btn" id="speakMicBtn" onclick="toggleSpeakRecording()">🎤</button>
+        <div style="color:var(--text2);font-size:0.9rem;margin-top:6px;" id="speakMicLabel">اضغط وتحدث</div>
+      </div>
+      <!-- Fallback: no speech recognition -->
+      <div id="speakFallbackArea" style="display:none;">
+        <div style="color:var(--text2);font-size:0.9rem;margin-bottom:12px;">🎙️ سجّل صوتك ثم استمع إليه</div>
+        <button class="btn btn-secondary" style="min-height:48px;" id="speakFallbackPlayBtn" onclick="speakFallbackPlay()" disabled>▶ استمع لتسجيلك</button>
+        <div style="color:var(--text3);font-size:0.82rem;margin-top:10px;direction:rtl;">يمكنك مقارنة صوتك بالصوت الأصلي</div>
+      </div>
+    </div>
+
+    <!-- step: result -->
+    <div id="speakStepResult" style="display:none;text-align:center;">
+      <div class="speak-result-box" id="speakResultBox">
+        <span id="speakResultEmoji">✅</span>
+        <span id="speakResultText">ممتاز</span>
+      </div>
+      <button class="btn btn-secondary" style="min-height:48px;margin-bottom:10px;width:100%;max-width:380px;" onclick="speakCurrentWord()">🔊 استمع للأصل</button>
+    </div>
+  </div>
+
+  <div class="speak-bottom-bar">
+    <div class="speak-nav-row" id="speakNavRow" style="display:none;">
+      <button class="btn btn-ghost" onclick="speakRetry()">🔁 أعد المحاولة</button>
+      <button class="btn btn-primary" onclick="speakNext()">التالي ←</button>
+    </div>
+    <button class="btn btn-ghost btn-sm" onclick="exitSpeakingMode()" style="max-width:380px;">إنهاء الوضع</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let allVocab = [], allSentences = [], allDialogues = [];
+let session = {
+  items: [],
+  index: 0,
+  mode: 'flashcard',
+  mistakes: [],
+  correct: 0,
+  wrong: 0,
+  flipped: false,
+  answered: false,
+  tfCorrectAnswer: null,
+  buildWords: [],
+  builtOrder: [],
+  toneItems: [],
+  toneIndex: 0,
+  currentWordChars: [],
+  currentCharIndex: 0,
+};
+let selectedLessons = new Set([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
+let selectedTypes = new Set(['word','sentence','dialogue']);
+let currentMode = 'flashcard';
+const LESSONS = Array.from({length:15}, (_,i)=>i+1);
+let vocabMap = new Map();
+
+async function init() {
+  loadTheme();
+  buildLessonGrid();
+  buildTypeGrid();
+  attachTabListeners();
+  document.getElementById('selectAllLessons').onclick = () => { LESSONS.forEach(l => selectedLessons.add(l)); renderLessons(); updateCount(); };
+  document.getElementById('clearAllLessons').onclick = () => { selectedLessons.clear(); renderLessons(); updateCount(); };
+  document.getElementById('startBtn').onclick = startSession;
+  document.getElementById('darkToggle').onclick = toggleTheme;
+  document.getElementById('statsBtn').onclick = showStats;
+  document.getElementById('countSelect').onchange = updateCount;
+  document.getElementById('typeGrid').onclick = (e) => {
+    const btn = e.target.closest('.type-btn'); if (!btn) return;
+    const t = btn.dataset.type;
+    if (t === 'mixed') {
+      selectedTypes = new Set(['word','sentence','dialogue']);
+      document.querySelectorAll('.type-btn').forEach(b => b.classList.add('selected'));
+    } else {
+      btn.classList.toggle('selected');
+      if (btn.classList.contains('selected')) selectedTypes.add(t); else selectedTypes.delete(t);
+      document.querySelector('.type-btn[data-type="mixed"]').classList.remove('selected');
+    }
+    updateCount();
+  };
+  document.getElementById('quizInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !session.answered && session.mode !== 'quiz_tone') submitTypeAnswer();
+    else if (e.key === 'Enter' && session.answered && session.mode !== 'quiz_tone') handleNext();
+  });
+  document.getElementById('dictationInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !session.answered) submitDictationAnswer();
+    else if (e.key === 'Enter' && session.answered) handleNext();
+  });
+
+  try {
+    const [v, s, d] = await Promise.all([
+      fetch('/data/vocab.json').then(r=>r.json()),
+      fetch('/data/sentences.json').then(r=>r.json()),
+      fetch('/data/dialogues.json').then(r=>r.json()),
+    ]);
+    allVocab = v; allSentences = s; allDialogues = d;
+    for (const word of allVocab) {
+      vocabMap.set(word.hanzi, true);
+    }
+    console.log(`Loaded: ${v.length} vocab, ${s.length} sentences, ${d.length} dialogue lines`);
+  } catch(e) { console.error('Data load failed:', e); }
+  updateCount();
+}
+
+function buildLessonGrid() {
+  document.getElementById('lessonGrid').innerHTML = LESSONS.map(l =>
+    `<button class="lesson-btn selected" data-lesson="${l}" onclick="toggleLesson(${l})">${l}</button>`).join('');
+}
+function renderLessons() {
+  document.querySelectorAll('.lesson-btn').forEach(b => {
+    b.classList.toggle('selected', selectedLessons.has(+b.dataset.lesson));
+  });
+}
+function toggleLesson(l) {
+  selectedLessons.has(l) ? selectedLessons.delete(l) : selectedLessons.add(l);
+  renderLessons(); updateCount();
+}
+function buildTypeGrid(){}
+
+function attachTabListeners() {
+  document.querySelectorAll('#modeTabsBar .nav-tab, #extraModeTabs .nav-tab').forEach(tab => {
+    tab.onclick = () => {
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentMode = tab.dataset.mode;
+      updateCount();
+    };
+  });
+}
+
+function getFilteredItems() {
+  let types = selectedTypes;
+  if (types.size === 3 || types.has('mixed')) types = new Set(['word','sentence','dialogue']);
+  let items = [];
+  if (types.has('word')) items.push(...allVocab.filter(x=>selectedLessons.has(x.lesson)));
+  if (types.has('sentence')) items.push(...allSentences.filter(x=>selectedLessons.has(x.lesson)));
+  if (types.has('dialogue')) items.push(...allDialogues.filter(x=>selectedLessons.has(x.lesson)));
+  return items;
+}
+function updateCount() {
+  const items = getFilteredItems();
+  document.getElementById('availableCount').textContent = items.length;
+}
+
+const FILLER_WORDS = new Set(['يكون','هو','هي','قد','لقد','تم','جدا','تماما','لست','لس','انا','اني']);
+const SYNONYM_GROUPS = [
+  ['معلم','معلمه','استاذ','اساذ','مدرس','مدرسه'],
+  ['اكل','تناول'],
+  ['رمز','مقطع'],
+  ['كبير','كبيره','ضخم'],
+  ['صغير','صغيره'],
+  ['سعيد','فرحان'],
+  ['جميل','حلو'],
+  ['طالب','تلميذ'],
+  ['بيت','منزل','دار'],
+  ['يريد','يحب','يود'],
+  ['صيني','صينيه'],
+  ['صح','صحيح','نعم','اه'],
+  ['لا','لن','ليس'],
+];
+const CANONICAL_MAP = new Map();
+for (const group of SYNONYM_GROUPS) {
+  const canonical = group[0];
+  for (const word of group) {
+    CANONICAL_MAP.set(word, canonical);
+  }
+}
+
+function _normWord(w) {
+  w = w
+    .replace(/[\u0610-\u061A\u064B-\u065F\u0670]/g, '')
+    .replace(/\u0640/g, '')
+    .replace(/[أإآ]/g, 'ا')
+    .replace(/ى/g, 'ي')
+    .replace(/ة/g, 'ه')
+    .toLowerCase()
+    .trim();
+  if (FILLER_WORDS.has(w)) return null;
+  if (CANONICAL_MAP.has(w)) return CANONICAL_MAP.get(w);
+  return w;
+}
+
+function flexibleNormArabic(raw) {
+  if (!raw) return [];
+  let s = raw
+    .replace(/[\u0610-\u061A\u064B-\u065F\u0670]/g, '')
+    .replace(/\u0640/g, '')
+    .replace(/[أإآ]/g, 'ا')
+    .replace(/ى/g, 'ي')
+    .replace(/ة/g, 'ه')
+    .replace(/[\.،\!\?؟,\/]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const words = s.split(' ').filter(w => w.length > 0);
+  const filtered = [];
+  for (let w of words) {
+    const n = _normWord(w);
+    if (n) filtered.push(n);
+  }
+  return filtered;
+}
+
+// Expand a correct answer that contains slash/or-separated synonyms into all valid canonical forms.
+// e.g. "رمز / مقطع" → Set{canonical(رمز), canonical(مقطع)}
+// The user only needs to match any ONE of the synonym variants per slot.
+function _expandCorrect(correctAnswer) {
+  // Split on slash, أو, comma-space patterns first to find synonym groups within the answer
+  const slashSplit = correctAnswer.split(/\/|،\s*|,\s*|\bأو\b/);
+  if (slashSplit.length > 1) {
+    // The whole answer is a synonym list — any one word is acceptable
+    const validSet = new Set();
+    for (const part of slashSplit) {
+      const words = flexibleNormArabic(part.trim());
+      for (const w of words) validSet.add(w);
+    }
+    return { synonymList: true, validSet };
+  }
+  return { synonymList: false, words: flexibleNormArabic(correctAnswer) };
+}
+
+function compareArabic(userAnswer, correctAnswer) {
+  const expanded = _expandCorrect(correctAnswer);
+  const userWords = flexibleNormArabic(userAnswer);
+  const userSet = new Set(userWords);
+
+  if (expanded.synonymList) {
+    // Accept if user answer contains ANY word from the valid set
+    for (const w of userSet) {
+      if (expanded.validSet.has(w)) return true;
+    }
+    return false;
+  }
+
+  const correctWords = expanded.words;
+  if (correctWords.length === 0) return false;
+  const correctSet = new Set(correctWords);
+  let matchCount = 0;
+  for (const w of userSet) {
+    if (correctSet.has(w)) matchCount++;
+  }
+  const threshold = Math.ceil(correctSet.size * 0.8);
+  return matchCount >= threshold;
+}
+
+function segmentWords(sentence) {
+  if (!sentence) return [];
+  const words = [];
+  let i = 0;
+  const len = sentence.length;
+  while (i < len) {
+    let matched = null;
+    for (let j = len; j > i; j--) {
+      const sub = sentence.slice(i, j);
+      if (vocabMap.has(sub)) { matched = sub; break; }
+    }
+    if (matched) {
+      words.push(matched);
+      i += matched.length;
+    } else {
+      words.push(sentence[i]);
+      i++;
+    }
+  }
+  return words;
+}
+
+function startReview(filter) {
+  const allItems = [...allVocab, ...allSentences, ...allDialogues];
+  const prog = JSON.parse(localStorage.getItem('hsk1_progress') || '{}');
+  const today = new Date().toISOString().split('T')[0];
+  let items = [];
+
+  for (const item of allItems) {
+    const key = String(item.id);
+    const p = prog[key];
+    if (!p) continue;
+    if (filter === 'today' && p.last_studied_date === today) items.push(item);
+    else if (filter === 'mistakes' && (p.wrong_count || 0) > 0) items.push(item);
+    else if (filter === 'difficult' && p.difficult) items.push(item);
+    else if (filter === 'mixed' && ((p.wrong_count || 0) > 0 || p.difficult)) items.push(item);
+  }
+  if (!items.length) { showToast('لا توجد عناصر مطابقة'); return; }
+  items = shuffle(items);
+  resetSessionState(items, currentMode);
+  if (currentMode === 'flashcard') startFlashcards();
+  else if (currentMode === 'quiz_tone') prepareToneSession();
+  else startQuiz();
+}
+
+function renderLessonCompletion() {
+  const prog = JSON.parse(localStorage.getItem('hsk1_progress') || '{}');
+  const all = [...allVocab, ...allSentences, ...allDialogues];
+  const lessons = new Map();
+  for (const item of all) {
+    let lesson = item.lesson;
+    if (!lessons.has(lesson)) lessons.set(lesson, []);
+    lessons.get(lesson).push(item);
+  }
+  let html = '';
+  for (const [lesson, items] of lessons.entries()) {
+    const total = items.length;
+    let known = 0;
+    for (const item of items) {
+      const p = prog[String(item.id)];
+      if (p && p.known) known++;
+    }
+    const pct = total ? Math.round((known/total)*100) : 0;
+    html += `
+      <div style="margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:4px">
+          <span>الدرس ${lesson}</span><span>${pct}%</span>
+        </div>
+        <div class="progress-bar-wrap" style="height:6px; margin-bottom:0">
+          <div class="progress-bar-fill" style="width:${pct}%; background:var(--correct)"></div>
+        </div>
+      </div>`;
+  }
+  document.getElementById('lessonCompletion').innerHTML = html || '<div class="empty-state">لا توجد بيانات</div>';
+}
+
+function resetSessionState(items, mode) {
+  session = {
+    items: items,
+    index: 0,
+    mode: mode,
+    mistakes: [],
+    correct: 0,
+    wrong: 0,
+    flipped: false,
+    answered: false,
+    tfCorrectAnswer: null,
+    buildWords: [],
+    builtOrder: [],
+    toneItems: [],
+    toneIndex: 0,
+    currentWordChars: [],
+    currentCharIndex: 0,
+  };
+}
+
+function startSession(retryItems) {
+  let items = Array.isArray(retryItems) ? retryItems : getFilteredItems();
+  if (!items.length) { showToast('لا توجد بطاقات مطابقة!'); return; }
+  const order = document.getElementById('orderSelect')?.value || 'random';
+  const countVal = document.getElementById('countSelect')?.value || 'all';
+  if (order === 'random') items = shuffle(items);
+  if (countVal !== 'all') items = items.slice(0, +countVal);
+
+  resetSessionState(items, currentMode);
+
+  if (currentMode === 'flashcard') startFlashcards();
+  else if (currentMode === 'quiz_tone') prepareToneSession();
+  else startQuiz();
+}
+
+function retryMistakes() {
+  if (!session.mistakes.length) { showHome(); return; }
+  const retryItems = session.mistakes.map(m => m.item);
+  currentMode = session.mode;
+  startSession(retryItems);
+}
+
+function startFlashcards() { showView('flashcardView'); renderFlashcard(); }
+function renderFlashcard() {
+  const item = session.items[session.index];
+  const total = session.items.length;
+  document.getElementById('fcProgress').textContent = `${session.index+1} / ${total}`;
+  document.getElementById('fcProgressBar').style.width = `${((session.index+1)/total)*100}%`;
+  const front = document.getElementById('cardFront');
+  const back = document.getElementById('cardBack');
+  const fc = document.getElementById('flashcard');
+  fc.classList.remove('flipped'); session.flipped = false;
+  let speakerTag = item.type==='dialogue' ? `<div class="speaker-tag">${item.speaker}</div>` : '';
+  let badge = item.type==='word'?'📝 مفردة':item.type==='sentence'?'📖 جملة':'💬 حوار';
+  front.innerHTML = `${speakerTag}<div class="card-type-badge">${badge}</div><div class="hanzi-big">${item.hanzi}</div><div class="flip-hint">اضغط لرؤية المعنى</div>`;
+  back.innerHTML = `${speakerTag}<div class="card-type-badge">${badge}</div><div class="arabic-big">${item.arabic}</div><div class="pinyin-text">${item.pinyin}</div>`;
+  saveProgress(item.id||item, {studied:true});
+}
+function flipCard() { session.flipped = !session.flipped; document.getElementById('flashcard').classList.toggle('flipped', session.flipped); }
+function markCard(flag) {
+  const item = session.items[session.index];
+  saveProgress(item.id||item, {[flag]:true});
+  showToast(flag==='known'?'✅ تم حفظه':'😰 مضاف للصعب');
+  nextCard();
+}
+function nextCard() { session.index++; if (session.index>=session.items.length) { endSession(); return; } renderFlashcard(); }
+
+// ────────────────────────────
+// TONE RECOGNITION HELPERS
+// ────────────────────────────
+function getToneFromPinyin(pinyin) {
+  if (!pinyin) return 0;
+  const toneMap = {
+    'ā':'1','á':'2','ǎ':'3','à':'4',
+    'ē':'1','é':'2','ě':'3','è':'4',
+    'ī':'1','í':'2','ǐ':'3','ì':'4',
+    'ō':'1','ó':'2','ǒ':'3','ò':'4',
+    'ū':'1','ú':'2','ǔ':'3','ù':'4',
+    'ǖ':'1','ǘ':'2','ǚ':'3','ǜ':'4',
+  };
+  for (const char of pinyin) {
+    if (toneMap[char]) return parseInt(toneMap[char]);
+  }
+  return 0;
+}
+
+function extractTonesFromPinyin(pinyinStr) {
+  const syllables = pinyinStr.split(/\s+/).filter(Boolean);
+  return syllables.map(s => getToneFromPinyin(s));
+}
+
+function prepareToneSession() {
+  const rawItems = session.items;
+  const toneWords = [];
+  for (const item of rawItems) {
+    const words = segmentWords(item.hanzi);
+    for (const w of words) {
+      const vocabEntry = allVocab.find(v => v.hanzi === w);
+      if (vocabEntry && vocabEntry.pinyin) {
+        const tones = extractTonesFromPinyin(vocabEntry.pinyin);
+        if (tones.length > 0) {
+          toneWords.push({ hanzi: w, pinyin: vocabEntry.pinyin, tones });
+        }
+      }
+    }
+  }
+  if (!toneWords.length) {
+    showToast('لا توجد كلمات مناسبة لتمييز النغمات');
+    return;
+  }
+  const shuffled = shuffle(toneWords);
+  const countVal = document.getElementById('countSelect')?.value || 'all';
+  const limited = countVal === 'all' ? shuffled : shuffled.slice(0, +countVal);
+  session.toneItems = limited;
+  session.toneIndex = 0;
+  startToneQuiz();
+}
+
+function startToneQuiz() {
+  showView('quizView');
+  document.getElementById('quizModeLabel').textContent = '🎵 تمييز النغمات';
+  renderToneQuiz();
+}
+
+function renderToneQuiz() {
+  const total = session.toneItems.length;
+  const idx = session.toneIndex;
+  if (idx >= total) {
+    endSession();
+    return;
+  }
+  // validate item
+  const word = session.toneItems[idx];
+  if (!word || !word.hanzi || !word.pinyin) {
+    console.warn('Skipping invalid tone item', word);
+    session.toneIndex++;
+    renderToneQuiz();
+    return;
+  }
+  document.getElementById('quizProgress').textContent = `${idx+1} / ${total}`;
+  document.getElementById('quizProgressBar').style.width = `${((idx+1)/total)*100}%`;
+  ['typeAnswerWrap','mcWrap','tfWrap','buildWrap','dictationWrap','toneWrap'].forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById('feedbackWrap').style.display='none';
+  document.getElementById('nextQuizBtn').style.display='none';
+  document.getElementById('toneWrap').style.display = '';
+
+  session.currentWordChars = [...word.hanzi];
+  session.currentCharIndex = 0;
+  session.answered = false;
+
+  displayCurrentChar();
+}
+
+function displayCurrentChar() {
+  const word = session.toneItems[session.toneIndex];
+  const char = session.currentWordChars[session.currentCharIndex];
+  document.getElementById('toneCharDisplay').textContent = char;
+  const choicesDiv = document.getElementById('toneChoices');
+  const tones = [
+    { label: 'النغمة الأولى (¯)', value: 1 },
+    { label: 'النغمة الثانية (´)', value: 2 },
+    { label: 'النغمة الثالثة (ˇ)', value: 3 },
+    { label: 'النغمة الرابعة (`)', value: 4 }
+  ];
+  choicesDiv.innerHTML = tones.map(t =>
+    `<button class="quiz-choice" data-tone="${t.value}" onclick="submitToneAnswer(${t.value})">${t.label}</button>`
+  ).join('');
+}
+
+function submitToneAnswer(chosenTone) {
+  const word = session.toneItems[session.toneIndex];
+  const expected = word.tones[session.currentCharIndex];
+  const isCorrect = chosenTone === expected;
+  document.querySelectorAll('#toneChoices .quiz-choice').forEach(btn => {
+    btn.disabled = true;
+    const val = parseInt(btn.dataset.tone);
+    if (val === expected) btn.classList.add('correct-choice');
+    if (val === chosenTone && !isCorrect) btn.classList.add('wrong-choice');
+  });
+  session.answered = true;
+  recordAnswer(isCorrect, word, chosenTone + '');
+  showFeedback(isCorrect, word, chosenTone === 1 ? '1' : chosenTone === 2 ? '2' : chosenTone === 3 ? '3' : '4');
+  document.getElementById('nextQuizBtn').style.display = '';
+}
+
+function advanceTone() {
+  const word = session.toneItems[session.toneIndex];
+  session.answered = false;
+  // next character or next word
+  if (session.currentCharIndex < session.currentWordChars.length - 1) {
+    session.currentCharIndex++;
+    // reset UI
+    document.getElementById('feedbackWrap').style.display = 'none';
+    document.getElementById('nextQuizBtn').style.display = 'none';
+    document.querySelectorAll('#toneChoices .quiz-choice').forEach(btn => btn.disabled = false);
+    displayCurrentChar();
+  } else {
+    // move to next word
+    session.toneIndex++;
+    if (session.toneIndex < session.toneItems.length) {
+      renderToneQuiz();
+    } else {
+      endSession();
+    }
+  }
+}
+
+// ────────────────────────────
+// DICTATION MODE FIX
+// ────────────────────────────
+function submitDictationAnswer() {
+  const item = session.items[session.index];
+  const inp = document.getElementById('dictationInput');
+  const userRaw = inp.value.trim();
+  if (!userRaw) return;
+  const correct = normChinese(userRaw) === normChinese(item.hanzi);
+  inp.disabled = true;
+  inp.className = 'quiz-input ' + (correct ? 'correct' : 'wrong');
+  showFeedback(correct, item, userRaw);
+  recordAnswer(correct, item, userRaw);
+  document.getElementById('nextQuizBtn').style.display = '';
+}
+
+function handleNext() {
+  if (session.mode === 'quiz_tone') {
+    advanceTone();
+  } else {
+    nextQuiz();
+  }
+}
+
+// ────────────────────────────
+// GENERAL QUIZ FUNCTIONS
+// ────────────────────────────
+function startQuiz() {
+  showView('quizView');
+  const labels = {
+    quiz_ar_zh:'✍️ عربي ← صيني', quiz_zh_ar:'✍️ صيني ← عربي', quiz_tf:'✅ صح / خطأ', quiz_listen:'🎧 استماع',
+    quiz_build:'🧩 ترتيب الكلمات', quiz_cloze:'📝 أكمل الفراغ', quiz_dictation:'🎤 اكتب ما تسمع'
+  };
+  document.getElementById('quizModeLabel').textContent = labels[session.mode] || 'اختبار';
+  renderQuiz();
+}
+
+function renderQuiz() {
+  session.answered = false;
+  const total = session.items.length;
+  const i = session.index;
+  document.getElementById('quizProgress').textContent = `${i+1} / ${total}`;
+  document.getElementById('quizProgressBar').style.width = `${((i+1)/total)*100}%`;
+  ['typeAnswerWrap','mcWrap','tfWrap','buildWrap','dictationWrap','toneWrap'].forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById('feedbackWrap').style.display='none';
+  document.getElementById('nextQuizBtn').style.display='none';
+  const item = session.items[i];
+  const qCard = document.getElementById('quizQuestionCard');
+
+  if (session.mode==='quiz_ar_zh') {
+    qCard.innerHTML = `<div class="quiz-type-label">اكتب الصينية</div><div class="quiz-prompt-arabic">${item.arabic}</div>`;
+    document.getElementById('typeAnswerWrap').style.display='';
+    const inp=document.getElementById('quizInput'); inp.value=''; inp.className='quiz-input'; inp.disabled=false; inp.placeholder='اكتب الصينية هنا'; inp.setAttribute('dir','ltr'); inp.focus();
+  } else if (session.mode==='quiz_zh_ar') {
+    qCard.innerHTML = `<div class="quiz-type-label">اكتب العربية</div><div class="quiz-prompt-hanzi">${item.hanzi}</div><div class="quiz-prompt-pinyin">${item.pinyin}</div>`;
+    document.getElementById('typeAnswerWrap').style.display='';
+    const inp=document.getElementById('quizInput'); inp.value=''; inp.className='quiz-input'; inp.disabled=false; inp.placeholder='اكتب المعنى بالعربية'; inp.setAttribute('dir','rtl'); inp.focus();
+  } else if (session.mode==='quiz_tf') {
+    renderTF(item, qCard);
+  } else if (session.mode==='quiz_listen') {
+    renderListen(item, qCard);
+  } else if (session.mode==='quiz_build') {
+    renderBuild(item, qCard);
+  } else if (session.mode==='quiz_cloze') {
+    renderCloze(item, qCard);
+  } else if (session.mode==='quiz_dictation') {
+    renderDictation(item, qCard);
+  }
+}
+
+function renderDictation(item, qCard) {
+  qCard.innerHTML = `<div class="quiz-type-label">اكتب ما تسمع</div>`;
+  document.getElementById('dictationWrap').style.display='';
+  const inp = document.getElementById('dictationInput');
+  inp.value = ''; inp.className = 'quiz-input'; inp.disabled = false;
+  inp.setAttribute('dir','ltr');
+  inp.focus();
+  speak(item.hanzi);
+}
+
+function submitTypeAnswer() {
+  const item = session.items[session.index];
+  const inp = document.getElementById('quizInput');
+  const userRaw = inp.value.trim();
+  if (!userRaw) return;
+  let correct;
+  if (session.mode === 'quiz_ar_zh') {
+    correct = normChinese(userRaw) === normChinese(item.hanzi);
+  } else {
+    correct = compareArabic(userRaw, item.arabic);
+  }
+  inp.disabled = true;
+  inp.className = 'quiz-input ' + (correct ? 'correct' : 'wrong');
+  showFeedback(correct, item, userRaw);
+  recordAnswer(correct, item, userRaw);
+}
+
+function renderTF(item, qCard) {
+  const isCorrect = Math.random() > 0.45;
+  let displayArabic = item.arabic;
+  if (!isCorrect) {
+    const pool = allVocab.concat(allSentences).filter(x => x.id !== item.id);
+    const rand = pool[Math.floor(Math.random() * pool.length)];
+    displayArabic = rand ? rand.arabic : item.arabic + ' (محرف)';
+  }
+  session.tfCorrectAnswer = isCorrect;
+  qCard.innerHTML = `<div class="quiz-type-label">هل هذا صحيح؟</div><div class="quiz-prompt-hanzi">${item.hanzi}</div><div class="quiz-prompt-arabic">${displayArabic}</div>`;
+  document.getElementById('tfWrap').style.display = '';
+  document.querySelectorAll('.tf-btn').forEach(b => { b.disabled = false; b.className = 'tf-btn'; });
+}
+function submitTF(userAnswer) {
+  const item = session.items[session.index];
+  const correct = userAnswer === session.tfCorrectAnswer;
+  document.querySelectorAll('.tf-btn').forEach(b => {
+    b.disabled = true;
+    const btnVal = b.textContent.includes('صحيح');
+    if (btnVal === session.tfCorrectAnswer) b.classList.add('correct-choice');
+    if (btnVal === userAnswer && !correct) b.classList.add('wrong-choice');
+  });
+  showFeedback(correct, item, userAnswer ? 'صحيح' : 'خطأ');
+  recordAnswer(correct, item, userAnswer ? 'صحيح' : 'خطأ');
+}
+
+function renderListen(item, qCard) {
+  const supported = 'speechSynthesis' in window;
+  let warnHtml = '';
+  if (!supported) warnHtml = `<div class="audio-warn">⚠️ متصفحك لا يدعم التحويل الصوتي — اقرأ البينيين</div>`;
+  qCard.innerHTML = `<div class="quiz-type-label">استمع واختر المعنى</div>
+    <div class="listen-btn-wrap"><button class="btn btn-secondary" onclick="speakItem()" id="speakBtn">🔊 استمع مجدداً</button></div>
+    <div class="quiz-prompt-pinyin" id="listenPinyin" style="display:none">${item.pinyin}</div>${warnHtml}`;
+  if (!supported) document.getElementById('listenPinyin').style.display = '';
+  else speak(item.hanzi);
+  const pool = allVocab.concat(allSentences).filter(x => normArabic(x.arabic) !== normArabic(item.arabic));
+  const distractors = shuffle(pool).slice(0,3).map(x=>x.arabic);
+  const choices = shuffle([item.arabic, ...distractors]);
+  document.getElementById('mcWrap').style.display = '';
+  document.getElementById('quizChoices').innerHTML = choices.map(c =>
+    `<button class="quiz-choice" onclick="submitMC(this,'${escapeAttr(c)}','${escapeAttr(item.arabic)}')">${c}</button>`).join('');
+}
+
+function submitMC(btn, chosen, correct) {
+  const item = session.items[session.index];
+  const isCorrect = normArabic(chosen) === normArabic(correct);
+  document.querySelectorAll('.quiz-choice').forEach(b => {
+    b.disabled = true;
+    if (normArabic(b.textContent) === normArabic(correct)) b.classList.add('correct-choice');
+  });
+  if (!isCorrect) btn.classList.add('wrong-choice');
+  showFeedback(isCorrect, item, chosen);
+  recordAnswer(isCorrect, item, chosen);
+}
+
+let cachedVoices = [];
+if ('speechSynthesis' in window) {
+  function _loadVoices() { cachedVoices = window.speechSynthesis.getVoices(); }
+  window.speechSynthesis.onvoiceschanged = _loadVoices;
+  _loadVoices();
+}
+
+function speakItem() {
+  if (session.mode === 'quiz_tone') {
+    const word = session.toneItems[session.toneIndex];
+    if (word) speak(word.hanzi);
+  } else {
+    const item = session.items[session.index];
+    if (item) speak(item.hanzi);
+  }
+}
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'zh-CN'; utt.rate = 0.85;
+  const zhVoice = cachedVoices.find(v=>v.lang.startsWith('zh'));
+  if (zhVoice) utt.voice = zhVoice;
+  window.speechSynthesis.speak(utt);
+}
+
+function renderBuild(item, qCard) {
+  qCard.innerHTML = `<div class="quiz-type-label">رتب الكلمات لتكوين الجملة</div><div class="quiz-prompt-pinyin">${item.pinyin}</div>`;
+  const sentence = item.hanzi;
+  const words = segmentWords(sentence);
+  if (words.length === 0) { showToast('تم تخطي هذه الجملة'); nextQuiz(); return; }
+  const shuffled = shuffle(words);
+  session.buildWords = shuffled;
+  session.builtOrder = [];
+  document.getElementById('buildWrap').style.display='';
+  renderBuildUI();
+}
+function renderBuildUI() {
+  const wordBlocks = document.getElementById('wordBlocks');
+  wordBlocks.innerHTML = session.buildWords.map((w,idx) =>
+    `<button class="word-block" onclick="addWord(${idx})">${w}</button>`).join('');
+  const builtArea = document.getElementById('builtArea');
+  builtArea.innerHTML = session.builtOrder.map((w,idx) =>
+    `<span class="built-word" onclick="removeWord(${idx})">${w}</span>`).join('');
+}
+function addWord(idx) {
+  const word = session.buildWords[idx];
+  if (!word) return;
+  session.builtOrder.push(word);
+  session.buildWords.splice(idx,1);
+  renderBuildUI();
+}
+function removeWord(idx) {
+  const word = session.builtOrder[idx];
+  if (!word) return;
+  session.builtOrder.splice(idx,1);
+  session.buildWords.push(word);
+  renderBuildUI();
+}
+function resetBuild() {
+  session.buildWords = shuffle([...session.buildWords, ...session.builtOrder]);
+  session.builtOrder = [];
+  renderBuildUI();
+}
+function submitBuild() {
+  const item = session.items[session.index];
+  const original = normChinese(item.hanzi);
+  const userSentence = session.builtOrder.join('');
+  const isCorrect = normChinese(userSentence) === original;
+  document.querySelectorAll('#wordBlocks .word-block').forEach(b => { b.disabled = true; });
+  document.querySelector('#buildWrap .btn-primary').disabled = true;
+  showFeedback(isCorrect, item, userSentence);
+  recordAnswer(isCorrect, item, userSentence);
+}
+
+function renderCloze(item, qCard) {
+  const words = segmentWords(item.hanzi);
+  if (words.length < 2) { showToast('تم تخطي هذه الجملة'); nextQuiz(); return; }
+  let removeIdx = -1;
+  for (let i=0; i<words.length; i++) {
+    if (words[i].length > 1) { removeIdx = i; break; }
+  }
+  if (removeIdx === -1) removeIdx = Math.floor(Math.random() * words.length);
+  const removed = words[removeIdx];
+  const before = words.slice(0, removeIdx).join('');
+  const after = words.slice(removeIdx+1).join('');
+  const sentenceHtml = `<span>${before}</span><span class="cloze-blank">____</span><span>${after}</span>`;
+  qCard.innerHTML = `<div class="quiz-type-label">أكمل الفراغ</div><div class="quiz-prompt-hanzi" style="font-size:2rem;">${sentenceHtml}</div>`;
+  const correct = removed;
+  let pool = allVocab.filter(v => v.hanzi !== correct).map(v => v.hanzi);
+  const distractors = shuffle(pool).slice(0,3);
+  const choices = shuffle([correct, ...distractors]);
+  session.clozeCorrect = correct;
+  document.getElementById('mcWrap').style.display='';
+  const choicesDiv = document.getElementById('quizChoices');
+  choicesDiv.innerHTML = choices.map(c =>
+    `<button class="quiz-choice" data-choice="${escapeAttr(c)}">${c}</button>`).join('');
+  // Rebind via event delegation on the stable container — no inline onclick
+  choicesDiv.onclick = (e) => {
+    const btn = e.target.closest('.quiz-choice');
+    if (!btn || btn.disabled) return;
+    submitCloze(btn.dataset.choice);
+  };
+}
+function submitCloze(chosen) {
+  const item = session.items[session.index];
+  const correct = session.clozeCorrect;
+  const isCorrect = chosen === correct;
+  document.querySelectorAll('.quiz-choice').forEach(b => {
+    b.disabled = true;
+    if (b.textContent === correct) b.classList.add('correct-choice');
+    if (b.textContent === chosen && !isCorrect) b.classList.add('wrong-choice');
+  });
+  showFeedback(isCorrect, item, chosen);
+  recordAnswer(isCorrect, item, chosen);
+}
+
+function showFeedback(correct, item, userAnswer) {
+  session.answered = true;
+  const wrap = document.getElementById('feedbackWrap');
+  const chineseAnswer = session.mode === 'quiz_ar_zh' || session.mode === 'quiz_dictation' || session.mode === 'quiz_tone' || session.mode === 'quiz_build' || session.mode === 'quiz_cloze';
+  const correctLabel = chineseAnswer ? item.hanzi : item.arabic;
+  const correctPinyin = item.pinyin || '';
+  const correctDir = chineseAnswer ? 'ltr' : 'rtl';
+  const userDir = chineseAnswer ? 'ltr' : 'rtl';
+  wrap.style.display = '';
+  wrap.innerHTML = correct
+    ? `<div class="feedback-row feedback-correct"><span class="feedback-icon">✅</span> <span>إجابة صحيحة!</span></div>`
+    : `<div class="feedback-row feedback-wrong">
+        <span class="feedback-icon">❌</span>
+        <div>
+          <div>إجابة خاطئة</div>
+          <div class="mistake-line" style="margin-top:4px"><span style="color:var(--text2);font-size:0.85rem">إجابتك:</span><span class="mistake-user feedback-answer" dir="${userDir}">${userAnswer}</span></div>
+          <div class="mistake-line" style="margin-top:2px"><span style="color:var(--text2);font-size:0.85rem">الصواب:</span><span class="mistake-correct feedback-answer" dir="${correctDir}">${correctLabel}</span>${chineseAnswer && correctPinyin ? `<span style="color:var(--text2);font-size:0.85rem;direction:ltr;unicode-bidi:isolate"> ${correctPinyin}</span>` : ''}</div>
+        </div>
+      </div>`;
+  document.getElementById('nextQuizBtn').style.display = '';
+}
+function recordAnswer(correct, item, userAnswer) {
+  if (correct) {
+    session.correct++;
+    const p = getProgress(item.id||item) || {};
+    saveProgress(item.id||item, {...p, studied:true, wrong_count: p.wrong_count||0});
+  } else {
+    session.wrong++;
+    const p = getProgress(item.id||item) || {};
+    const wc = (p.wrong_count||0)+1;
+    saveProgress(item.id||item, {...p, studied:true, wrong_count: wc});
+    session.mistakes.push({item, userAnswer, correctAnswer: session.mode==='quiz_ar_zh'||session.mode==='quiz_dictation'?item.hanzi:item.arabic});
+  }
+}
+function nextQuiz() { session.index++; if (session.index>=session.items.length) { endSession(); return; } renderQuiz(); }
+
+function endSession() {
+  if (session.mode === 'flashcard') { showHome(); return; }
+  const total = session.correct + session.wrong;
+  const pct = total ? Math.round((session.correct/total)*100) : 0;
+  document.getElementById('resultsScore').textContent = pct+'%';
+  document.getElementById('totalQ').textContent = total;
+  document.getElementById('correctQ').textContent = session.correct;
+  document.getElementById('wrongQ').textContent = session.wrong;
+  const ms = document.getElementById('mistakesSection');
+  const ml = document.getElementById('mistakesList');
+  if (session.mistakes.length) {
+    ms.style.display = '';
+    ml.innerHTML = session.mistakes.map(m => `
+      <div class="mistake-item">
+        <div class="mistake-q">السؤال:</div>
+        <div class="mistake-hanzi">${m.item.hanzi}</div>
+        <div class="mistake-line"><span style="color:var(--text2);font-size:0.85rem">إجابتك:</span><span class="mistake-user">${m.userAnswer}</span></div>
+        <div class="mistake-line"><span style="color:var(--text2);font-size:0.85rem">الصواب:</span><span class="mistake-correct">${m.correctAnswer}</span></div>
+      </div>`).join('');
+  } else ms.style.display = 'none';
+  showView('resultsView');
+}
+
+function showStats() { renderStats(); renderLessonCompletion(); showView('statsView'); }
+function renderStats() {
+  const threshold = parseInt(document.getElementById('weakThreshold').value) || 2;
+  document.getElementById('thresholdLabel').textContent = threshold;
+  const all = allVocab.concat(allSentences).concat(allDialogues);
+  const raw = localStorage.getItem('hsk1_progress');
+  const prog = raw ? JSON.parse(raw) : {};
+  let studied=0, known=0, difficult=0;
+  for (const [key, p] of Object.entries(prog)) {
+    if (p.studied) studied++;
+    if (p.known) known++;
+    if (p.difficult) difficult++;
+  }
+  const accuracy = studied ? Math.max(0, Math.round(((studied - Object.values(prog).filter(p=>p.wrong_count>0).length)/studied)*100)) : 0;
+  document.getElementById('statStudied').textContent = studied;
+  document.getElementById('statAccuracy').textContent = accuracy+'%';
+  document.getElementById('statKnown').textContent = known;
+  document.getElementById('statDifficult').textContent = difficult;
+
+  const weakItems = [];
+  for (const [key, p] of Object.entries(prog)) {
+    if ((p.wrong_count||0) >= threshold) {
+      const item = all.find(x => String(x.id) === String(key));
+      if (item) weakItems.push({item, wc: p.wrong_count});
+    }
+  }
+  weakItems.sort((a,b)=>b.wc-a.wc);
+  const wl = document.getElementById('weakList');
+  if (!weakItems.length) wl.innerHTML = '<div class="empty-state">لا توجد عناصر ضعيفة 🎉</div>';
+  else wl.innerHTML = weakItems.slice(0,30).map(({item,wc})=>`
+    <div class="weak-item">
+      <div><div class="weak-hanzi">${item.hanzi}</div><div class="weak-arabic">${item.arabic}</div></div>
+      <div class="weak-badge">${wc} ✗</div>
+    </div>`).join('');
+}
+
+function confirmReset() {
+  if (confirm('هل تريد مسح كل بيانات التقدم؟')) {
+    localStorage.removeItem('hsk1_progress');
+    showToast('تم مسح التقدم');
+    renderStats(); renderLessonCompletion();
+  }
+}
+
+function getProgress(id) {
+  const raw = localStorage.getItem('hsk1_progress');
+  const prog = raw ? JSON.parse(raw) : {};
+  return prog[String(id)] || null;
+}
+function saveProgress(id, data) {
+  const raw = localStorage.getItem('hsk1_progress');
+  const prog = raw ? JSON.parse(raw) : {};
+  const key = String(id);
+  const today = new Date().toISOString().split('T')[0];
+  prog[key] = {...(prog[key]||{}), ...data, last_seen: Date.now(), last_studied_date: today};
+  localStorage.setItem('hsk1_progress', JSON.stringify(prog));
+}
+
+function normChinese(s) {
+  if (!s) return '';
+  return s.replace(/[\s\u3000]+/g,'').replace(/[。，！？、；：""''【】（）《》\.\,\!\?\;\:\"\'\[\]\(\)]/g,'')
+          .replace(/[\uff01-\uff5e]/g, c=>String.fromCharCode(c.charCodeAt(0)-0xFEE0)).trim().toLowerCase();
+}
+function normArabic(s) {
+  if (!s) return '';
+  return s.replace(/[\u0610-\u061A\u064B-\u065F\u0670]/g,'').replace(/\u0640/g,'')
+          .replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[\.،\!\?؟,]/g,'').replace(/\s+/g,' ').trim();
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('light-mode');
+  const isLight = document.body.classList.contains('light-mode');
+  localStorage.setItem('hsk1_theme', isLight?'light':'dark');
+  document.getElementById('darkToggle').textContent = isLight?'☀️':'🌙';
+}
+function loadTheme() {
+  const t = localStorage.getItem('hsk1_theme');
+  if (t==='light') { document.body.classList.add('light-mode'); document.getElementById('darkToggle').textContent='☀️'; }
+}
+
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function showHome() { showView('homeView'); updateCount(); }
+
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i=a.length-1; i>0; i--) { const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+function escapeAttr(s) { return String(s).replace(/'/g,'&#39;').replace(/"/g,'&quot;'); }
+
+// ══════════════════════════════════════════════
+// SPEAKING MODE — تقييم النطق
+// ══════════════════════════════════════════════
+const speakState = {
+  items: [],
+  index: 0,
+  recognition: null,
+  recorder: null,
+  recordedChunks: [],
+  recordedBlob: null,
+  isRecording: false,
+  hasSpeechAPI: false,
+  lastTranscript: '',
+};
+
+function startSpeakingMode() {
+  // Deactivate quiz mode tabs visually
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('speakingModeBtn').classList.add('active');
+
+  let items = getFilteredItems();
+  if (!items.length) { showToast('لا توجد بطاقات مطابقة!'); return; }
+  items = shuffle(items).slice(0, 20);
+
+  speakState.items = items;
+  speakState.index = 0;
+  speakState.hasSpeechAPI = ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window);
+
+  showView('speakingView');
+  renderSpeakCard();
+}
+
+function exitSpeakingMode() {
+  stopSpeakRecordingCleanup();
+  showHome();
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+}
+
+function renderSpeakCard() {
+  const items = speakState.items;
+  const i = speakState.index;
+  const total = items.length;
+  if (i >= total) { exitSpeakingMode(); showToast('أحسنت! انتهت الجلسة 🎉'); return; }
+
+  const item = items[i];
+  document.getElementById('speakProgress').textContent = `${i+1} / ${total}`;
+  document.getElementById('speakProgressBar').style.width = `${((i+1)/total)*100}%`;
+
+  document.getElementById('speakHanzi').textContent = item.hanzi;
+  document.getElementById('speakPinyin').textContent = item.pinyin || '';
+  document.getElementById('speakArabic').textContent = item.arabic;
+  document.getElementById('speakStepLabel').textContent = 'استمع';
+
+  // show listen step
+  goToSpeakStep('listen');
+
+  // auto-play TTS
+  setTimeout(() => speak(item.hanzi), 400);
+}
+
+function goToSpeakStep(step) {
+  ['listen','record','result'].forEach(s => {
+    document.getElementById('speakStep' + s.charAt(0).toUpperCase() + s.slice(1)).style.display = 'none';
+  });
+  document.getElementById('speakNavRow').style.display = 'none';
+  document.getElementById('speakStepLabel').textContent =
+    step === 'listen' ? 'استمع' : step === 'record' ? 'تحدث الآن' : 'النتيجة';
+
+  document.getElementById('speakStep' + step.charAt(0).toUpperCase() + step.slice(1)).style.display = '';
+}
+
+function speakCurrentWord() {
+  const item = speakState.items[speakState.index];
+  if (item) speak(item.hanzi);
+}
+
+function goToSpeakRecord() {
+  goToSpeakStep('record');
+  // countdown 3-2-1 then show mic
+  const cdEl = document.getElementById('speakCountdown');
+  const micArea = document.getElementById('speakMicArea');
+  const fallbackArea = document.getElementById('speakFallbackArea');
+  micArea.style.display = 'none';
+  fallbackArea.style.display = 'none';
+  cdEl.textContent = '';
+
+  let count = 3;
+  cdEl.textContent = count;
+  const timer = setInterval(() => {
+    count--;
+    if (count > 0) {
+      cdEl.textContent = count;
+    } else {
+      clearInterval(timer);
+      cdEl.textContent = '';
+      if (speakState.hasSpeechAPI) {
+        micArea.style.display = '';
+        fallbackArea.style.display = 'none';
+      } else {
+        micArea.style.display = 'none';
+        fallbackArea.style.display = '';
+        startFallbackRecording();
+      }
+    }
+  }, 800);
+}
+
+// ── Speech Recognition path ─────────────────
+function toggleSpeakRecording() {
+  if (speakState.isRecording) {
+    stopSpeakRecognition();
+  } else {
+    startSpeakRecognition();
+  }
+}
+
+function startSpeakRecognition() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const rec = new SpeechRecognition();
+  rec.lang = 'zh-CN';
+  rec.continuous = false;
+  rec.interimResults = false;
+  rec.maxAlternatives = 3;
+  speakState.recognition = rec;
+  speakState.isRecording = true;
+  speakState.lastTranscript = '';
+
+  const btn = document.getElementById('speakMicBtn');
+  const lbl = document.getElementById('speakMicLabel');
+  btn.classList.add('recording');
+  lbl.textContent = 'جارٍ الاستماع...';
+
+  rec.onresult = (e) => {
+    const results = e.results;
+    let best = '';
+    for (let i = 0; i < results.length; i++) {
+      const t = results[i][0].transcript;
+      if (t.length > best.length) best = t;
+    }
+    speakState.lastTranscript = best.trim();
+  };
+
+  rec.onerror = (e) => {
+    speakState.isRecording = false;
+    btn.classList.remove('recording');
+    lbl.textContent = 'اضغط وتحدث';
+    if (e.error === 'not-allowed') {
+      showToast('⚠️ الرجاء السماح بالوصول إلى الميكروفون');
+      speakState.hasSpeechAPI = false;
+      // fall back
+      document.getElementById('speakMicArea').style.display = 'none';
+      document.getElementById('speakFallbackArea').style.display = '';
+      startFallbackRecording();
+    } else if (e.error !== 'aborted') {
+      showSpeakResult('retry', '❌', 'لم يُسمع صوت — حاول مرة أخرى');
+    }
+  };
+
+  rec.onend = () => {
+    speakState.isRecording = false;
+    btn.classList.remove('recording');
+    lbl.textContent = 'اضغط وتحدث';
+    if (speakState.lastTranscript) {
+      evaluateSpeaking(speakState.lastTranscript);
+    } else {
+      showSpeakResult('retry', '❌', 'لم يُسمع صوت — حاول مرة أخرى');
+    }
+  };
+
+  try { rec.start(); } catch(e) { speakState.isRecording = false; }
+}
+
+function stopSpeakRecognition() {
+  if (speakState.recognition) {
+    try { speakState.recognition.stop(); } catch(e) {}
+  }
+  speakState.isRecording = false;
+}
+
+function stopSpeakRecordingCleanup() {
+  stopSpeakRecognition();
+  if (speakState.recorder && speakState.recorder.state !== 'inactive') {
+    try { speakState.recorder.stop(); } catch(e) {}
+  }
+  speakState.isRecording = false;
+}
+
+// ── Evaluation ─────────────────────────────
+function evaluateSpeaking(transcript) {
+  const item = speakState.items[speakState.index];
+  const expected = normChinese(item.hanzi);
+  const spoken   = normChinese(transcript);
+
+  // Similarity: how many chars of expected appear in spoken
+  let matchCount = 0;
+  for (const ch of expected) {
+    if (spoken.includes(ch)) matchCount++;
+  }
+  const ratio = expected.length ? matchCount / expected.length : 0;
+
+  // Also check tone hints via pinyin if available
+  if (ratio >= 0.85) {
+    showSpeakResult('excellent', '✅', 'ممتاز! نطق رائع');
+  } else if (ratio >= 0.5) {
+    // Try to hint which tone might be off
+    const hint = getToneHint(item.pinyin);
+    showSpeakResult('good', '⚠️', hint || 'جيد — راجع النغمة وأعد');
+  } else {
+    showSpeakResult('retry', '❌', 'حاول مرة أخرى — استمع للأصل أولاً');
+  }
+}
+
+function getToneHint(pinyin) {
+  if (!pinyin) return null;
+  // Find first syllable with a tone mark and mention it
+  const syllables = pinyin.split(/\s+/).filter(Boolean);
+  const toneNames = { 1: 'الأولى', 2: 'الثانية', 3: 'الثالثة', 4: 'الرابعة' };
+  for (let idx = 0; idx < syllables.length; idx++) {
+    const t = getToneFromPinyin(syllables[idx]);
+    if (t > 0) {
+      return `جيد — راجع النغمة ${toneNames[t]} في المقطع ${idx+1}`;
+    }
+  }
+  return 'جيد — حاول تحسين النطق';
+}
+
+function showSpeakResult(type, emoji, text) {
+  goToSpeakStep('result');
+  const box = document.getElementById('speakResultBox');
+  box.className = 'speak-result-box ' + type;
+  document.getElementById('speakResultEmoji').textContent = emoji;
+  document.getElementById('speakResultText').textContent = text;
+  document.getElementById('speakNavRow').style.display = 'flex';
+}
+
+function speakRetry() {
+  renderSpeakCard();
+}
+
+function speakNext() {
+  speakState.index++;
+  renderSpeakCard();
+}
+
+// ── Fallback: record + playback via MediaRecorder ─
+function startFallbackRecording() {
+  speakState.recordedChunks = [];
+  speakState.recordedBlob = null;
+  const playBtn = document.getElementById('speakFallbackPlayBtn');
+  playBtn.disabled = true;
+  playBtn.textContent = '⏺ جارٍ التسجيل...';
+
+  navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+    const rec = new MediaRecorder(stream);
+    speakState.recorder = rec;
+    speakState.isRecording = true;
+    rec.ondataavailable = (e) => { if (e.data.size > 0) speakState.recordedChunks.push(e.data); };
+    rec.onstop = () => {
+      speakState.isRecording = false;
+      stream.getTracks().forEach(t => t.stop());
+      speakState.recordedBlob = new Blob(speakState.recordedChunks, { type: 'audio/webm' });
+      playBtn.disabled = false;
+      playBtn.textContent = '▶ استمع لتسجيلك';
+      // Show fallback result
+      showSpeakResult('fallback', '🎙️', 'استمع لنفسك وقارن بالأصل');
+    };
+    rec.start();
+    // Auto-stop after 5 seconds
+    setTimeout(() => {
+      if (rec.state !== 'inactive') rec.stop();
+    }, 5000);
+  }).catch(() => {
+    showToast('⚠️ لا يمكن الوصول للميكروفون');
+    showSpeakResult('fallback', '🎙️', 'استمع للأصل وكرر النطق في ذهنك');
+    document.getElementById('speakNavRow').style.display = 'flex';
+  });
+}
+
+function speakFallbackPlay() {
+  if (!speakState.recordedBlob) return;
+  const url = URL.createObjectURL(speakState.recordedBlob);
+  const audio = new Audio(url);
+  audio.play();
+}
+
+init();
+</script>
+</body>
+</html>
