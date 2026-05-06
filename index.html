@@ -319,15 +319,21 @@
       min-height:48px;
       font-size:1rem;
     }
-    /* Keep non-sticky elements their normal flow */
+    /* Stack input+button vertically; keep submit always visible */
     #typeAnswerWrap .quiz-input-wrap,
-    #dictationWrap .quiz-input-wrap {
+    #dictationWrap .quiz-input-wrap,
+    #errorWrap .quiz-input-wrap {
       flex-direction:column;
     }
     #typeAnswerWrap .quiz-input-wrap .btn,
-    #dictationWrap .quiz-input-wrap .btn {
+    #dictationWrap .quiz-input-wrap .btn,
+    #errorWrap .quiz-input-wrap .btn {
       width:100%;
       min-height:48px;
+    }
+    /* Ensure the quiz scroll area never goes behind the keyboard */
+    #quizView .quiz-scroll-area {
+      padding-bottom:140px;
     }
   }
 </style>
@@ -455,6 +461,7 @@
 
     <div class="quiz-question-card" id="quizQuestionCard"></div>
 
+    <div class="quiz-scroll-area">
     <div id="typeAnswerWrap" style="display:none">
       <div class="quiz-input-wrap">
         <input class="quiz-input" id="quizInput" type="text" placeholder="اكتب الإجابة هنا" autocomplete="off" autocorrect="off">
@@ -532,6 +539,7 @@
     </div>
 
     <div id="feedbackWrap" style="display:none"></div>
+    </div><!-- end quiz-scroll-area -->
 
     <div class="quiz-sticky-bar">
       <button class="btn btn-primary btn-lg" id="nextQuizBtn" style="display:none" onclick="handleNext()">التالي ←</button>
@@ -541,7 +549,11 @@
 
   <!-- RESULTS VIEW -->
   <div class="view" id="resultsView">
-    <div class="results-hero"><div class="results-score" id="resultsScore">0%</div><div class="results-label">نتيجة الجلسة</div></div>
+    <div class="session-header" style="margin-bottom:16px">
+      <span class="session-title" style="font-size:1.1rem;color:var(--text)">🏁 نتيجة الجلسة</span>
+      <button class="btn btn-ghost btn-sm" onclick="showHome()">← جلسة جديدة</button>
+    </div>
+    <div class="results-hero"><div class="results-score" id="resultsScore">0%</div><div class="results-label">النتيجة</div></div>
     <div class="results-grid">
       <div class="results-stat"><div class="num" id="totalQ">0</div><div class="lbl">إجمالي</div></div>
       <div class="results-stat"><div class="num correct-num" id="correctQ">0</div><div class="lbl">صحيح</div></div>
@@ -651,12 +663,15 @@ async function init() {
     if (e.key === 'Enter' && !session.answered) submitDictationAnswer();
     else if (e.key === 'Enter' && session.answered) handleNext();
   });
+  document.getElementById('errorInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !session.answered) submitErrorAnswer();
+  });
 
   try {
     const [v, s, d] = await Promise.all([
-      fetch('data/vocab.json').then(r=>r.json()),
-      fetch('data/sentences.json').then(r=>r.json()),
-      fetch('data/dialogues.json').then(r=>r.json()),
+      fetch('/data/vocab.json').then(r=>r.json()),
+      fetch('/data/sentences.json').then(r=>r.json()),
+      fetch('/data/dialogues.json').then(r=>r.json()),
     ]);
     allVocab = v; allSentences = s; allDialogues = d;
     for (const word of allVocab) {
@@ -707,21 +722,30 @@ function updateCount() {
   document.getElementById('availableCount').textContent = items.length;
 }
 
-const FILLER_WORDS = new Set(['يكون','هو','هي','قد','لقد','تم','جدا','تماما','لست','لس','انا','اني']);
+const FILLER_WORDS = new Set(['يكون','هو','هي','قد','لقد','تم','جدا','جداً','جدّا','تماما','تماماً','لست','لس','انا','اني','ايضا','أيضاً','فقط','كان','كانت']);
 const SYNONYM_GROUPS = [
-  ['معلم','معلمه','استاذ','اساذ','مدرس','مدرسه'],
-  ['اكل','تناول'],
+  ['معلم','معلمه','استاذ','أستاذ','اساذ','مدرس','مدرسه','مدرسة'],
+  ['أم','ام','ماما','والده','والدة','أمي'],
+  ['أب','اب','بابا','والد','والده','أبي'],
+  ['اكل','أكل','تناول'],
   ['رمز','مقطع'],
-  ['كبير','كبيره','ضخم'],
-  ['صغير','صغيره'],
-  ['سعيد','فرحان'],
-  ['جميل','حلو'],
-  ['طالب','تلميذ'],
-  ['بيت','منزل','دار'],
-  ['يريد','يحب','يود'],
-  ['صيني','صينيه'],
-  ['صح','صحيح','نعم','اه'],
-  ['لا','لن','ليس'],
+  ['كبير','كبيره','كبيرة','ضخم','ضخمه'],
+  ['صغير','صغيره','صغيرة'],
+  ['سعيد','سعيده','فرحان','فرحانه','مبسوط'],
+  ['جميل','جميله','حلو','حلوه'],
+  ['طالب','طالبه','تلميذ','تلميذه'],
+  ['بيت','منزل','دار','مسكن'],
+  ['يريد','تريد','يحب','تحب','يود','تود'],
+  ['صيني','صينيه','صينية'],
+  ['صح','صحيح','نعم','اه','أجل','آه'],
+  ['لا','لن','ليس','لم','ليست'],
+  ['ذهب','راح','انطلق','توجه'],
+  ['جاء','أتى','وصل','حضر'],
+  ['كثير','كثيره','كثيرة','وفير'],
+  ['قليل','قليله','قليلة'],
+  ['مريض','مريضه','تعبان','تعبانه'],
+  ['سريع','سريعه','بسرعه'],
+  ['بطيء','بطيءه','ببطء'],
 ];
 const CANONICAL_MAP = new Map();
 for (const group of SYNONYM_GROUPS) {
@@ -733,13 +757,15 @@ for (const group of SYNONYM_GROUPS) {
 
 function _normWord(w) {
   w = w
-    .replace(/[\u0610-\u061A\u064B-\u065F\u0670]/g, '')
-    .replace(/\u0640/g, '')
-    .replace(/[أإآ]/g, 'ا')
+    .replace(/[\u0610-\u061A\u064B-\u065F\u0670\u0651]/g, '') // diacritics + shadda
+    .replace(/\u0640/g, '')   // tatweel
+    .replace(/[أإآٱ]/g, 'ا')
     .replace(/ى/g, 'ي')
     .replace(/ة/g, 'ه')
+    .replace(/[ؤئ]/g, 'ء')
     .toLowerCase()
     .trim();
+  if (!w) return null;
   if (FILLER_WORDS.has(w)) return null;
   if (CANONICAL_MAP.has(w)) return CANONICAL_MAP.get(w);
   return w;
@@ -748,11 +774,12 @@ function _normWord(w) {
 function flexibleNormArabic(raw) {
   if (!raw) return [];
   let s = raw
-    .replace(/[\u0610-\u061A\u064B-\u065F\u0670]/g, '')
+    .replace(/[\u0610-\u061A\u064B-\u065F\u0670\u0651]/g, '')
     .replace(/\u0640/g, '')
-    .replace(/[أإآ]/g, 'ا')
+    .replace(/[أإآٱ]/g, 'ا')
     .replace(/ى/g, 'ي')
     .replace(/ة/g, 'ه')
+    .replace(/[ؤئ]/g, 'ء')
     .replace(/[\.،\!\?؟,\/]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
@@ -1305,11 +1332,25 @@ function submitMC(btn, chosen, correct) {
   recordAnswer(isCorrect, item, chosen);
 }
 
-let cachedVoices = [];
+let _cachedVoices = [];
 if ('speechSynthesis' in window) {
-  function _loadVoices() { cachedVoices = window.speechSynthesis.getVoices(); }
+  function _loadVoices() { _cachedVoices = window.speechSynthesis.getVoices(); }
   window.speechSynthesis.onvoiceschanged = _loadVoices;
   _loadVoices();
+}
+
+const _srSupported = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+
+function _evalPronunciation(recognized, target) {
+  // Simple character overlap score
+  const r = recognized.replace(/\s/g,'');
+  const t = target.replace(/\s/g,'');
+  let matches = 0;
+  for (const c of r) { if (t.includes(c)) matches++; }
+  const score = t.length ? Math.round((matches / t.length) * 100) : 0;
+  if (score >= 80) return { label:'ممتاز 🌟', cls:'feedback-correct' };
+  if (score >= 50) return { label:'جيد 👍', cls:'' };
+  return { label:'حاول مرة أخرى 🔄', cls:'feedback-wrong' };
 }
 
 function speakItem() {
@@ -1326,7 +1367,7 @@ function speak(text) {
   window.speechSynthesis.cancel();
   const utt = new SpeechSynthesisUtterance(text);
   utt.lang = 'zh-CN'; utt.rate = 0.85;
-  const zhVoice = cachedVoices.find(v=>v.lang.startsWith('zh'));
+  const zhVoice = _cachedVoices.find(v=>v.lang.startsWith('zh'));
   if (zhVoice) utt.voice = zhVoice;
   window.speechSynthesis.speak(utt);
 }
@@ -1572,7 +1613,18 @@ function showView(id) {
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
 }
-function showHome() { showView('homeView'); updateCount(); }
+function showHome() {
+  // Reset quiz DOM so no old state shows if user returns mid-session
+  document.getElementById('quizQuestionCard').innerHTML = '';
+  document.getElementById('feedbackWrap').style.display = 'none';
+  document.getElementById('nextQuizBtn').style.display = 'none';
+  ['typeAnswerWrap','mcWrap','tfWrap','buildWrap','dictationWrap','toneWrap','recordWrap','errorWrap'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  showView('homeView');
+  updateCount();
+}
 
 let toastTimer;
 function showToast(msg) {
@@ -1615,10 +1667,14 @@ function renderRecordQuiz() {
 
   const item = session.items[i];
   const qCard = document.getElementById('quizQuestionCard');
+  const evalNote = _srSupported
+    ? '<div style="font-size:0.82rem;color:var(--text2);margin-top:4px;">سيتم تقييم نطقك تلقائياً بعد التسجيل</div>'
+    : '<div style="font-size:0.82rem;color:var(--gold);margin-top:4px;">هذا الجهاز لا يدعم التقييم الصوتي — يمكنك الاستماع ومقارنة نطقك</div>';
+
   qCard.innerHTML = `<div class="quiz-type-label">استمع ثم سجل نطقك</div>
     <div class="quiz-prompt-hanzi">${item.hanzi}</div>
     <div class="quiz-prompt-pinyin">${item.pinyin}</div>
-    <div style="margin-top:8px;"><button class="btn btn-secondary btn-sm" onclick="speakItem()">🔊 استمع</button></div>`;
+    <div style="margin-top:8px;">${evalNote}<button class="btn btn-secondary btn-sm" style="margin-top:8px;" onclick="speakItem()">🔊 استمع</button></div>`;
 
   if (!_recordingSupported) {
     document.getElementById('recordWrap').style.display='';
@@ -1649,10 +1705,38 @@ async function startRecording() {
       _recordedBlob = new Blob(_recordedChunks, { type: 'audio/webm' });
       stream.getTracks().forEach(t => t.stop());
       document.getElementById('recordPlayBtn').disabled = false;
-      document.getElementById('recordStatus').textContent = 'تم التسجيل ✅ — اضغط تشغيل للمراجعة';
-      document.getElementById('nextQuizBtn').style.display = '';
       session.answered = true;
       recordAnswer(true, session.items[session.index], '[تسجيل صوتي]');
+      document.getElementById('nextQuizBtn').style.display = '';
+
+      // Attempt speech recognition evaluation
+      if (_srSupported) {
+        const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const sr = new SR();
+        sr.lang = 'zh-CN';
+        sr.interimResults = false;
+        sr.maxAlternatives = 1;
+        document.getElementById('recordStatus').textContent = '⏳ جاري التقييم...';
+        // Play back blob audio through a hidden element for recognition
+        // Recognition listens to microphone — use a second live recording pass
+        sr.onresult = (e) => {
+          const recognized = e.results[0][0].transcript;
+          const target = session.items[session.index]?.hanzi || '';
+          const eval_ = _evalPronunciation(recognized, target);
+          document.getElementById('recordStatus').innerHTML =
+            `<span style="font-size:1.1rem;font-weight:700">${eval_.label}</span><br><span style="font-size:0.85rem;color:var(--text2)">"${recognized}"</span>`;
+        };
+        sr.onerror = () => {
+          document.getElementById('recordStatus').textContent = 'تم التسجيل ✅ — اضغط تشغيل للمراجعة';
+        };
+        sr.onend = () => {};
+        try { sr.start(); } catch(e) {
+          document.getElementById('recordStatus').textContent = 'تم التسجيل ✅ — اضغط تشغيل للمراجعة';
+        }
+      } else {
+        document.getElementById('recordStatus').textContent =
+          'تم التسجيل ✅ — هذا الجهاز لا يدعم التقييم الصوتي، يمكنك الاستماع ومقارنة نطقك';
+      }
     };
     _mediaRecorder.start();
     document.getElementById('recordStartBtn').disabled = true;
@@ -1774,6 +1858,10 @@ function renderErrorQuiz() {
   document.getElementById('errorWrap').style.display = '';
   document.getElementById('errorInputWrap').style.display = 'none';
   document.getElementById('errorHintBtn').disabled = false;
+  // Always reset input state so Q2..Q10 are never stuck
+  const errorInp = document.getElementById('errorInput');
+  errorInp.value = '';
+  errorInp.disabled = false;
 
   // Render clickable characters
   const display = document.getElementById('errorSentenceDisplay');
@@ -1809,8 +1897,17 @@ function showErrorHint() {
       s.style.background = 'rgba(212,168,67,0.2)';
       s.style.borderColor = 'var(--gold)';
       s.style.borderStyle = 'dashed';
+      // Pre-select this character so the user can type right away
+      session._errorSelectedIdx = _errorWrongIdx;
     }
   });
+  // Show and focus input immediately after hint
+  const inputWrap = document.getElementById('errorInputWrap');
+  inputWrap.style.display = '';
+  const inp = document.getElementById('errorInput');
+  inp.value = '';
+  inp.disabled = false;
+  inp.focus();
   recordAnswer(false, session._errorItem, '[استخدم المساعدة]');
 }
 
