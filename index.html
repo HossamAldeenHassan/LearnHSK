@@ -271,134 +271,17 @@
   .cloze-blank {
     display:inline-block; background:var(--bg3); border-bottom:2px solid var(--red); border-radius:4px; padding:2px 8px; margin:0 4px; color:var(--text2); font-weight:700; font-size:1.2rem;
   }
-
-  /* ── Speaking Mode ─────────────────────────── */
-  #speakingView {
-    display:none;
+  .error-char {
+    display:inline-block; cursor:pointer; padding:2px 4px; border-radius:4px; border:2px solid transparent; transition:border 0.15s, background 0.15s;
   }
-  #speakingView.active {
-    display:flex;
-    flex-direction:column;
-    min-height:calc(100vh - 56px);
-    animation:fadeIn 0.3s;
-  }
-  .speak-card {
-    background:var(--bg2);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:32px 24px;
-    text-align:center;
-    box-shadow:var(--shadow);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-    margin-bottom:20px;
-  }
-  .speak-hanzi {
-    font-family:'Noto Serif SC', serif;
-    font-size:3.5rem;
-    color:var(--text);
-    direction:ltr;
-    line-height:1.2;
-  }
-  .speak-pinyin {
-    font-size:1.1rem;
-    color:var(--text2);
-    direction:ltr;
-    letter-spacing:0.06em;
-  }
-  .speak-arabic {
-    font-size:1.5rem;
-    font-weight:600;
-    color:var(--text);
-    direction:rtl;
-    line-height:1.4;
-  }
-  .speak-step-label {
-    font-size:0.8rem;
-    color:var(--red-light);
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:0.06em;
-    margin-bottom:4px;
-  }
-  .speak-mic-btn {
-    width:88px;
-    height:88px;
-    border-radius:50%;
-    border:3px solid var(--red);
-    background:rgba(192,57,43,0.15);
-    color:var(--red-light);
-    font-size:2rem;
-    cursor:pointer;
-    transition:all 0.2s;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:12px auto;
-    animation: none;
-  }
-  .speak-mic-btn:hover {
-    background:rgba(192,57,43,0.28);
-    transform:scale(1.05);
-  }
-  .speak-mic-btn.recording {
-    border-color:var(--red-light);
-    background:rgba(231,76,60,0.25);
-    animation: pulse-ring 1s infinite;
-  }
-  @keyframes pulse-ring {
-    0%   { box-shadow:0 0 0 0 rgba(231,76,60,0.5); }
-    70%  { box-shadow:0 0 0 16px rgba(231,76,60,0); }
-    100% { box-shadow:0 0 0 0 rgba(231,76,60,0); }
-  }
-  .speak-result-box {
-    border-radius:14px;
-    padding:16px 20px;
-    text-align:center;
-    font-size:1.1rem;
-    font-weight:600;
-    margin-bottom:16px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    direction:rtl;
-  }
-  .speak-result-box.excellent { background:rgba(39,174,96,0.15); border:1.5px solid var(--correct); color:var(--correct); }
-  .speak-result-box.good      { background:rgba(212,168,67,0.15); border:1.5px solid var(--gold);    color:var(--gold); }
-  .speak-result-box.retry     { background:rgba(231,76,60,0.12);  border:1.5px solid var(--wrong);   color:var(--wrong); }
-  .speak-result-box.fallback  { background:var(--bg3); border:1.5px solid var(--border); color:var(--text2); }
-  .speak-bottom-bar {
-    margin-top:auto;
-    padding:16px 0 8px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    align-items:center;
-  }
-  .speak-bottom-bar .btn { width:100%; max-width:380px; min-height:52px; font-size:1.05rem; }
-  .speak-nav-row { display:flex; gap:10px; width:100%; max-width:380px; }
-  .speak-nav-row .btn { flex:1; min-height:48px; }
-  .speak-countdown {
-    font-size:4rem;
-    font-weight:700;
-    color:var(--gold);
-    text-align:center;
-    line-height:1;
-    min-height:64px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .speak-progress-row {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:12px;
-  }
+  .error-char:hover { border-color:var(--gold); background:rgba(212,168,67,0.12); }
+  /* Voice recording UI */
+  .record-wrap { text-align:center; padding:12px 0; }
+  .record-btn-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:10px; }
+  .record-btn { min-height:44px; }
+  .record-btn.recording { background:var(--wrong)!important; color:#fff!important; animation:pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+  .record-status { font-size:0.9rem; color:var(--text2); margin-top:6px; min-height:1.4em; }
 
   @media (max-width:480px) {
     .lesson-grid { grid-template-columns:repeat(5,1fr); }
@@ -477,9 +360,8 @@
       <button class="nav-tab" data-mode="quiz_cloze">📝 أكمل الفراغ</button>
       <button class="nav-tab" data-mode="quiz_dictation">🎤 اكتب ما تسمع</button>
       <button class="nav-tab" data-mode="quiz_tone">🎵 تمييز النغمات</button>
-    </div>
-    <div class="nav-tabs" id="speakingModeTabs" style="margin-top:8px;">
-      <button class="nav-tab" id="speakingModeBtn" onclick="startSpeakingMode()">🗣️ تقييم النطق</button>
+      <button class="nav-tab" data-mode="quiz_record">🔴 تسجيل صوتي</button>
+      <button class="nav-tab" data-mode="quiz_error">🔍 اكتشف الخطأ</button>
     </div>
 
     <div class="card">
@@ -595,8 +477,8 @@
       <div class="built-area" id="builtArea"></div>
       <div class="word-blocks" id="wordBlocks"></div>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-        <button class="btn btn-ghost btn-sm" onclick="resetBuild()">إعادة ضبط</button>
-        <button class="btn btn-primary" onclick="submitBuild()">إرسال</button>
+        <button class="btn btn-ghost btn-sm" id="resetBuildBtn">إعادة ضبط</button>
+        <button class="btn btn-primary" id="submitBuildBtn">إرسال</button>
       </div>
     </div>
 
@@ -611,12 +493,41 @@
       </div>
     </div>
 
+    <!-- Voice recording UI -->
+    <div id="recordWrap" style="display:none">
+      <div class="record-wrap">
+        <div class="record-btn-row">
+          <button class="btn btn-secondary record-btn" id="recordStartBtn" onclick="startRecording()">🎤 ابدأ التسجيل</button>
+          <button class="btn btn-ghost record-btn" id="recordStopBtn" onclick="stopRecording()" disabled>⏹️ إيقاف</button>
+          <button class="btn btn-ghost record-btn" id="recordPlayBtn" onclick="playRecording()" disabled>▶️ تشغيل</button>
+        </div>
+        <div class="record-status" id="recordStatus"></div>
+      </div>
+    </div>
+
     <!-- Tone recognition UI -->
     <div id="toneWrap" style="display:none">
       <div id="toneCharDisplay" class="quiz-prompt-hanzi" style="font-size:3rem; margin:12px 0;"></div>
-      <div class="quiz-choices" id="toneChoices"></div>
+      <div class="quiz-choices" id="toneChoices" style="grid-template-columns:1fr 1fr;"></div>
       <div style="text-align:center; margin-top:8px;">
         <button class="btn btn-ghost btn-sm" onclick="speakItem()">🔊 استمع</button>
+      </div>
+    </div>
+
+    <!-- Error detection UI -->
+    <div id="errorWrap" style="display:none">
+      <div id="errorSentenceDisplay" style="font-family:'Noto Serif SC',serif;font-size:1.8rem;text-align:center;direction:ltr;margin:12px 0;line-height:2;"></div>
+      <div id="errorPinyinDisplay" class="quiz-prompt-pinyin" style="text-align:center;margin-bottom:10px;"></div>
+      <div style="text-align:center;font-size:0.9rem;color:var(--text2);margin-bottom:8px;">اضغط على الحرف الخاطئ</div>
+      <div style="text-align:center;margin-bottom:10px;">
+        <button class="btn btn-ghost btn-sm" id="errorHintBtn" onclick="showErrorHint()">💡 مساعدة</button>
+      </div>
+      <div id="errorInputWrap" style="display:none;margin-top:8px;">
+        <div style="text-align:center;font-size:0.9rem;color:var(--text2);margin-bottom:6px;">اكتب الحرف الصحيح:</div>
+        <div class="quiz-input-wrap" style="justify-content:center;">
+          <input class="quiz-input" id="errorInput" type="text" maxlength="2" style="max-width:80px;text-align:center;direction:ltr;font-family:'Noto Serif SC',serif;font-size:1.4rem;" autocomplete="off" autocorrect="off">
+          <button class="btn btn-primary" onclick="submitErrorAnswer()">تحقق</button>
+        </div>
       </div>
     </div>
 
@@ -681,64 +592,6 @@
 
 </div>
 
-<!-- SPEAKING MODE VIEW -->
-<div class="view" id="speakingView">
-  <div class="speak-progress-row">
-    <button class="btn btn-ghost btn-sm" onclick="exitSpeakingMode()">← رجوع</button>
-    <span class="progress-text" id="speakProgress">1 / 0</span>
-  </div>
-  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="speakProgressBar" style="width:0%"></div></div>
-
-  <div class="speak-card" id="speakWordCard">
-    <div class="speak-step-label" id="speakStepLabel">استمع</div>
-    <div class="speak-hanzi"  id="speakHanzi">你好</div>
-    <div class="speak-pinyin" id="speakPinyin">nǐ hǎo</div>
-    <div class="speak-arabic" id="speakArabic">مرحباً</div>
-  </div>
-
-  <!-- Phase area: changes per step -->
-  <div id="speakPhaseArea">
-    <!-- step: listen -->
-    <div id="speakStepListen" style="text-align:center;">
-      <button class="btn btn-secondary" style="min-height:48px;margin-bottom:12px;" onclick="speakCurrentWord()">🔊 استمع مجدداً</button>
-      <br>
-      <button class="btn btn-primary btn-lg" style="margin-top:4px;" onclick="goToSpeakRecord()">🎤 ابدأ التحدث</button>
-    </div>
-
-    <!-- step: record -->
-    <div id="speakStepRecord" style="display:none;text-align:center;">
-      <div class="speak-countdown" id="speakCountdown"></div>
-      <div id="speakMicArea">
-        <button class="speak-mic-btn" id="speakMicBtn" onclick="toggleSpeakRecording()">🎤</button>
-        <div style="color:var(--text2);font-size:0.9rem;margin-top:6px;" id="speakMicLabel">اضغط وتحدث</div>
-      </div>
-      <!-- Fallback: no speech recognition -->
-      <div id="speakFallbackArea" style="display:none;">
-        <div style="color:var(--text2);font-size:0.9rem;margin-bottom:12px;">🎙️ سجّل صوتك ثم استمع إليه</div>
-        <button class="btn btn-secondary" style="min-height:48px;" id="speakFallbackPlayBtn" onclick="speakFallbackPlay()" disabled>▶ استمع لتسجيلك</button>
-        <div style="color:var(--text3);font-size:0.82rem;margin-top:10px;direction:rtl;">يمكنك مقارنة صوتك بالصوت الأصلي</div>
-      </div>
-    </div>
-
-    <!-- step: result -->
-    <div id="speakStepResult" style="display:none;text-align:center;">
-      <div class="speak-result-box" id="speakResultBox">
-        <span id="speakResultEmoji">✅</span>
-        <span id="speakResultText">ممتاز</span>
-      </div>
-      <button class="btn btn-secondary" style="min-height:48px;margin-bottom:10px;width:100%;max-width:380px;" onclick="speakCurrentWord()">🔊 استمع للأصل</button>
-    </div>
-  </div>
-
-  <div class="speak-bottom-bar">
-    <div class="speak-nav-row" id="speakNavRow" style="display:none;">
-      <button class="btn btn-ghost" onclick="speakRetry()">🔁 أعد المحاولة</button>
-      <button class="btn btn-primary" onclick="speakNext()">التالي ←</button>
-    </div>
-    <button class="btn btn-ghost btn-sm" onclick="exitSpeakingMode()" style="max-width:380px;">إنهاء الوضع</button>
-  </div>
-</div>
-
 <div class="toast" id="toast"></div>
 
 <script>
@@ -801,9 +654,9 @@ async function init() {
 
   try {
     const [v, s, d] = await Promise.all([
-      fetch('./data/vocab.json').then(r=>r.json()),
-      fetch('./data/sentences.json').then(r=>r.json()),
-      fetch('./data/dialogues.json').then(r=>r.json()),
+      fetch('/data/vocab.json').then(r=>r.json()),
+      fetch('/data/sentences.json').then(r=>r.json()),
+      fetch('/data/dialogues.json').then(r=>r.json()),
     ]);
     allVocab = v; allSentences = s; allDialogues = d;
     for (const word of allVocab) {
@@ -996,6 +849,8 @@ function startReview(filter) {
   resetSessionState(items, currentMode);
   if (currentMode === 'flashcard') startFlashcards();
   else if (currentMode === 'quiz_tone') prepareToneSession();
+  else if (currentMode === 'quiz_record') startRecordSession();
+  else if (currentMode === 'quiz_error') startErrorSession();
   else startQuiz();
 }
 
@@ -1062,6 +917,8 @@ function startSession(retryItems) {
 
   if (currentMode === 'flashcard') startFlashcards();
   else if (currentMode === 'quiz_tone') prepareToneSession();
+  else if (currentMode === 'quiz_record') startRecordSession();
+  else if (currentMode === 'quiz_error') startErrorSession();
   else startQuiz();
 }
 
@@ -1124,15 +981,17 @@ function extractTonesFromPinyin(pinyinStr) {
 function prepareToneSession() {
   const rawItems = session.items;
   const toneWords = [];
+  const seen = new Set();
   for (const item of rawItems) {
     const words = segmentWords(item.hanzi);
     for (const w of words) {
+      if (seen.has(w)) continue;
+      seen.add(w);
       const vocabEntry = allVocab.find(v => v.hanzi === w);
       if (vocabEntry && vocabEntry.pinyin) {
         const tones = extractTonesFromPinyin(vocabEntry.pinyin);
-        if (tones.length > 0) {
-          toneWords.push({ hanzi: w, pinyin: vocabEntry.pinyin, tones });
-        }
+        // include all words — tone 0 = neutral tone, valid choice
+        toneWords.push({ hanzi: w, pinyin: vocabEntry.pinyin, tones });
       }
     }
   }
@@ -1171,7 +1030,7 @@ function renderToneQuiz() {
   }
   document.getElementById('quizProgress').textContent = `${idx+1} / ${total}`;
   document.getElementById('quizProgressBar').style.width = `${((idx+1)/total)*100}%`;
-  ['typeAnswerWrap','mcWrap','tfWrap','buildWrap','dictationWrap','toneWrap'].forEach(id=>document.getElementById(id).style.display='none');
+  ['typeAnswerWrap','mcWrap','tfWrap','buildWrap','dictationWrap','toneWrap','recordWrap','errorWrap'].forEach(id=>document.getElementById(id).style.display='none');
   document.getElementById('feedbackWrap').style.display='none';
   document.getElementById('nextQuizBtn').style.display='none';
   document.getElementById('toneWrap').style.display = '';
@@ -1192,7 +1051,8 @@ function displayCurrentChar() {
     { label: 'النغمة الأولى (¯)', value: 1 },
     { label: 'النغمة الثانية (´)', value: 2 },
     { label: 'النغمة الثالثة (ˇ)', value: 3 },
-    { label: 'النغمة الرابعة (`)', value: 4 }
+    { label: 'النغمة الرابعة (`)', value: 4 },
+    { label: 'النغمة المحايدة (○)', value: 0 }
   ];
   choicesDiv.innerHTML = tones.map(t =>
     `<button class="quiz-choice" data-tone="${t.value}" onclick="submitToneAnswer(${t.value})">${t.label}</button>`
@@ -1210,8 +1070,9 @@ function submitToneAnswer(chosenTone) {
     if (val === chosenTone && !isCorrect) btn.classList.add('wrong-choice');
   });
   session.answered = true;
-  recordAnswer(isCorrect, word, chosenTone + '');
-  showFeedback(isCorrect, word, chosenTone === 1 ? '1' : chosenTone === 2 ? '2' : chosenTone === 3 ? '3' : '4');
+  recordAnswer(isCorrect, word, String(chosenTone));
+  const toneLabels = { 0:'محايدة', 1:'١', 2:'٢', 3:'٣', 4:'٤' };
+  showFeedback(isCorrect, word, `النغمة ${toneLabels[chosenTone] || chosenTone}`);
   document.getElementById('nextQuizBtn').style.display = '';
 }
 
@@ -1256,6 +1117,14 @@ function submitDictationAnswer() {
 function handleNext() {
   if (session.mode === 'quiz_tone') {
     advanceTone();
+  } else if (session.mode === 'quiz_record') {
+    session.index++;
+    if (session.index >= session.items.length) { endSession(); return; }
+    renderRecordQuiz();
+  } else if (session.mode === 'quiz_error') {
+    session.index++;
+    if (session.index >= session.items.length) { endSession(); return; }
+    renderErrorQuiz();
   } else {
     nextQuiz();
   }
@@ -1268,7 +1137,8 @@ function startQuiz() {
   showView('quizView');
   const labels = {
     quiz_ar_zh:'✍️ عربي ← صيني', quiz_zh_ar:'✍️ صيني ← عربي', quiz_tf:'✅ صح / خطأ', quiz_listen:'🎧 استماع',
-    quiz_build:'🧩 ترتيب الكلمات', quiz_cloze:'📝 أكمل الفراغ', quiz_dictation:'🎤 اكتب ما تسمع'
+    quiz_build:'🧩 ترتيب الكلمات', quiz_cloze:'📝 أكمل الفراغ', quiz_dictation:'🎤 اكتب ما تسمع',
+    quiz_record:'🔴 تسجيل صوتي', quiz_error:'🔍 اكتشف الخطأ'
   };
   document.getElementById('quizModeLabel').textContent = labels[session.mode] || 'اختبار';
   renderQuiz();
@@ -1280,7 +1150,7 @@ function renderQuiz() {
   const i = session.index;
   document.getElementById('quizProgress').textContent = `${i+1} / ${total}`;
   document.getElementById('quizProgressBar').style.width = `${((i+1)/total)*100}%`;
-  ['typeAnswerWrap','mcWrap','tfWrap','buildWrap','dictationWrap','toneWrap'].forEach(id=>document.getElementById(id).style.display='none');
+  ['typeAnswerWrap','mcWrap','tfWrap','buildWrap','dictationWrap','toneWrap','recordWrap','errorWrap'].forEach(id=>document.getElementById(id).style.display='none');
   document.getElementById('feedbackWrap').style.display='none';
   document.getElementById('nextQuizBtn').style.display='none';
   const item = session.items[i];
@@ -1360,6 +1230,48 @@ function submitTF(userAnswer) {
   recordAnswer(correct, item, userAnswer ? 'صحيح' : 'خطأ');
 }
 
+// Semantic category groups for distractor selection (FEATURE 2)
+const SEMANTIC_CATEGORIES = [
+  ['老师','学生','医生','护士','经理','工人','司机','警察','厨师','服务员'],
+  ['爸爸','妈妈','哥哥','姐姐','弟弟','妹妹','儿子','女儿','丈夫','妻子'],
+  ['医院','学校','商店','饭店','银行','公司','超市','书店','邮局','图书馆'],
+  ['一','二','三','四','五','六','七','八','九','十','百','千'],
+  ['吃','喝','看','写','读','听','说','走','跑','睡','学','买','卖'],
+  ['大','小','多','少','好','坏','新','旧','贵','便宜','快','慢'],
+  ['今天','明天','昨天','早上','晚上','下午','现在','以前','以后'],
+  ['中国','北京','上海','美国','英国','日本','法国','德国'],
+  ['苹果','香蕉','橙子','葡萄','西瓜','草莓'],
+  ['水','茶','咖啡','牛奶','果汁','啤酒'],
+  ['猫','狗','鸟','鱼','马','牛','羊','猪'],
+  ['红','蓝','绿','黑','白','黄','粉'],
+];
+
+function _getSemanticDistractors(correctHanzi, count) {
+  // Find which category the correct word belongs to
+  for (const cat of SEMANTIC_CATEGORIES) {
+    if (cat.includes(correctHanzi)) {
+      const peers = cat.filter(w => w !== correctHanzi);
+      const inVocab = peers.filter(w => allVocab.some(v => v.hanzi === w));
+      if (inVocab.length >= count) {
+        return shuffle(inVocab).slice(0, count).map(w => {
+          const entry = allVocab.find(v => v.hanzi === w);
+          return entry ? entry.arabic : null;
+        }).filter(Boolean);
+      }
+    }
+  }
+  // Fallback: same lesson words
+  const lessonItem = allVocab.find(v => v.hanzi === correctHanzi);
+  if (lessonItem) {
+    const sameLesson = allVocab.filter(v => v.lesson === lessonItem.lesson && normArabic(v.arabic) !== normArabic(lessonItem.arabic));
+    if (sameLesson.length >= count) {
+      return shuffle(sameLesson).slice(0, count).map(x => x.arabic);
+    }
+  }
+  // Final fallback: random vocab
+  return shuffle(allVocab.filter(x => normArabic(x.arabic) !== normArabic(lessonItem?.arabic || ''))).slice(0, count).map(x => x.arabic);
+}
+
 function renderListen(item, qCard) {
   const supported = 'speechSynthesis' in window;
   let warnHtml = '';
@@ -1369,9 +1281,13 @@ function renderListen(item, qCard) {
     <div class="quiz-prompt-pinyin" id="listenPinyin" style="display:none">${item.pinyin}</div>${warnHtml}`;
   if (!supported) document.getElementById('listenPinyin').style.display = '';
   else speak(item.hanzi);
-  const pool = allVocab.concat(allSentences).filter(x => normArabic(x.arabic) !== normArabic(item.arabic));
-  const distractors = shuffle(pool).slice(0,3).map(x=>x.arabic);
-  const choices = shuffle([item.arabic, ...distractors]);
+  const distractors = _getSemanticDistractors(item.hanzi, 3);
+  // pad with random if semantic pool was too small
+  if (distractors.length < 3) {
+    const extra = shuffle(allVocab.filter(x => normArabic(x.arabic) !== normArabic(item.arabic))).slice(0, 3 - distractors.length).map(x => x.arabic);
+    distractors.push(...extra);
+  }
+  const choices = shuffle([item.arabic, ...distractors.slice(0,3)]);
   document.getElementById('mcWrap').style.display = '';
   document.getElementById('quizChoices').innerHTML = choices.map(c =>
     `<button class="quiz-choice" onclick="submitMC(this,'${escapeAttr(c)}','${escapeAttr(item.arabic)}')">${c}</button>`).join('');
@@ -1424,6 +1340,12 @@ function renderBuild(item, qCard) {
   session.buildWords = shuffled;
   session.builtOrder = [];
   document.getElementById('buildWrap').style.display='';
+  // Rebind buttons fresh — prevents stale listener on re-render
+  const resetBtn = document.getElementById('resetBuildBtn');
+  const submitBtn = document.getElementById('submitBuildBtn');
+  resetBtn.onclick = resetBuild;
+  submitBtn.onclick = submitBuild;
+  submitBtn.disabled = false;
   renderBuildUI();
 }
 function renderBuildUI() {
@@ -1459,7 +1381,7 @@ function submitBuild() {
   const userSentence = session.builtOrder.join('');
   const isCorrect = normChinese(userSentence) === original;
   document.querySelectorAll('#wordBlocks .word-block').forEach(b => { b.disabled = true; });
-  document.querySelector('#buildWrap .btn-primary').disabled = true;
+  document.getElementById('submitBuildBtn').disabled = true;
   showFeedback(isCorrect, item, userSentence);
   recordAnswer(isCorrect, item, userSentence);
 }
@@ -1667,289 +1589,253 @@ function shuffle(arr) {
 }
 function escapeAttr(s) { return String(s).replace(/'/g,'&#39;').replace(/"/g,'&quot;'); }
 
-// ══════════════════════════════════════════════
-// SPEAKING MODE — تقييم النطق
-// ══════════════════════════════════════════════
-const speakState = {
-  items: [],
-  index: 0,
-  recognition: null,
-  recorder: null,
-  recordedChunks: [],
-  recordedBlob: null,
-  isRecording: false,
-  hasSpeechAPI: false,
-  lastTranscript: '',
-};
+// ────────────────────────────
+// FEATURE 1 — VOICE RECORDING
+// ────────────────────────────
+let _mediaRecorder = null;
+let _recordedChunks = [];
+let _recordedBlob = null;
+let _recordingSupported = (typeof MediaRecorder !== 'undefined' && navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
 
-function startSpeakingMode() {
-  // Deactivate quiz mode tabs visually
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('speakingModeBtn').classList.add('active');
-
-  let items = getFilteredItems();
-  if (!items.length) { showToast('لا توجد بطاقات مطابقة!'); return; }
-  items = shuffle(items).slice(0, 20);
-
-  speakState.items = items;
-  speakState.index = 0;
-  speakState.hasSpeechAPI = ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window);
-
-  showView('speakingView');
-  renderSpeakCard();
+function startRecordSession() {
+  showView('quizView');
+  document.getElementById('quizModeLabel').textContent = '🔴 تسجيل صوتي';
+  renderRecordQuiz();
 }
 
-function exitSpeakingMode() {
-  stopSpeakRecordingCleanup();
-  showHome();
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-}
+function renderRecordQuiz() {
+  session.answered = false;
+  const total = session.items.length;
+  const i = session.index;
+  document.getElementById('quizProgress').textContent = `${i+1} / ${total}`;
+  document.getElementById('quizProgressBar').style.width = `${((i+1)/total)*100}%`;
+  ['typeAnswerWrap','mcWrap','tfWrap','buildWrap','dictationWrap','toneWrap','recordWrap','errorWrap'].forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById('feedbackWrap').style.display='none';
+  document.getElementById('nextQuizBtn').style.display='none';
 
-function renderSpeakCard() {
-  const items = speakState.items;
-  const i = speakState.index;
-  const total = items.length;
-  if (i >= total) { exitSpeakingMode(); showToast('أحسنت! انتهت الجلسة 🎉'); return; }
+  const item = session.items[i];
+  const qCard = document.getElementById('quizQuestionCard');
+  qCard.innerHTML = `<div class="quiz-type-label">استمع ثم سجل نطقك</div>
+    <div class="quiz-prompt-hanzi">${item.hanzi}</div>
+    <div class="quiz-prompt-pinyin">${item.pinyin}</div>
+    <div style="margin-top:8px;"><button class="btn btn-secondary btn-sm" onclick="speakItem()">🔊 استمع</button></div>`;
 
-  const item = items[i];
-  document.getElementById('speakProgress').textContent = `${i+1} / ${total}`;
-  document.getElementById('speakProgressBar').style.width = `${((i+1)/total)*100}%`;
+  if (!_recordingSupported) {
+    document.getElementById('recordWrap').style.display='';
+    document.getElementById('recordWrap').innerHTML = `<div class="record-wrap"><div class="record-status" style="color:var(--gold)">⚠️ جهازك لا يدعم التسجيل الصوتي</div><div style="margin-top:12px"><button class="btn btn-ghost btn-sm" onclick="nextQuiz()">التالي ←</button></div></div>`;
+    return;
+  }
 
-  document.getElementById('speakHanzi').textContent = item.hanzi;
-  document.getElementById('speakPinyin').textContent = item.pinyin || '';
-  document.getElementById('speakArabic').textContent = item.arabic;
-  document.getElementById('speakStepLabel').textContent = 'استمع';
+  _recordedChunks = [];
+  _recordedBlob = null;
+  document.getElementById('recordWrap').style.display='';
+  document.getElementById('recordStartBtn').disabled = false;
+  document.getElementById('recordStopBtn').disabled = true;
+  document.getElementById('recordPlayBtn').disabled = true;
+  document.getElementById('recordStatus').textContent = 'اضغط "ابدأ التسجيل" بعد الاستماع';
 
-  // show listen step
-  goToSpeakStep('listen');
-
-  // auto-play TTS
+  // Auto-play TTS
   setTimeout(() => speak(item.hanzi), 400);
 }
 
-function goToSpeakStep(step) {
-  ['listen','record','result'].forEach(s => {
-    document.getElementById('speakStep' + s.charAt(0).toUpperCase() + s.slice(1)).style.display = 'none';
-  });
-  document.getElementById('speakNavRow').style.display = 'none';
-  document.getElementById('speakStepLabel').textContent =
-    step === 'listen' ? 'استمع' : step === 'record' ? 'تحدث الآن' : 'النتيجة';
-
-  document.getElementById('speakStep' + step.charAt(0).toUpperCase() + step.slice(1)).style.display = '';
-}
-
-function speakCurrentWord() {
-  const item = speakState.items[speakState.index];
-  if (item) speak(item.hanzi);
-}
-
-function goToSpeakRecord() {
-  goToSpeakStep('record');
-  // countdown 3-2-1 then show mic
-  const cdEl = document.getElementById('speakCountdown');
-  const micArea = document.getElementById('speakMicArea');
-  const fallbackArea = document.getElementById('speakFallbackArea');
-  micArea.style.display = 'none';
-  fallbackArea.style.display = 'none';
-  cdEl.textContent = '';
-
-  let count = 3;
-  cdEl.textContent = count;
-  const timer = setInterval(() => {
-    count--;
-    if (count > 0) {
-      cdEl.textContent = count;
-    } else {
-      clearInterval(timer);
-      cdEl.textContent = '';
-      if (speakState.hasSpeechAPI) {
-        micArea.style.display = '';
-        fallbackArea.style.display = 'none';
-      } else {
-        micArea.style.display = 'none';
-        fallbackArea.style.display = '';
-        startFallbackRecording();
-      }
-    }
-  }, 800);
-}
-
-// ── Speech Recognition path ─────────────────
-function toggleSpeakRecording() {
-  if (speakState.isRecording) {
-    stopSpeakRecognition();
-  } else {
-    startSpeakRecognition();
-  }
-}
-
-function startSpeakRecognition() {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const rec = new SpeechRecognition();
-  rec.lang = 'zh-CN';
-  rec.continuous = false;
-  rec.interimResults = false;
-  rec.maxAlternatives = 3;
-  speakState.recognition = rec;
-  speakState.isRecording = true;
-  speakState.lastTranscript = '';
-
-  const btn = document.getElementById('speakMicBtn');
-  const lbl = document.getElementById('speakMicLabel');
-  btn.classList.add('recording');
-  lbl.textContent = 'جارٍ الاستماع...';
-
-  rec.onresult = (e) => {
-    const results = e.results;
-    let best = '';
-    for (let i = 0; i < results.length; i++) {
-      const t = results[i][0].transcript;
-      if (t.length > best.length) best = t;
-    }
-    speakState.lastTranscript = best.trim();
-  };
-
-  rec.onerror = (e) => {
-    speakState.isRecording = false;
-    btn.classList.remove('recording');
-    lbl.textContent = 'اضغط وتحدث';
-    if (e.error === 'not-allowed') {
-      showToast('⚠️ الرجاء السماح بالوصول إلى الميكروفون');
-      speakState.hasSpeechAPI = false;
-      // fall back
-      document.getElementById('speakMicArea').style.display = 'none';
-      document.getElementById('speakFallbackArea').style.display = '';
-      startFallbackRecording();
-    } else if (e.error !== 'aborted') {
-      showSpeakResult('retry', '❌', 'لم يُسمع صوت — حاول مرة أخرى');
-    }
-  };
-
-  rec.onend = () => {
-    speakState.isRecording = false;
-    btn.classList.remove('recording');
-    lbl.textContent = 'اضغط وتحدث';
-    if (speakState.lastTranscript) {
-      evaluateSpeaking(speakState.lastTranscript);
-    } else {
-      showSpeakResult('retry', '❌', 'لم يُسمع صوت — حاول مرة أخرى');
-    }
-  };
-
-  try { rec.start(); } catch(e) { speakState.isRecording = false; }
-}
-
-function stopSpeakRecognition() {
-  if (speakState.recognition) {
-    try { speakState.recognition.stop(); } catch(e) {}
-  }
-  speakState.isRecording = false;
-}
-
-function stopSpeakRecordingCleanup() {
-  stopSpeakRecognition();
-  if (speakState.recorder && speakState.recorder.state !== 'inactive') {
-    try { speakState.recorder.stop(); } catch(e) {}
-  }
-  speakState.isRecording = false;
-}
-
-// ── Evaluation ─────────────────────────────
-function evaluateSpeaking(transcript) {
-  const item = speakState.items[speakState.index];
-  const expected = normChinese(item.hanzi);
-  const spoken   = normChinese(transcript);
-
-  // Similarity: how many chars of expected appear in spoken
-  let matchCount = 0;
-  for (const ch of expected) {
-    if (spoken.includes(ch)) matchCount++;
-  }
-  const ratio = expected.length ? matchCount / expected.length : 0;
-
-  // Also check tone hints via pinyin if available
-  if (ratio >= 0.85) {
-    showSpeakResult('excellent', '✅', 'ممتاز! نطق رائع');
-  } else if (ratio >= 0.5) {
-    // Try to hint which tone might be off
-    const hint = getToneHint(item.pinyin);
-    showSpeakResult('good', '⚠️', hint || 'جيد — راجع النغمة وأعد');
-  } else {
-    showSpeakResult('retry', '❌', 'حاول مرة أخرى — استمع للأصل أولاً');
-  }
-}
-
-function getToneHint(pinyin) {
-  if (!pinyin) return null;
-  // Find first syllable with a tone mark and mention it
-  const syllables = pinyin.split(/\s+/).filter(Boolean);
-  const toneNames = { 1: 'الأولى', 2: 'الثانية', 3: 'الثالثة', 4: 'الرابعة' };
-  for (let idx = 0; idx < syllables.length; idx++) {
-    const t = getToneFromPinyin(syllables[idx]);
-    if (t > 0) {
-      return `جيد — راجع النغمة ${toneNames[t]} في المقطع ${idx+1}`;
-    }
-  }
-  return 'جيد — حاول تحسين النطق';
-}
-
-function showSpeakResult(type, emoji, text) {
-  goToSpeakStep('result');
-  const box = document.getElementById('speakResultBox');
-  box.className = 'speak-result-box ' + type;
-  document.getElementById('speakResultEmoji').textContent = emoji;
-  document.getElementById('speakResultText').textContent = text;
-  document.getElementById('speakNavRow').style.display = 'flex';
-}
-
-function speakRetry() {
-  renderSpeakCard();
-}
-
-function speakNext() {
-  speakState.index++;
-  renderSpeakCard();
-}
-
-// ── Fallback: record + playback via MediaRecorder ─
-function startFallbackRecording() {
-  speakState.recordedChunks = [];
-  speakState.recordedBlob = null;
-  const playBtn = document.getElementById('speakFallbackPlayBtn');
-  playBtn.disabled = true;
-  playBtn.textContent = '⏺ جارٍ التسجيل...';
-
-  navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-    const rec = new MediaRecorder(stream);
-    speakState.recorder = rec;
-    speakState.isRecording = true;
-    rec.ondataavailable = (e) => { if (e.data.size > 0) speakState.recordedChunks.push(e.data); };
-    rec.onstop = () => {
-      speakState.isRecording = false;
+async function startRecording() {
+  if (!_recordingSupported) return;
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    _recordedChunks = [];
+    _mediaRecorder = new MediaRecorder(stream);
+    _mediaRecorder.ondataavailable = e => { if (e.data.size > 0) _recordedChunks.push(e.data); };
+    _mediaRecorder.onstop = () => {
+      _recordedBlob = new Blob(_recordedChunks, { type: 'audio/webm' });
       stream.getTracks().forEach(t => t.stop());
-      speakState.recordedBlob = new Blob(speakState.recordedChunks, { type: 'audio/webm' });
-      playBtn.disabled = false;
-      playBtn.textContent = '▶ استمع لتسجيلك';
-      // Show fallback result
-      showSpeakResult('fallback', '🎙️', 'استمع لنفسك وقارن بالأصل');
+      document.getElementById('recordPlayBtn').disabled = false;
+      document.getElementById('recordStatus').textContent = 'تم التسجيل ✅ — اضغط تشغيل للمراجعة';
+      document.getElementById('nextQuizBtn').style.display = '';
+      session.answered = true;
+      recordAnswer(true, session.items[session.index], '[تسجيل صوتي]');
     };
-    rec.start();
-    // Auto-stop after 5 seconds
-    setTimeout(() => {
-      if (rec.state !== 'inactive') rec.stop();
-    }, 5000);
-  }).catch(() => {
-    showToast('⚠️ لا يمكن الوصول للميكروفون');
-    showSpeakResult('fallback', '🎙️', 'استمع للأصل وكرر النطق في ذهنك');
-    document.getElementById('speakNavRow').style.display = 'flex';
-  });
+    _mediaRecorder.start();
+    document.getElementById('recordStartBtn').disabled = true;
+    document.getElementById('recordStartBtn').classList.add('recording');
+    document.getElementById('recordStopBtn').disabled = false;
+    document.getElementById('recordStatus').textContent = '🔴 جاري التسجيل...';
+  } catch(e) {
+    document.getElementById('recordStatus').textContent = 'تعذر الوصول إلى الميكروفون';
+  }
 }
 
-function speakFallbackPlay() {
-  if (!speakState.recordedBlob) return;
-  const url = URL.createObjectURL(speakState.recordedBlob);
+function stopRecording() {
+  if (_mediaRecorder && _mediaRecorder.state !== 'inactive') {
+    _mediaRecorder.stop();
+    document.getElementById('recordStartBtn').classList.remove('recording');
+    document.getElementById('recordStopBtn').disabled = true;
+  }
+}
+
+function playRecording() {
+  if (!_recordedBlob) return;
+  const url = URL.createObjectURL(_recordedBlob);
   const audio = new Audio(url);
+  audio.onended = () => URL.revokeObjectURL(url);
   audio.play();
+}
+
+// ────────────────────────────
+// FEATURE 3 — ERROR DETECTION
+// ────────────────────────────
+
+// Characters substituted per category for plausible errors
+const ERROR_SUBS = {
+  '是':['事','士','世','示'],
+  '的':['地','得','德'],
+  '人':['入','八','儿'],
+  '大':['太','犬','天'],
+  '生':['牛','先','升'],
+  '学':['觉','雪'],
+  '好':['女','妈'],
+  '来':['米','木'],
+  '去':['云','主'],
+  '我':['找','戈'],
+  '你':['你','尔'],
+  '他':['地','也'],
+  '们':['门','问'],
+  '在':['再','才'],
+  '有':['友','右'],
+  '国':['围','回'],
+  '里':['理','里'],
+  '中':['申','串'],
+  '上':['下','土'],
+  '下':['上','不'],
+  '不':['下','木'],
+  '一':['二','乙'],
+  '二':['三','一'],
+  '三':['二','王'],
+};
+
+let _errorWrongIdx = -1;
+
+function startErrorSession() {
+  showView('quizView');
+  document.getElementById('quizModeLabel').textContent = '🔍 اكتشف الخطأ';
+  renderErrorQuiz();
+}
+
+function renderErrorQuiz() {
+  session.answered = false;
+  _errorWrongIdx = -1;
+  const total = session.items.length;
+  const i = session.index;
+  document.getElementById('quizProgress').textContent = `${i+1} / ${total}`;
+  document.getElementById('quizProgressBar').style.width = `${((i+1)/total)*100}%`;
+  ['typeAnswerWrap','mcWrap','tfWrap','buildWrap','dictationWrap','toneWrap','recordWrap','errorWrap'].forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById('feedbackWrap').style.display='none';
+  document.getElementById('nextQuizBtn').style.display='none';
+
+  const item = session.items[i];
+  // Only use sentences — skip words/dialogues with < 3 chars
+  if (!item.hanzi || item.hanzi.replace(/[。！？，、]/g,'').length < 3) {
+    session.index++;
+    if (session.index >= session.items.length) { endSession(); return; }
+    renderErrorQuiz();
+    return;
+  }
+
+  const qCard = document.getElementById('quizQuestionCard');
+  qCard.innerHTML = `<div class="quiz-type-label">اكتشف الحرف الخاطئ واضغط عليه</div><div class="quiz-prompt-arabic">${item.arabic}</div>`;
+
+  // Build a corrupted version — replace one character
+  const chars = [...item.hanzi];
+  // Find a character we can substitute (that has entries in ERROR_SUBS)
+  const candidateIdxs = chars.map((c,idx) => ERROR_SUBS[c] ? idx : -1).filter(x => x >= 0);
+  let wrongIdx, wrongChar, rightChar;
+  if (candidateIdxs.length > 0) {
+    wrongIdx = candidateIdxs[Math.floor(Math.random() * candidateIdxs.length)];
+    rightChar = chars[wrongIdx];
+    const subs = ERROR_SUBS[rightChar];
+    wrongChar = subs[Math.floor(Math.random() * subs.length)];
+  } else {
+    // Fallback: replace a non-punctuation char with a random vocab character
+    const nonPunct = chars.map((c,idx) => /[\u4e00-\u9fff]/.test(c) ? idx : -1).filter(x => x >= 0);
+    if (!nonPunct.length) { nextQuiz(); return; }
+    wrongIdx = nonPunct[Math.floor(Math.random() * nonPunct.length)];
+    rightChar = chars[wrongIdx];
+    const pool = allVocab.map(v => [...v.hanzi]).flat().filter(c => c !== rightChar && /[\u4e00-\u9fff]/.test(c));
+    wrongChar = pool[Math.floor(Math.random() * pool.length)] || '人';
+  }
+
+  _errorWrongIdx = wrongIdx;
+  session._errorRightChar = rightChar;
+  session._errorItem = item;
+
+  // Build corrupted sentence
+  const corrupted = [...chars];
+  corrupted[wrongIdx] = wrongChar;
+
+  document.getElementById('errorWrap').style.display = '';
+  document.getElementById('errorInputWrap').style.display = 'none';
+  document.getElementById('errorHintBtn').disabled = false;
+
+  // Render clickable characters
+  const display = document.getElementById('errorSentenceDisplay');
+  display.innerHTML = corrupted.map((c, idx) =>
+    /[\u4e00-\u9fff]/.test(c)
+      ? `<span class="error-char" data-idx="${idx}">${c}</span>`
+      : `<span style="color:var(--text2)">${c}</span>`
+  ).join('');
+  display.onclick = (e) => {
+    const span = e.target.closest('.error-char');
+    if (!span || session.answered) return;
+    const idx = parseInt(span.dataset.idx);
+    // Highlight selected
+    display.querySelectorAll('.error-char').forEach(s => s.style.background = '');
+    span.style.background = 'rgba(212,168,67,0.25)';
+    span.style.borderColor = 'var(--gold)';
+    session._errorSelectedIdx = idx;
+    document.getElementById('errorInputWrap').style.display = '';
+    document.getElementById('errorInput').value = '';
+    document.getElementById('errorInput').focus();
+  };
+
+  document.getElementById('errorPinyinDisplay').textContent = item.pinyin;
+}
+
+function showErrorHint() {
+  if (_errorWrongIdx < 0) return;
+  document.getElementById('errorHintBtn').disabled = true;
+  const display = document.getElementById('errorSentenceDisplay');
+  const spans = display.querySelectorAll('.error-char');
+  spans.forEach(s => {
+    if (parseInt(s.dataset.idx) === _errorWrongIdx) {
+      s.style.background = 'rgba(212,168,67,0.2)';
+      s.style.borderColor = 'var(--gold)';
+      s.style.borderStyle = 'dashed';
+    }
+  });
+  recordAnswer(false, session._errorItem, '[استخدم المساعدة]');
+}
+
+function submitErrorAnswer() {
+  if (session.answered) return;
+  const userChar = document.getElementById('errorInput').value.trim();
+  if (!userChar) return;
+  const selectedIdx = session._errorSelectedIdx;
+  const isCorrectPos = selectedIdx === _errorWrongIdx;
+  const isCorrectChar = normChinese(userChar) === normChinese(session._errorRightChar);
+  const isCorrect = isCorrectPos && isCorrectChar;
+  session.answered = true;
+  document.getElementById('errorInput').disabled = true;
+  // Highlight result on display
+  const display = document.getElementById('errorSentenceDisplay');
+  display.querySelectorAll('.error-char').forEach(s => {
+    const idx = parseInt(s.dataset.idx);
+    if (idx === _errorWrongIdx) {
+      s.style.background = isCorrect ? 'rgba(39,174,96,0.2)' : 'rgba(231,76,60,0.15)';
+      s.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+    }
+  });
+  showFeedback(isCorrect, session._errorItem, userChar);
+  recordAnswer(isCorrect, session._errorItem, userChar);
+  document.getElementById('nextQuizBtn').style.display = '';
 }
 
 init();
