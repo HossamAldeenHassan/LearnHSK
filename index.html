@@ -1506,26 +1506,28 @@ function recordAnswer(correct, item, userAnswer) {
 function nextQuiz() { session.index++; if (session.index>=session.items.length) { endSession(); return; } renderQuiz(); }
 
 function endSession() {
-  if (session.mode === 'flashcard') { showHome(); return; }
+
+  // منع أي انتقال إضافي
+  session.answered = true;
+
   const total = session.correct + session.wrong;
-  const pct = total ? Math.round((session.correct/total)*100) : 0;
-  document.getElementById('resultsScore').textContent = pct+'%';
+  const percent = total
+    ? Math.round((session.correct / total) * 100)
+    : 0;
+
+  document.getElementById('resultsScore').textContent = percent + '%';
   document.getElementById('totalQ').textContent = total;
   document.getElementById('correctQ').textContent = session.correct;
   document.getElementById('wrongQ').textContent = session.wrong;
-  const ms = document.getElementById('mistakesSection');
-  const ml = document.getElementById('mistakesList');
-  if (session.mistakes.length) {
-    ms.style.display = '';
-    ml.innerHTML = session.mistakes.map(m => `
-      <div class="mistake-item">
-        <div class="mistake-q">السؤال:</div>
-        <div class="mistake-hanzi">${m.item.hanzi}</div>
-        <div class="mistake-line"><span style="color:var(--text2);font-size:0.85rem">إجابتك:</span><span class="mistake-user">${m.userAnswer}</span></div>
-        <div class="mistake-line"><span style="color:var(--text2);font-size:0.85rem">الصواب:</span><span class="mistake-correct">${m.correctAnswer}</span></div>
-      </div>`).join('');
-  } else ms.style.display = 'none';
+
+  renderMistakes();
+
+  // أهم سطر
   showView('resultsView');
+
+  // تنظيف أزرار الاختبار
+  document.getElementById('nextQuizBtn').style.display = 'none';
+
 }
 
 function showStats() { renderStats(); renderLessonCompletion(); showView('statsView'); }
@@ -1608,10 +1610,21 @@ function loadTheme() {
   if (t==='light') { document.body.classList.add('light-mode'); document.getElementById('darkToggle').textContent='☀️'; }
 }
 
-function showView(id) {
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+function showView(viewId){
+
+  document
+    .querySelectorAll('.view')
+    .forEach(v => v.classList.remove('active'));
+
+  document
+    .getElementById(viewId)
+    .classList.add('active');
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
 }
 function showHome() {
   // Reset quiz DOM so no old state shows if user returns mid-session
