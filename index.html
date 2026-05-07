@@ -100,6 +100,7 @@
   .btn-correct { background:var(--correct)!important; color:#fff!important; }
   .btn-wrong { background:var(--wrong)!important; color:#fff!important; }
 
+  /* Views — JS controls display directly; CSS class is cosmetic only */
   .view { display:none; animation:fadeIn 0.3s; }
   .view.active { display:block; }
   @keyframes fadeIn { from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:translateY(0); } }
@@ -542,8 +543,8 @@
     </div><!-- end quiz-scroll-area -->
 
     <div class="quiz-sticky-bar">
-      <button class="btn btn-primary btn-lg" id="nextQuizBtn" style="display:none" onclick="handleNext()">التالي ←</button>
-      <button class="btn btn-ghost btn-sm" onclick="endSession()">إنهاء الجلسة</button>
+      <button class="btn btn-primary btn-lg" id="nextQuizBtn" style="display:none">التالي ←</button>
+      <button class="btn btn-ghost btn-sm" id="endSessionBtn">إنهاء الجلسة</button>
     </div>
   </div>
 
@@ -632,6 +633,8 @@ const LESSONS = Array.from({length:15}, (_,i)=>i+1);
 let vocabMap = new Map();
 
 async function init() {
+  // Guarantee only homeView is visible at startup
+  showView('homeView');
   loadTheme();
   buildLessonGrid();
   buildTypeGrid();
@@ -642,6 +645,8 @@ async function init() {
   document.getElementById('darkToggle').onclick = toggleTheme;
   document.getElementById('statsBtn').onclick = showStats;
   document.getElementById('countSelect').onchange = updateCount;
+  document.getElementById('nextQuizBtn').onclick = handleNext;
+  document.getElementById('endSessionBtn').onclick = endSession;
   document.getElementById('typeGrid').onclick = (e) => {
     const btn = e.target.closest('.type-btn'); if (!btn) return;
     const t = btn.dataset.type;
@@ -669,9 +674,9 @@ async function init() {
 
   try {
     const [v, s, d] = await Promise.all([
-      fetch('data/vocab.json').then(r=>r.json()),
-      fetch('data/sentences.json').then(r=>r.json()),
-      fetch('data/dialogues.json').then(r=>r.json()),
+      fetch('/data/vocab.json').then(r=>r.json()),
+      fetch('/data/sentences.json').then(r=>r.json()),
+      fetch('/data/dialogues.json').then(r=>r.json()),
     ]);
     allVocab = v; allSentences = s; allDialogues = d;
     for (const word of allVocab) {
@@ -1506,28 +1511,37 @@ function recordAnswer(correct, item, userAnswer) {
 function nextQuiz() { session.index++; if (session.index>=session.items.length) { endSession(); return; } renderQuiz(); }
 
 function endSession() {
+  // 1. Hard-stop the session — no more answers accepted
+  _killSession();
 
-  // منع أي انتقال إضافي
-  session.answered = true;
+  // 2. Flashcard mode has no results screen
+  if (session.mode === 'flashcard') { showHome(); return; }
 
+  // 3. Populate results view
   const total = session.correct + session.wrong;
-  const percent = total
-    ? Math.round((session.correct / total) * 100)
-    : 0;
+  const pct   = total ? Math.round((session.correct / total) * 100) : 0;
+  document.getElementById('resultsScore').textContent  = pct + '%';
+  document.getElementById('totalQ').textContent        = total;
+  document.getElementById('correctQ').textContent      = session.correct;
+  document.getElementById('wrongQ').textContent        = session.wrong;
 
-  document.getElementById('resultsScore').textContent = percent + '%';
-  document.getElementById('totalQ').textContent = total;
-  document.getElementById('correctQ').textContent = session.correct;
-  document.getElementById('wrongQ').textContent = session.wrong;
+  const ms = document.getElementById('mistakesSection');
+  const ml = document.getElementById('mistakesList');
+  if (session.mistakes.length) {
+    ms.style.display = '';
+    ml.innerHTML = session.mistakes.map(m => `
+      <div class="mistake-item">
+        <div class="mistake-q">السؤال:</div>
+        <div class="mistake-hanzi">${m.item.hanzi}</div>
+        <div class="mistake-line"><span style="color:var(--text2);font-size:0.85rem">إجابتك:</span><span class="mistake-user">${m.userAnswer}</span></div>
+        <div class="mistake-line"><span style="color:var(--text2);font-size:0.85rem">الصواب:</span><span class="mistake-correct">${m.correctAnswer}</span></div>
+      </div>`).join('');
+  } else {
+    ms.style.display = 'none';
+  }
 
-  renderMistakes();
-
-  // أهم سطر
+  // 4. Show only the results screen
   showView('resultsView');
-
-  // تنظيف أزرار الاختبار
-  document.getElementById('nextQuizBtn').style.display = 'none';
-
 }
 
 function showStats() { renderStats(); renderLessonCompletion(); showView('statsView'); }
@@ -1610,33 +1624,45 @@ function loadTheme() {
   if (t==='light') { document.body.classList.add('light-mode'); document.getElementById('darkToggle').textContent='☀️'; }
 }
 
-function showView(viewId){
-
-  document
-    .querySelectorAll('.view')
-    .forEach(v => v.classList.remove('active'));
-
-  document
-    .getElementById(viewId)
-    .classList.add('active');
-
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
+// ── SINGLE SOURCE OF TRUTH FOR ALL NAVIGATION ──
+function showView(viewId) {
+  document.querySelectorAll('.view').forEach(v => {
+    v.style.display = 'none';
+    v.classList.remove('active');
   });
-
+  const target = document.getElementById(viewId);
+  if (target) {
+    target.style.display = 'block';
+    target.classList.add('active');
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
 function showHome() {
-  // Reset quiz DOM so no old state shows if user returns mid-session
+  // Kill any in-progress session so nothing leaks back
+  _killSession();
+  showView('homeView');
+  updateCount();
+}
+
+// Wipes all quiz UI state: called before showHome and inside endSession
+function _killSession() {
+  session.answered = true; // block any pending handlers
   document.getElementById('quizQuestionCard').innerHTML = '';
   document.getElementById('feedbackWrap').style.display = 'none';
   document.getElementById('nextQuizBtn').style.display = 'none';
-  ['typeAnswerWrap','mcWrap','tfWrap','buildWrap','dictationWrap','toneWrap','recordWrap','errorWrap'].forEach(id => {
+  const sbb = document.getElementById('submitBuildBtn');
+  if (sbb) { sbb.disabled = true; sbb.onclick = null; }
+  ['typeAnswerWrap','mcWrap','tfWrap','buildWrap','dictationWrap',
+   'toneWrap','recordWrap','errorWrap'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
   });
-  showView('homeView');
-  updateCount();
+  // Disable any live inputs
+  ['quizInput','dictationInput','errorInput'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.disabled = true; el.value = ''; }
+  });
 }
 
 let toastTimer;
@@ -1818,131 +1844,173 @@ function startErrorSession() {
 }
 
 function renderErrorQuiz() {
-  session.answered = false;
-  _errorWrongIdx = -1;
-  const total = session.items.length;
-  const i = session.index;
-  document.getElementById('quizProgress').textContent = `${i+1} / ${total}`;
-  document.getElementById('quizProgressBar').style.width = `${((i+1)/total)*100}%`;
-  ['typeAnswerWrap','mcWrap','tfWrap','buildWrap','dictationWrap','toneWrap','recordWrap','errorWrap'].forEach(id=>document.getElementById(id).style.display='none');
-  document.getElementById('feedbackWrap').style.display='none';
-  document.getElementById('nextQuizBtn').style.display='none';
+  // ── 1. Full state reset — must happen before ANY DOM read ──
+  session.answered         = false;
+  session._errorSelectedIdx = null;   // clear stale selection from previous question
+  session._errorRightChar  = null;
+  session._errorItem       = null;
+  _errorWrongIdx           = -1;
 
+  const total = session.items.length;
+  const i     = session.index;
+
+  // ── 2. Progress bar ──
+  document.getElementById('quizProgress').textContent   = `${i+1} / ${total}`;
+  document.getElementById('quizProgressBar').style.width = `${((i+1)/total)*100}%`;
+
+  // ── 3. Hide all mode wrappers ──
+  ['typeAnswerWrap','mcWrap','tfWrap','buildWrap','dictationWrap',
+   'toneWrap','recordWrap','errorWrap'].forEach(id =>
+    document.getElementById(id).style.display = 'none');
+  document.getElementById('feedbackWrap').style.display = 'none';
+  document.getElementById('nextQuizBtn').style.display  = 'none';
+
+  // ── 4. Skip items too short to corrupt ──
   const item = session.items[i];
-  // Only use sentences — skip words/dialogues with < 3 chars
-  if (!item.hanzi || item.hanzi.replace(/[。！？，、]/g,'').length < 3) {
+  if (!item || !item.hanzi || item.hanzi.replace(/[。！？，、]/g,'').length < 3) {
     session.index++;
     if (session.index >= session.items.length) { endSession(); return; }
     renderErrorQuiz();
     return;
   }
 
+  // ── 5. Build question card ──
   const qCard = document.getElementById('quizQuestionCard');
-  qCard.innerHTML = `<div class="quiz-type-label">اكتشف الحرف الخاطئ واضغط عليه</div><div class="quiz-prompt-arabic">${item.arabic}</div>`;
+  qCard.innerHTML = `
+    <div class="quiz-type-label">اكتشف الحرف الخاطئ واضغط عليه</div>
+    <div class="quiz-prompt-arabic" style="margin-bottom:8px;">${item.arabic}</div>`;
 
-  // Build a corrupted version — replace one character
-  const chars = [...item.hanzi];
-  // Find a character we can substitute (that has entries in ERROR_SUBS)
+  // ── 6. Generate corrupted sentence ──
+  const chars        = [...item.hanzi];
   const candidateIdxs = chars.map((c,idx) => ERROR_SUBS[c] ? idx : -1).filter(x => x >= 0);
   let wrongIdx, wrongChar, rightChar;
+
   if (candidateIdxs.length > 0) {
-    wrongIdx = candidateIdxs[Math.floor(Math.random() * candidateIdxs.length)];
+    wrongIdx  = candidateIdxs[Math.floor(Math.random() * candidateIdxs.length)];
     rightChar = chars[wrongIdx];
     const subs = ERROR_SUBS[rightChar];
     wrongChar = subs[Math.floor(Math.random() * subs.length)];
   } else {
-    // Fallback: replace a non-punctuation char with a random vocab character
     const nonPunct = chars.map((c,idx) => /[\u4e00-\u9fff]/.test(c) ? idx : -1).filter(x => x >= 0);
-    if (!nonPunct.length) { nextQuiz(); return; }
-    wrongIdx = nonPunct[Math.floor(Math.random() * nonPunct.length)];
+    if (!nonPunct.length) {
+      session.index++;
+      if (session.index >= session.items.length) { endSession(); return; }
+      renderErrorQuiz();
+      return;
+    }
+    wrongIdx  = nonPunct[Math.floor(Math.random() * nonPunct.length)];
     rightChar = chars[wrongIdx];
-    const pool = allVocab.map(v => [...v.hanzi]).flat().filter(c => c !== rightChar && /[\u4e00-\u9fff]/.test(c));
+    const pool = allVocab.map(v => [...v.hanzi]).flat()
+                         .filter(c => c !== rightChar && /[\u4e00-\u9fff]/.test(c));
     wrongChar = pool[Math.floor(Math.random() * pool.length)] || '人';
   }
 
-  _errorWrongIdx = wrongIdx;
-  session._errorRightChar = rightChar;
-  session._errorItem = item;
+  // ── 7. Store correct answer in session ──
+  _errorWrongIdx           = wrongIdx;
+  session._errorRightChar  = rightChar;
+  session._errorItem       = item;
 
-  // Build corrupted sentence
+  // ── 8. Build corrupted display ──
   const corrupted = [...chars];
   corrupted[wrongIdx] = wrongChar;
 
-  document.getElementById('errorWrap').style.display = '';
-  document.getElementById('errorInputWrap').style.display = 'none';
-  document.getElementById('errorHintBtn').disabled = false;
-  // Always reset input state so Q2..Q10 are never stuck
-  const errorInp = document.getElementById('errorInput');
-  errorInp.value = '';
+  // ── 9. Show errorWrap; fully reset input UI ──
+  document.getElementById('errorWrap').style.display       = '';
+  document.getElementById('errorInputWrap').style.display  = 'none';
+  document.getElementById('errorHintBtn').disabled         = false;
+
+  const errorInp   = document.getElementById('errorInput');
+  errorInp.value   = '';
   errorInp.disabled = false;
 
-  // Render clickable characters
+  // ── 10. Render clickable character spans ──
   const display = document.getElementById('errorSentenceDisplay');
   display.innerHTML = corrupted.map((c, idx) =>
     /[\u4e00-\u9fff]/.test(c)
       ? `<span class="error-char" data-idx="${idx}">${c}</span>`
       : `<span style="color:var(--text2)">${c}</span>`
   ).join('');
+
+  // ── 11. Assign fresh click handler (replaces any previous via .onclick) ──
   display.onclick = (e) => {
+    if (session.answered) return;
     const span = e.target.closest('.error-char');
-    if (!span || session.answered) return;
+    if (!span) return;
     const idx = parseInt(span.dataset.idx);
+    // Clear previous highlights
+    display.querySelectorAll('.error-char').forEach(s => {
+      s.style.background   = '';
+      s.style.borderColor  = 'transparent';
+      s.style.borderStyle  = 'solid';
+    });
     // Highlight selected
-    display.querySelectorAll('.error-char').forEach(s => s.style.background = '');
-    span.style.background = 'rgba(212,168,67,0.25)';
+    span.style.background  = 'rgba(212,168,67,0.25)';
     span.style.borderColor = 'var(--gold)';
     session._errorSelectedIdx = idx;
-    document.getElementById('errorInputWrap').style.display = '';
-    document.getElementById('errorInput').value = '';
-    document.getElementById('errorInput').focus();
+    // Show input and focus
+    const iw = document.getElementById('errorInputWrap');
+    iw.style.display = '';
+    const inp = document.getElementById('errorInput');
+    inp.value    = '';
+    inp.disabled = false;
+    inp.focus();
   };
 
-  document.getElementById('errorPinyinDisplay').textContent = item.pinyin;
+  document.getElementById('errorPinyinDisplay').textContent = item.pinyin || '';
 }
 
 function showErrorHint() {
   if (_errorWrongIdx < 0) return;
   document.getElementById('errorHintBtn').disabled = true;
   const display = document.getElementById('errorSentenceDisplay');
-  const spans = display.querySelectorAll('.error-char');
-  spans.forEach(s => {
+  // Highlight the wrong character with a dashed border (no answer revealed)
+  display.querySelectorAll('.error-char').forEach(s => {
     if (parseInt(s.dataset.idx) === _errorWrongIdx) {
-      s.style.background = 'rgba(212,168,67,0.2)';
-      s.style.borderColor = 'var(--gold)';
-      s.style.borderStyle = 'dashed';
-      // Pre-select this character so the user can type right away
-      session._errorSelectedIdx = _errorWrongIdx;
+      s.style.background   = 'rgba(212,168,67,0.2)';
+      s.style.borderColor  = 'var(--gold)';
+      s.style.borderStyle  = 'dashed';
     }
   });
-  // Show and focus input immediately after hint
-  const inputWrap = document.getElementById('errorInputWrap');
-  inputWrap.style.display = '';
+  // Pre-select so user can type immediately after hint
+  session._errorSelectedIdx = _errorWrongIdx;
+  const iw  = document.getElementById('errorInputWrap');
+  iw.style.display = '';
   const inp = document.getElementById('errorInput');
-  inp.value = '';
+  inp.value    = '';
   inp.disabled = false;
   inp.focus();
-  recordAnswer(false, session._errorItem, '[استخدم المساعدة]');
+  // Mark hint-used in progress (counts as wrong attempt)
+  if (session._errorItem) recordAnswer(false, session._errorItem, '[مساعدة]');
 }
 
 function submitErrorAnswer() {
   if (session.answered) return;
+  // Guard: no character selected yet
+  if (session._errorSelectedIdx === null || session._errorSelectedIdx === undefined) {
+    showToast('اضغط على الحرف الخاطئ أولاً');
+    return;
+  }
   const userChar = document.getElementById('errorInput').value.trim();
-  if (!userChar) return;
-  const selectedIdx = session._errorSelectedIdx;
-  const isCorrectPos = selectedIdx === _errorWrongIdx;
+  if (!userChar) { showToast('اكتب الحرف الصحيح'); return; }
+
+  const selectedIdx   = session._errorSelectedIdx;
+  const isCorrectPos  = selectedIdx === _errorWrongIdx;
   const isCorrectChar = normChinese(userChar) === normChinese(session._errorRightChar);
-  const isCorrect = isCorrectPos && isCorrectChar;
+  const isCorrect     = isCorrectPos && isCorrectChar;
+
   session.answered = true;
   document.getElementById('errorInput').disabled = true;
-  // Highlight result on display
+
+  // Visual feedback on the character spans
   const display = document.getElementById('errorSentenceDisplay');
+  display.onclick = null; // no more character selection after submit
   display.querySelectorAll('.error-char').forEach(s => {
-    const idx = parseInt(s.dataset.idx);
-    if (idx === _errorWrongIdx) {
-      s.style.background = isCorrect ? 'rgba(39,174,96,0.2)' : 'rgba(231,76,60,0.15)';
-      s.style.borderColor = isCorrect ? 'var(--correct)' : 'var(--wrong)';
+    if (parseInt(s.dataset.idx) === _errorWrongIdx) {
+      s.style.background  = isCorrect ? 'rgba(39,174,96,0.2)'  : 'rgba(231,76,60,0.15)';
+      s.style.borderColor = isCorrect ? 'var(--correct)'        : 'var(--wrong)';
     }
   });
+
   showFeedback(isCorrect, session._errorItem, userChar);
   recordAnswer(isCorrect, session._errorItem, userChar);
   document.getElementById('nextQuizBtn').style.display = '';
