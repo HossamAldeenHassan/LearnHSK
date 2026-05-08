@@ -434,9 +434,9 @@
     "dialogue_id": 19,
     "line_index": 1,
     "speaker": "A",
-    "hanzi": "今天星期几？",
-    "pinyin": "jīn tiān xīng qī jǐ?",
-    "arabic": "أي يوم من الأسبوع اليوم؟",
+    "hanzi": "请问，今天几号?",
+    "pinyin": "Qǐngwèn, jīntiān jǐ hào?",
+    "arabic": "لو سمحت،ما هو تاريخ اليوم؟",
     "type": "dialogue"
   },
   {
@@ -445,9 +445,9 @@
     "dialogue_id": 19,
     "line_index": 2,
     "speaker": "B",
-    "hanzi": "今天星期一。",
-    "pinyin": "jīn tiān xīng qī yī.",
-    "arabic": "اليوم الاثنين.",
+    "hanzi": "今天9月1号。",
+    "pinyin": "Jīntiān 9 yuè 1 hào.",
+    "arabic": "اليوم هو الأول من سبتمبر.",
     "type": "dialogue"
   },
   {
@@ -456,9 +456,9 @@
     "dialogue_id": 20,
     "line_index": 1,
     "speaker": "A",
-    "hanzi": "昨天你去哪儿了？",
-    "pinyin": "zuó tiān nǐ qù nǎr le?",
-    "arabic": "أين ذهبت بالأمس؟",
+    "hanzi": "今天星期几？",
+    "pinyin": "Jīntiān xīngqí jǐ?",
+    "arabic": "اي يوم في الاسبوع اليوم؟",
     "type": "dialogue"
   },
   {
@@ -467,9 +467,9 @@
     "dialogue_id": 20,
     "line_index": 2,
     "speaker": "B",
-    "hanzi": "我去学校了。",
-    "pinyin": "wǒ qù xué xiào le.",
-    "arabic": "ذهبت إلى المدرسة.",
+    "hanzi": "星期三。",
+    "pinyin": "Xīngqísān",
+    "arabic": "الأربعاء.",
     "type": "dialogue"
   },
   {
@@ -478,9 +478,9 @@
     "dialogue_id": 21,
     "line_index": 1,
     "speaker": "A",
-    "hanzi": "明天你去商店吗？",
-    "pinyin": "míng tiān nǐ qù shāng diàn ma?",
-    "arabic": "هل ستذهب إلى المتجر غداً؟",
+    "hanzi": "昨天是几月几号？",
+    "pinyin": "Zuótiān shì jǐ yuè jǐ hào?",
+    "arabic": "ما هو تاريخ الأمس؟",
     "type": "dialogue"
   },
   {
@@ -489,9 +489,9 @@
     "dialogue_id": 21,
     "line_index": 2,
     "speaker": "B",
-    "hanzi": "不去，我去看书。",
-    "pinyin": "bú qù, wǒ qù kàn shū.",
-    "arabic": "لن أذهب، سأذهب لقراءة كتاب.",
+    "hanzi": "昨天是8月31号，星期二。",
+    "pinyin": "Zuótiān shì 8 yuè 31 hào, xīngqí'èr.",
+    "arabic": "كان يوم أمس الثلاثاء الموافق 31 أغسطس.",
     "type": "dialogue"
   },
   {
