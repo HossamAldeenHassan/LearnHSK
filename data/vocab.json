@@ -481,7 +481,7 @@
   },
   {
     "id": 61,
-    "lesson": 8,
+    "lesson": 7,
     "hanzi": "号",
     "pinyin": "hào",
     "arabic": "رقم، تاريخ",
@@ -489,7 +489,7 @@
   },
   {
     "id": 62,
-    "lesson": 8,
+    "lesson": 7,
     "hanzi": "月",
     "pinyin": "yuè",
     "arabic": "شهر",
@@ -497,7 +497,7 @@
   },
   {
     "id": 63,
-    "lesson": 8,
+    "lesson": 7,
     "hanzi": "星期",
     "pinyin": "xīng qī",
     "arabic": "أسبوع",
@@ -505,7 +505,7 @@
   },
   {
     "id": 64,
-    "lesson": 8,
+    "lesson": 7,
     "hanzi": "昨天",
     "pinyin": "zuó tiān",
     "arabic": "أمس",
@@ -513,7 +513,7 @@
   },
   {
     "id": 65,
-    "lesson": 8,
+    "lesson": 7,
     "hanzi": "明天",
     "pinyin": "míng tiān",
     "arabic": "غداً",
@@ -521,7 +521,7 @@
   },
   {
     "id": 66,
-    "lesson": 8,
+    "lesson": 7,
     "hanzi": "去",
     "pinyin": "qù",
     "arabic": "يذهب",
@@ -529,7 +529,7 @@
   },
   {
     "id": 67,
-    "lesson": 8,
+    "lesson": 7,
     "hanzi": "学校",
     "pinyin": "xué xiào",
     "arabic": "مدرسة",
@@ -537,7 +537,7 @@
   },
   {
     "id": 68,
-    "lesson": 8,
+    "lesson": 7,
     "hanzi": "看",
     "pinyin": "kàn",
     "arabic": "يشاهد",
@@ -545,7 +545,7 @@
   },
   {
     "id": 69,
-    "lesson": 8,
+    "lesson": 7,
     "hanzi": "书",
     "pinyin": "shū",
     "arabic": "كتاب",
