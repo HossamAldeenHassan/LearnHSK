@@ -581,7 +581,7 @@
   },
   {
     "id": 59,
-    "lesson": 8,
+    "lesson": 7,
     "keyword_id": 61,
     "keyword": "号",
     "hanzi": "今天是三号。",
@@ -591,7 +591,7 @@
   },
   {
     "id": 60,
-    "lesson": 8,
+    "lesson": 7,
     "keyword_id": 63,
     "keyword": "星期",
     "hanzi": "星期五我们不上课。",
@@ -601,7 +601,7 @@
   },
   {
     "id": 61,
-    "lesson": 8,
+    "lesson": 7,
     "keyword_id": 62,
     "keyword": "月",
     "hanzi": "现在是九月。",
@@ -611,7 +611,7 @@
   },
   {
     "id": 62,
-    "lesson": 8,
+    "lesson": 7,
     "keyword_id": 64,
     "keyword": "昨天",
     "hanzi": "昨天我去学校了。",
@@ -621,7 +621,7 @@
   },
   {
     "id": 63,
-    "lesson": 8,
+    "lesson": 7,
     "keyword_id": 65,
     "keyword": "明天",
     "hanzi": "明天我们去商店。",
@@ -631,7 +631,7 @@
   },
   {
     "id": 64,
-    "lesson": 8,
+    "lesson": 7,
     "keyword_id": 66,
     "keyword": "去",
     "hanzi": "我去朋友家。",
@@ -641,7 +641,7 @@
   },
   {
     "id": 65,
-    "lesson": 8,
+    "lesson": 7,
     "keyword_id": 67,
     "keyword": "学校",
     "hanzi": "我的学校很大。",
@@ -651,7 +651,7 @@
   },
   {
     "id": 66,
-    "lesson": 8,
+    "lesson": 7,
     "keyword_id": 68,
     "keyword": "看",
     "hanzi": "我在家看电视。",
@@ -661,7 +661,7 @@
   },
   {
     "id": 67,
-    "lesson": 8,
+    "lesson": 7,
     "keyword_id": 69,
     "keyword": "书",
     "hanzi": "我喜欢这本书。",
