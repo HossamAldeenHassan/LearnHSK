@@ -157,25 +157,222 @@
   .progress-bar-wrap { height:4px; background:var(--bg3); border-radius:4px; margin-bottom:24px; overflow:hidden; }
   .progress-bar-fill { height:100%; background:linear-gradient(90deg, var(--red), var(--gold)); border-radius:4px; transition:width 0.4s; }
 
-  .flashcard-wrap { perspective:1000px; margin-bottom:20px; cursor:pointer; }
-  .flashcard {
-    background:var(--bg2); border:1px solid var(--border); border-radius:20px; min-height:260px;
-    display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px 24px;
-    text-align:center; transition:transform 0.5s, box-shadow 0.2s; position:relative; transform-style:preserve-3d; box-shadow:var(--shadow); user-select:none;
+  /* ═══════════════════════════════════════════
+     FLASHCARD — MOBILE-FIRST FULL REBUILD
+     ═══════════════════════════════════════════ */
+
+  /* Outer container: centres card, constrains width */
+  .flashcard-view-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 8px;
   }
-  .flashcard:hover { box-shadow:0 8px 40px rgba(0,0,0,0.6); }
-  .flashcard.flipped { transform:rotateY(180deg); }
-  .card-face { position:absolute; width:100%; height:100%; backface-visibility:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px 24px; border-radius:20px; }
-  .card-back { transform:rotateY(180deg); }
 
-  .hanzi-big { font-family:'Noto Serif SC', serif; font-size:3.5rem; line-height:1.2; color:var(--text); margin-bottom:8px; direction: ltr; }
-  .pinyin-text { font-size:1rem; color:var(--text2); margin-bottom:4px; letter-spacing:0.05em; direction: ltr; }
-  .arabic-big { font-size:1.8rem; font-weight:600; color:var(--text); line-height:1.4; direction: rtl; }
-  .speaker-tag { position:absolute; top:14px; left:14px; background:var(--red); color:#fff; border-radius:6px; padding:3px 10px; font-size:0.8rem; font-weight:700; }
-  .flip-hint { position:absolute; bottom:14px; color:var(--text3); font-size:0.8rem; }
-  .card-type-badge { font-size:0.75rem; background:var(--bg4); color:var(--text3); border-radius:6px; padding:2px 8px; margin-bottom:12px; }
+  /* Scene: gives perspective to the 3D space */
+  .fc-scene {
+    width: 100%;
+    max-width: 700px;
+    min-height: 320px;
+    perspective: 1200px;
+    perspective-origin: 50% 50%;
+    margin-bottom: 20px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0;
+  }
 
-  .flashcard-actions { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:4px; }
+  /* Card: the element that actually rotates */
+  .fc-card {
+    width: 100%;
+    min-height: 320px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.52s cubic-bezier(0.4, 0.2, 0.2, 1);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+  }
+  .fc-card.fc-flipped {
+    transform: rotateY(180deg);
+  }
+
+  /* Both faces: absolutely positioned, same size */
+  .fc-face {
+    position: absolute;
+    inset: 0;                          /* top/right/bottom/left: 0 */
+    border-radius: 22px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 20px 24px;
+    overflow: hidden;                  /* prevent content bleed */
+  }
+
+  /* Back face pre-rotated so it shows when card flips */
+  .fc-back {
+    transform: rotateY(180deg);
+  }
+
+  /* Type badge */
+  .fc-badge {
+    font-size: 0.72rem;
+    background: var(--bg4);
+    color: var(--text3);
+    border-radius: 6px;
+    padding: 2px 9px;
+    margin-bottom: 14px;
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+  }
+
+  /* Speaker tag for dialogues */
+  .fc-speaker {
+    position: absolute;
+    top: 14px;
+    right: 14px;           /* RTL: right side */
+    background: var(--red);
+    color: #fff;
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  /* Large hanzi on the front face */
+  .fc-hanzi {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(2.2rem, 7vw, 3.5rem);  /* scales 320px → 700px */
+    line-height: 1.3;
+    color: var(--text);
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: center;
+    word-break: break-word;
+    flex-shrink: 0;
+    max-width: 100%;
+  }
+
+  /* Flip hint */
+  .fc-hint {
+    position: absolute;
+    bottom: 13px;
+    color: var(--text3);
+    font-size: 0.78rem;
+    user-select: none;
+  }
+
+  /* Arabic meaning on back face */
+  .fc-arabic {
+    font-size: clamp(1.3rem, 5vw, 1.9rem);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+    direction: rtl;
+    unicode-bidi: isolate;
+    text-align: center;
+    word-break: break-word;
+    max-width: 100%;
+    flex-shrink: 0;
+    margin-bottom: 8px;
+  }
+
+  /* Pinyin on back face */
+  .fc-pinyin {
+    font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+    color: var(--text2);
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: center;
+    letter-spacing: 0.04em;
+    word-break: break-word;
+    max-width: 100%;
+    flex-shrink: 0;
+  }
+
+  /* ── Action buttons ── */
+  .fc-actions {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding: 4px 0;
+  }
+
+  .fc-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: all 0.18s;
+    min-height: 48px;           /* WCAG touch target */
+    flex: 1 1 auto;             /* grow to fill row, but wrap */
+    min-width: 90px;
+    max-width: 160px;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .fc-btn:active { transform: scale(0.96); }
+
+  .fc-btn-difficult { background: var(--bg3); color: var(--text); border: 1.5px solid var(--border); }
+  .fc-btn-flip      { background: var(--bg3); color: var(--text); border: 1.5px solid var(--border); }
+  .fc-btn-listen    { background: var(--bg3); color: var(--text2); border: 1.5px solid var(--border); }
+  .fc-btn-known     { background: var(--correct); color: #fff; }
+  .fc-btn-next      { background: var(--red); color: #fff; }
+
+  .fc-btn-difficult:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,168,67,0.1); }
+  .fc-btn-flip:hover      { background: var(--bg4); border-color: var(--text2); }
+  .fc-btn-listen:hover    { background: var(--bg4); color: var(--text); }
+  .fc-btn-known:hover     { background: #1e9e50; }
+  .fc-btn-next:hover      { background: var(--red-light); transform: translateY(-1px); }
+
+  .fc-end-row {
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  /* ── Auto-play toggle ── */
+  .fc-autoplay-row {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 0.85rem;
+    color: var(--text2);
+  }
+  .fc-autoplay-row input[type=checkbox] { accent-color: var(--red); width: 16px; height: 16px; cursor: pointer; }
+
+  /* ── Responsive adjustments ── */
+  @media (max-width: 480px) {
+    .fc-scene { min-height: 280px; }
+    .fc-card  { min-height: 280px; }
+    .fc-face  { padding: 22px 16px 20px; }
+    .fc-btn   { min-width: 72px; padding: 11px 10px; font-size: 0.85rem; }
+  }
+  @media (max-width: 360px) {
+    .fc-scene { min-height: 260px; }
+    .fc-card  { min-height: 260px; }
+    .fc-btn   { min-width: 64px; padding: 10px 8px; font-size: 0.82rem; gap: 3px; }
+  }
 
   .quiz-question-card { background:var(--bg2); border:1px solid var(--border); border-radius:20px; padding:32px 24px; text-align:center; margin-bottom:20px; box-shadow:var(--shadow); min-height:160px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; }
   .quiz-type-label { font-size:0.8rem; color:var(--red-light); font-weight:700; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; }
@@ -291,8 +488,6 @@
     .stats-grid { grid-template-columns:1fr 1fr; }
     .hanzi-big { font-size:2.8rem; }
     .quiz-prompt-hanzi { font-size:2.2rem; }
-    .flashcard-actions { grid-template-columns:1fr 1fr; }
-    .flashcard-actions .btn:last-child { grid-column:1/-1; }
   }
   @media (max-width:768px) {
     #quizView {
@@ -437,19 +632,37 @@
     </div>
     <div class="progress-bar-wrap"><div class="progress-bar-fill" id="fcProgressBar" style="width:0%"></div></div>
 
-    <div class="flashcard-wrap" id="flashcardWrap" onclick="flipCard()">
-      <div class="flashcard" id="flashcard">
-        <div class="card-face card-front" id="cardFront"></div>
-        <div class="card-face card-back" id="cardBack"></div>
-      </div>
-    </div>
+    <div class="flashcard-view-inner">
 
-    <div class="flashcard-actions">
-      <button class="btn btn-ghost" onclick="markCard('difficult')">😰 صعب</button>
-      <button class="btn btn-primary" onclick="nextCard()">التالي ←</button>
-      <button class="btn btn-secondary" onclick="markCard('known')">✅ أعرفه</button>
+      <!-- Auto-play toggle -->
+      <div class="fc-autoplay-row">
+        <input type="checkbox" id="fcAutoPlay" checked>
+        <label for="fcAutoPlay">تشغيل تلقائي عند كل بطاقة</label>
+      </div>
+
+      <!-- 3D flip scene -->
+      <div class="fc-scene" id="fcScene" onclick="flipCard()">
+        <div class="fc-card" id="fcCard">
+          <div class="fc-face fc-front" id="fcFront"></div>
+          <div class="fc-face fc-back"  id="fcBack"></div>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="fc-actions">
+        <button class="fc-btn fc-btn-difficult" onclick="markCard('difficult')">😰 صعب</button>
+        <button class="fc-btn fc-btn-flip"      onclick="flipCard()">🔄 اقلب</button>
+        <button class="fc-btn fc-btn-listen"    onclick="speakCurrentCard()">🔊 استمع</button>
+        <button class="fc-btn fc-btn-known"     onclick="markCard('known')">✅ أعرفه</button>
+        <button class="fc-btn fc-btn-next"      onclick="nextCard()">➡️ التالي</button>
+      </div>
+
+      <!-- End session -->
+      <div class="fc-end-row">
+        <button class="btn btn-ghost btn-sm" onclick="endSession()">إنهاء الجلسة</button>
+      </div>
+
     </div>
-    <div style="text-align:center;margin-top:14px;"><button class="btn btn-ghost btn-sm" onclick="endSession()">إنهاء الجلسة</button></div>
   </div>
 
   <!-- QUIZ VIEW -->
@@ -674,9 +887,9 @@ async function init() {
 
   try {
     const [v, s, d] = await Promise.all([
-      fetch('data/vocab.json').then(r=>r.json()),
-      fetch('data/sentences.json').then(r=>r.json()),
-      fetch('data/dialogues.json').then(r=>r.json()),
+      fetch('/data/vocab.json').then(r=>r.json()),
+      fetch('/data/sentences.json').then(r=>r.json()),
+      fetch('/data/dialogues.json').then(r=>r.json()),
     ]);
     allVocab = v; allSentences = s; allDialogues = d;
     for (const word of allVocab) {
@@ -961,30 +1174,86 @@ function retryMistakes() {
   startSession(retryItems);
 }
 
-function startFlashcards() { showView('flashcardView'); renderFlashcard(); }
-function renderFlashcard() {
-  const item = session.items[session.index];
-  const total = session.items.length;
-  document.getElementById('fcProgress').textContent = `${session.index+1} / ${total}`;
-  document.getElementById('fcProgressBar').style.width = `${((session.index+1)/total)*100}%`;
-  const front = document.getElementById('cardFront');
-  const back = document.getElementById('cardBack');
-  const fc = document.getElementById('flashcard');
-  fc.classList.remove('flipped'); session.flipped = false;
-  let speakerTag = item.type==='dialogue' ? `<div class="speaker-tag">${item.speaker}</div>` : '';
-  let badge = item.type==='word'?'📝 مفردة':item.type==='sentence'?'📖 جملة':'💬 حوار';
-  front.innerHTML = `${speakerTag}<div class="card-type-badge">${badge}</div><div class="hanzi-big">${item.hanzi}</div><div class="flip-hint">اضغط لرؤية المعنى</div>`;
-  back.innerHTML = `${speakerTag}<div class="card-type-badge">${badge}</div><div class="arabic-big">${item.arabic}</div><div class="pinyin-text">${item.pinyin}</div>`;
-  saveProgress(item.id||item, {studied:true});
+function startFlashcards() {
+  showView('flashcardView');
+  renderFlashcard();
 }
-function flipCard() { session.flipped = !session.flipped; document.getElementById('flashcard').classList.toggle('flipped', session.flipped); }
+
+function renderFlashcard() {
+  const item  = session.items[session.index];
+  const total = session.items.length;
+
+  // Progress
+  document.getElementById('fcProgress').textContent    = `${session.index + 1} / ${total}`;
+  document.getElementById('fcProgressBar').style.width = `${((session.index + 1) / total) * 100}%`;
+
+  // Reset flip state — always show front first
+  const fcCard = document.getElementById('fcCard');
+  fcCard.classList.remove('fc-flipped');
+  session.flipped = false;
+
+  // Badge label
+  const badge = item.type === 'word'     ? '📝 مفردة'
+               : item.type === 'sentence' ? '📖 جملة'
+               :                            '💬 حوار';
+
+  // Speaker tag for dialogues (RTL page so right-aligned = speaker side)
+  const speakerHtml = item.type === 'dialogue' && item.speaker
+    ? `<div class="fc-speaker">${item.speaker}</div>`
+    : '';
+
+  // ── FRONT: hanzi + flip hint ──
+  document.getElementById('fcFront').innerHTML = `
+    ${speakerHtml}
+    <div class="fc-badge">${badge}</div>
+    <div class="fc-hanzi">${item.hanzi}</div>
+    <div class="fc-hint">اضغط لرؤية المعنى</div>`;
+
+  // ── BACK: arabic + pinyin ──
+  document.getElementById('fcBack').innerHTML = `
+    ${speakerHtml}
+    <div class="fc-badge">${badge}</div>
+    <div class="fc-arabic">${item.arabic}</div>
+    <div class="fc-pinyin">${item.pinyin}</div>`;
+
+  // Mark as studied
+  saveProgress(item.id || item, { studied: true });
+
+  // Auto-play: speak after 400 ms if checkbox is on
+  if (document.getElementById('fcAutoPlay')?.checked) {
+    clearTimeout(window._fcAutoPlayTimer);
+    window._fcAutoPlayTimer = setTimeout(() => {
+      // Only speak if we're still on the same card
+      if (!session.flipped && session.items[session.index] === item) {
+        speak(item.hanzi);
+      }
+    }, 400);
+  }
+}
+
+function flipCard() {
+  session.flipped = !session.flipped;
+  document.getElementById('fcCard').classList.toggle('fc-flipped', session.flipped);
+}
+
+function speakCurrentCard() {
+  const item = session.items[session.index];
+  if (item) speak(item.hanzi);
+}
+
 function markCard(flag) {
   const item = session.items[session.index];
-  saveProgress(item.id||item, {[flag]:true});
-  showToast(flag==='known'?'✅ تم حفظه':'😰 مضاف للصعب');
+  saveProgress(item.id || item, { [flag]: true });
+  showToast(flag === 'known' ? '✅ تم حفظه' : '😰 مضاف للصعب');
   nextCard();
 }
-function nextCard() { session.index++; if (session.index>=session.items.length) { endSession(); return; } renderFlashcard(); }
+
+function nextCard() {
+  clearTimeout(window._fcAutoPlayTimer);
+  session.index++;
+  if (session.index >= session.items.length) { endSession(); return; }
+  renderFlashcard();
+}
 
 // ────────────────────────────
 // TONE RECOGNITION HELPERS
