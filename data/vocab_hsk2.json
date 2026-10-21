@@ -1,0 +1,1394 @@
+[
+  {
+    "id": 1,
+    "lesson": 1,
+    "hanzi": "旅游",
+    "pinyin": "lǚ yóu",
+    "arabic": "يسافر، يتسيّح",
+    "type": "word"
+  },
+  {
+    "id": 2,
+    "lesson": 1,
+    "hanzi": "觉得",
+    "pinyin": "jué de",
+    "arabic": "يعتقد أن، يرى أن",
+    "type": "word"
+  },
+  {
+    "id": 3,
+    "lesson": 1,
+    "hanzi": "最",
+    "pinyin": "zuì",
+    "arabic": "ظرف بمعنى الأكثر، الأكثر سرعة، الأكثر برودة الخ",
+    "type": "word"
+  },
+  {
+    "id": 4,
+    "lesson": 1,
+    "hanzi": "为什么",
+    "pinyin": "wèi shén me",
+    "arabic": "لماذا",
+    "type": "word"
+  },
+  {
+    "id": 5,
+    "lesson": 1,
+    "hanzi": "也",
+    "pinyin": "yě",
+    "arabic": "أيضا، كذلك",
+    "type": "word"
+  },
+  {
+    "id": 6,
+    "lesson": 1,
+    "hanzi": "运动",
+    "pinyin": "yùn dòng",
+    "arabic": "الرياضة",
+    "type": "word"
+  },
+  {
+    "id": 7,
+    "lesson": 1,
+    "hanzi": "踢足球",
+    "pinyin": "tī zú qiú",
+    "arabic": "يلعب كرة القدم",
+    "type": "word"
+  },
+  {
+    "id": 8,
+    "lesson": 1,
+    "hanzi": "一起",
+    "pinyin": "yī qǐ",
+    "arabic": "معا، سويا",
+    "type": "word"
+  },
+  {
+    "id": 9,
+    "lesson": 1,
+    "hanzi": "要",
+    "pinyin": "yào",
+    "arabic": "يريد",
+    "type": "word"
+  },
+  {
+    "id": 10,
+    "lesson": 1,
+    "hanzi": "新",
+    "pinyin": "xīn",
+    "arabic": "جديد",
+    "type": "word"
+  },
+  {
+    "id": 11,
+    "lesson": 1,
+    "hanzi": "它",
+    "pinyin": "tā",
+    "arabic": "هو أو هي لغير العاقل",
+    "type": "word"
+  },
+  {
+    "id": 12,
+    "lesson": 1,
+    "hanzi": "眼睛",
+    "pinyin": "yǎn jing",
+    "arabic": "العيون",
+    "type": "word"
+  },
+  {
+    "id": 13,
+    "lesson": 1,
+    "hanzi": "花花",
+    "pinyin": "huā hua",
+    "arabic": "هوا هوا، اسم",
+    "type": "word"
+  },
+  {
+    "id": 14,
+    "lesson": 2,
+    "hanzi": "生病",
+    "pinyin": "shēng bìng",
+    "arabic": "يمرض",
+    "type": "word"
+  },
+  {
+    "id": 15,
+    "lesson": 2,
+    "hanzi": "每",
+    "pinyin": "měi",
+    "arabic": "كل، كل يوم، كل شهر، كل سنة",
+    "type": "word"
+  },
+  {
+    "id": 16,
+    "lesson": 2,
+    "hanzi": "早上",
+    "pinyin": "zǎo shang",
+    "arabic": "الصباح، صباحاً",
+    "type": "word"
+  },
+  {
+    "id": 17,
+    "lesson": 2,
+    "hanzi": "跑步",
+    "pinyin": "pǎo bù",
+    "arabic": "يجري",
+    "type": "word"
+  },
+  {
+    "id": 18,
+    "lesson": 2,
+    "hanzi": "起床",
+    "pinyin": "qǐ chuáng",
+    "arabic": "ينهض من الفراش",
+    "type": "word"
+  },
+  {
+    "id": 19,
+    "lesson": 2,
+    "hanzi": "药",
+    "pinyin": "yào",
+    "arabic": "دواء",
+    "type": "word"
+  },
+  {
+    "id": 20,
+    "lesson": 2,
+    "hanzi": "身体",
+    "pinyin": "shēn tǐ",
+    "arabic": "صحة، جسم",
+    "type": "word"
+  },
+  {
+    "id": 21,
+    "lesson": 2,
+    "hanzi": "出院",
+    "pinyin": "chū yuàn",
+    "arabic": "يخرج من المستشفى",
+    "type": "word"
+  },
+  {
+    "id": 22,
+    "lesson": 2,
+    "hanzi": "出",
+    "pinyin": "chū",
+    "arabic": "يخرج",
+    "type": "word"
+  },
+  {
+    "id": 23,
+    "lesson": 2,
+    "hanzi": "高",
+    "pinyin": "gāo",
+    "arabic": "طويل، مرتفع",
+    "type": "word"
+  },
+  {
+    "id": 24,
+    "lesson": 2,
+    "hanzi": "米",
+    "pinyin": "mǐ",
+    "arabic": "متر",
+    "type": "word"
+  },
+  {
+    "id": 25,
+    "lesson": 2,
+    "hanzi": "知道",
+    "pinyin": "zhī dào",
+    "arabic": "يعرف",
+    "type": "word"
+  },
+  {
+    "id": 26,
+    "lesson": 2,
+    "hanzi": "休息",
+    "pinyin": "xiū xi",
+    "arabic": "يستريح",
+    "type": "word"
+  },
+  {
+    "id": 27,
+    "lesson": 2,
+    "hanzi": "忙",
+    "pinyin": "máng",
+    "arabic": "مشغول",
+    "type": "word"
+  },
+  {
+    "id": 28,
+    "lesson": 2,
+    "hanzi": "时间",
+    "pinyin": "shí jiān",
+    "arabic": "وقت",
+    "type": "word"
+  },
+  {
+    "id": 29,
+    "lesson": 3,
+    "hanzi": "手表",
+    "pinyin": "shǒu biǎo",
+    "arabic": "ساعة اليد",
+    "type": "word"
+  },
+  {
+    "id": 30,
+    "lesson": 3,
+    "hanzi": "千",
+    "pinyin": "qiān",
+    "arabic": "ألف",
+    "type": "word"
+  },
+  {
+    "id": 31,
+    "lesson": 3,
+    "hanzi": "报纸",
+    "pinyin": "bào zhǐ",
+    "arabic": "صحيفة، جريدة",
+    "type": "word"
+  },
+  {
+    "id": 32,
+    "lesson": 3,
+    "hanzi": "送",
+    "pinyin": "sòng",
+    "arabic": "يرسل، يهدي، يُسلِّم",
+    "type": "word"
+  },
+  {
+    "id": 33,
+    "lesson": 3,
+    "hanzi": "一下",
+    "pinyin": "yī xià",
+    "arabic": "تُوضَع بعد الفعل لتدل على فعل شيء ما مرة واحدة أو المحاولة، برهة قصيرة",
+    "type": "word"
+  },
+  {
+    "id": 34,
+    "lesson": 3,
+    "hanzi": "牛奶",
+    "pinyin": "niú nǎi",
+    "arabic": "لبن",
+    "type": "word"
+  },
+  {
+    "id": 35,
+    "lesson": 3,
+    "hanzi": "房间",
+    "pinyin": "fáng jiān",
+    "arabic": "غرفة",
+    "type": "word"
+  },
+  {
+    "id": 36,
+    "lesson": 3,
+    "hanzi": "丈夫",
+    "pinyin": "zhàng fu",
+    "arabic": "زوج",
+    "type": "word"
+  },
+  {
+    "id": 37,
+    "lesson": 3,
+    "hanzi": "旁边",
+    "pinyin": "páng biān",
+    "arabic": "بجانب",
+    "type": "word"
+  },
+  {
+    "id": 38,
+    "lesson": 3,
+    "hanzi": "真",
+    "pinyin": "zhēn",
+    "arabic": "حقاً",
+    "type": "word"
+  },
+  {
+    "id": 39,
+    "lesson": 3,
+    "hanzi": "粉色",
+    "pinyin": "fěn sè",
+    "arabic": "اللون الوردي",
+    "type": "word"
+  },
+  {
+    "id": 40,
+    "lesson": 3,
+    "hanzi": "粉",
+    "pinyin": "fěn",
+    "arabic": "وردي",
+    "type": "word"
+  },
+  {
+    "id": 41,
+    "lesson": 3,
+    "hanzi": "颜色",
+    "pinyin": "yán sè",
+    "arabic": "لون",
+    "type": "word"
+  },
+  {
+    "id": 42,
+    "lesson": 3,
+    "hanzi": "左边",
+    "pinyin": "zuǒ bian",
+    "arabic": "الجانب الأيسر، اليسار",
+    "type": "word"
+  },
+  {
+    "id": 43,
+    "lesson": 3,
+    "hanzi": "红色",
+    "pinyin": "hóng sè",
+    "arabic": "اللون الأحمر",
+    "type": "word"
+  },
+  {
+    "id": 44,
+    "lesson": 3,
+    "hanzi": "红",
+    "pinyin": "hóng",
+    "arabic": "أحمر",
+    "type": "word"
+  },
+  {
+    "id": 45,
+    "lesson": 4,
+    "hanzi": "生日",
+    "pinyin": "shēng rì",
+    "arabic": "عيد ميلاد",
+    "type": "word"
+  },
+  {
+    "id": 46,
+    "lesson": 4,
+    "hanzi": "快乐",
+    "pinyin": "kuài lè",
+    "arabic": "سعيد",
+    "type": "word"
+  },
+  {
+    "id": 47,
+    "lesson": 4,
+    "hanzi": "给",
+    "pinyin": "gěi",
+    "arabic": "لـ، لأجل",
+    "type": "word"
+  },
+  {
+    "id": 48,
+    "lesson": 4,
+    "hanzi": "接",
+    "pinyin": "jiē",
+    "arabic": "يتلقَّى، يرد على الهاتف",
+    "type": "word"
+  },
+  {
+    "id": 49,
+    "lesson": 4,
+    "hanzi": "晚上",
+    "pinyin": "wǎn shang",
+    "arabic": "المساء",
+    "type": "word"
+  },
+  {
+    "id": 50,
+    "lesson": 4,
+    "hanzi": "问",
+    "pinyin": "wèn",
+    "arabic": "يسأل",
+    "type": "word"
+  },
+  {
+    "id": 51,
+    "lesson": 4,
+    "hanzi": "非常",
+    "pinyin": "fēi cháng",
+    "arabic": "جداً، للغاية",
+    "type": "word"
+  },
+  {
+    "id": 52,
+    "lesson": 4,
+    "hanzi": "开始",
+    "pinyin": "kāi shǐ",
+    "arabic": "يبدأ",
+    "type": "word"
+  },
+  {
+    "id": 53,
+    "lesson": 4,
+    "hanzi": "已经",
+    "pinyin": "yǐ jīng",
+    "arabic": "بالفعل",
+    "type": "word"
+  },
+  {
+    "id": 54,
+    "lesson": 4,
+    "hanzi": "长",
+    "pinyin": "cháng",
+    "arabic": "طويل",
+    "type": "word"
+  },
+  {
+    "id": 55,
+    "lesson": 4,
+    "hanzi": "两",
+    "pinyin": "liǎng",
+    "arabic": "اثنان",
+    "type": "word"
+  },
+  {
+    "id": 56,
+    "lesson": 4,
+    "hanzi": "帮",
+    "pinyin": "bāng",
+    "arabic": "يساعد",
+    "type": "word"
+  },
+  {
+    "id": 57,
+    "lesson": 4,
+    "hanzi": "介绍",
+    "pinyin": "jiè shào",
+    "arabic": "يُعرِّف بنفسه، يعرض على فلان وظيفة أو عملاً ما",
+    "type": "word"
+  },
+  {
+    "id": 58,
+    "lesson": 5,
+    "hanzi": "外面",
+    "pinyin": "wài miàn",
+    "arabic": "الخارج",
+    "type": "word"
+  },
+  {
+    "id": 59,
+    "lesson": 5,
+    "hanzi": "准备",
+    "pinyin": "zhǔn bèi",
+    "arabic": "يُجهِّز، يُحضِّر، يستعد",
+    "type": "word"
+  },
+  {
+    "id": 60,
+    "lesson": 5,
+    "hanzi": "就",
+    "pinyin": "jiù",
+    "arabic": "حالما، ما ان، تستخدم للإشارة إلى استنتاج أو قرار ما",
+    "type": "word"
+  },
+  {
+    "id": 61,
+    "lesson": 5,
+    "hanzi": "鱼",
+    "pinyin": "yú",
+    "arabic": "سمك",
+    "type": "word"
+  },
+  {
+    "id": 62,
+    "lesson": 5,
+    "hanzi": "吧",
+    "pinyin": "ba",
+    "arabic": "حرف مساعد يستخدم في نهاية الجملة للتعبير عن اقتراح للقيام بأمر ما",
+    "type": "word"
+  },
+  {
+    "id": 63,
+    "lesson": 5,
+    "hanzi": "件",
+    "pinyin": "jiàn",
+    "arabic": "كلمة كمية تستخدم مع الملابس",
+    "type": "word"
+  },
+  {
+    "id": 64,
+    "lesson": 5,
+    "hanzi": "还",
+    "pinyin": "hái",
+    "arabic": "ما زال، لا يزال",
+    "type": "word"
+  },
+  {
+    "id": 65,
+    "lesson": 5,
+    "hanzi": "可以",
+    "pinyin": "kě yǐ",
+    "arabic": "مقبول، لا بأس به",
+    "type": "word"
+  },
+  {
+    "id": 66,
+    "lesson": 5,
+    "hanzi": "不错",
+    "pinyin": "bù cuò",
+    "arabic": "لا بأس به، مقبول، جيد",
+    "type": "word"
+  },
+  {
+    "id": 67,
+    "lesson": 5,
+    "hanzi": "考试",
+    "pinyin": "kǎo shì",
+    "arabic": "امتحان",
+    "type": "word"
+  },
+  {
+    "id": 68,
+    "lesson": 5,
+    "hanzi": "意思",
+    "pinyin": "yì si",
+    "arabic": "معنى",
+    "type": "word"
+  },
+  {
+    "id": 69,
+    "lesson": 5,
+    "hanzi": "咖啡",
+    "pinyin": "kā fēi",
+    "arabic": "قهوة",
+    "type": "word"
+  },
+  {
+    "id": 70,
+    "lesson": 5,
+    "hanzi": "对",
+    "pinyin": "duì",
+    "arabic": "لـ",
+    "type": "word"
+  },
+  {
+    "id": 71,
+    "lesson": 5,
+    "hanzi": "以后",
+    "pinyin": "yǐ hòu",
+    "arabic": "بعد ذلك، لاحقا",
+    "type": "word"
+  },
+  {
+    "id": 72,
+    "lesson": 6,
+    "hanzi": "门",
+    "pinyin": "mén",
+    "arabic": "باب، بوابة",
+    "type": "word"
+  },
+  {
+    "id": 73,
+    "lesson": 6,
+    "hanzi": "外",
+    "pinyin": "wài",
+    "arabic": "خارج، خارجي",
+    "type": "word"
+  },
+  {
+    "id": 74,
+    "lesson": 6,
+    "hanzi": "自行车",
+    "pinyin": "zì xíng chē",
+    "arabic": "دراجة",
+    "type": "word"
+  },
+  {
+    "id": 75,
+    "lesson": 6,
+    "hanzi": "羊肉",
+    "pinyin": "yáng ròu",
+    "arabic": "لحم الغنم",
+    "type": "word"
+  },
+  {
+    "id": 76,
+    "lesson": 6,
+    "hanzi": "好吃",
+    "pinyin": "hǎo chī",
+    "arabic": "لذيذ، شَهيّ",
+    "type": "word"
+  },
+  {
+    "id": 77,
+    "lesson": 6,
+    "hanzi": "面条",
+    "pinyin": "miàn tiáo",
+    "arabic": "شعرية، نودلز",
+    "type": "word"
+  },
+  {
+    "id": 78,
+    "lesson": 6,
+    "hanzi": "打篮球",
+    "pinyin": "dǎ lán qiú",
+    "arabic": "يلعب كرة السلة",
+    "type": "word"
+  },
+  {
+    "id": 79,
+    "lesson": 6,
+    "hanzi": "因为",
+    "pinyin": "yīn wèi",
+    "arabic": "بسبب",
+    "type": "word"
+  },
+  {
+    "id": 80,
+    "lesson": 6,
+    "hanzi": "所以",
+    "pinyin": "suǒ yǐ",
+    "arabic": "لذلك",
+    "type": "word"
+  },
+  {
+    "id": 81,
+    "lesson": 6,
+    "hanzi": "游泳",
+    "pinyin": "yóu yǒng",
+    "arabic": "يسبح",
+    "type": "word"
+  },
+  {
+    "id": 82,
+    "lesson": 6,
+    "hanzi": "经常",
+    "pinyin": "jīng cháng",
+    "arabic": "دائما، غالبا",
+    "type": "word"
+  },
+  {
+    "id": 83,
+    "lesson": 6,
+    "hanzi": "公斤",
+    "pinyin": "gōng jīn",
+    "arabic": "كيلو جرام",
+    "type": "word"
+  },
+  {
+    "id": 84,
+    "lesson": 6,
+    "hanzi": "姐姐",
+    "pinyin": "jiě jie",
+    "arabic": "الأخت الكبيرة",
+    "type": "word"
+  },
+  {
+    "id": 85,
+    "lesson": 7,
+    "hanzi": "教室",
+    "pinyin": "jiào shì",
+    "arabic": "حجرة الدرس، غرفة الدرس",
+    "type": "word"
+  },
+  {
+    "id": 86,
+    "lesson": 7,
+    "hanzi": "机场",
+    "pinyin": "jī chǎng",
+    "arabic": "مطار",
+    "type": "word"
+  },
+  {
+    "id": 87,
+    "lesson": 7,
+    "hanzi": "路",
+    "pinyin": "lù",
+    "arabic": "طريق",
+    "type": "word"
+  },
+  {
+    "id": 88,
+    "lesson": 7,
+    "hanzi": "离",
+    "pinyin": "lí",
+    "arabic": "يبعد عن",
+    "type": "word"
+  },
+  {
+    "id": 89,
+    "lesson": 7,
+    "hanzi": "公司",
+    "pinyin": "gōng sī",
+    "arabic": "شركة",
+    "type": "word"
+  },
+  {
+    "id": 90,
+    "lesson": 7,
+    "hanzi": "远",
+    "pinyin": "yuǎn",
+    "arabic": "بعيد",
+    "type": "word"
+  },
+  {
+    "id": 91,
+    "lesson": 7,
+    "hanzi": "公共汽车",
+    "pinyin": "gōng gòng qì chē",
+    "arabic": "أتوبيس عام",
+    "type": "word"
+  },
+  {
+    "id": 92,
+    "lesson": 7,
+    "hanzi": "小时",
+    "pinyin": "xiǎo shí",
+    "arabic": "ساعة",
+    "type": "word"
+  },
+  {
+    "id": 93,
+    "lesson": 7,
+    "hanzi": "慢",
+    "pinyin": "màn",
+    "arabic": "بطيء",
+    "type": "word"
+  },
+  {
+    "id": 94,
+    "lesson": 7,
+    "hanzi": "快",
+    "pinyin": "kuài",
+    "arabic": "سريع",
+    "type": "word"
+  },
+  {
+    "id": 95,
+    "lesson": 7,
+    "hanzi": "过",
+    "pinyin": "guò",
+    "arabic": "يقضي، يمر",
+    "type": "word"
+  },
+  {
+    "id": 96,
+    "lesson": 7,
+    "hanzi": "走",
+    "pinyin": "zǒu",
+    "arabic": "يمشي",
+    "type": "word"
+  },
+  {
+    "id": 97,
+    "lesson": 7,
+    "hanzi": "到",
+    "pinyin": "dào",
+    "arabic": "يصل",
+    "type": "word"
+  },
+  {
+    "id": 98,
+    "lesson": 8,
+    "hanzi": "再",
+    "pinyin": "zài",
+    "arabic": "مرة ثانية",
+    "type": "word"
+  },
+  {
+    "id": 99,
+    "lesson": 8,
+    "hanzi": "让",
+    "pinyin": "ràng",
+    "arabic": "يدع، دعني أفكر قليلا",
+    "type": "word"
+  },
+  {
+    "id": 100,
+    "lesson": 8,
+    "hanzi": "告诉",
+    "pinyin": "gào su",
+    "arabic": "يخبر",
+    "type": "word"
+  },
+  {
+    "id": 101,
+    "lesson": 8,
+    "hanzi": "等",
+    "pinyin": "děng",
+    "arabic": "ينتظر",
+    "type": "word"
+  },
+  {
+    "id": 102,
+    "lesson": 8,
+    "hanzi": "找",
+    "pinyin": "zhǎo",
+    "arabic": "يبحث عن شيء أو شخص أو يريد شخص في أمر ما",
+    "type": "word"
+  },
+  {
+    "id": 103,
+    "lesson": 8,
+    "hanzi": "事情",
+    "pinyin": "shì qing",
+    "arabic": "أمر، شأن",
+    "type": "word"
+  },
+  {
+    "id": 104,
+    "lesson": 8,
+    "hanzi": "服务员",
+    "pinyin": "fú wù yuán",
+    "arabic": "نادل",
+    "type": "word"
+  },
+  {
+    "id": 105,
+    "lesson": 8,
+    "hanzi": "白",
+    "pinyin": "bái",
+    "arabic": "أبيض، أبيض اللون",
+    "type": "word"
+  },
+  {
+    "id": 106,
+    "lesson": 8,
+    "hanzi": "黑",
+    "pinyin": "hēi",
+    "arabic": "أسود، أسود اللون",
+    "type": "word"
+  },
+  {
+    "id": 107,
+    "lesson": 8,
+    "hanzi": "贵",
+    "pinyin": "guì",
+    "arabic": "غالي",
+    "type": "word"
+  },
+  {
+    "id": 108,
+    "lesson": 9,
+    "hanzi": "错",
+    "pinyin": "cuò",
+    "arabic": "خاطئ",
+    "type": "word"
+  },
+  {
+    "id": 109,
+    "lesson": 9,
+    "hanzi": "从",
+    "pinyin": "cóng",
+    "arabic": "من",
+    "type": "word"
+  },
+  {
+    "id": 110,
+    "lesson": 9,
+    "hanzi": "跳舞",
+    "pinyin": "tiào wǔ",
+    "arabic": "يرقص",
+    "type": "word"
+  },
+  {
+    "id": 111,
+    "lesson": 9,
+    "hanzi": "第一",
+    "pinyin": "dì yī",
+    "arabic": "الأول",
+    "type": "word"
+  },
+  {
+    "id": 112,
+    "lesson": 9,
+    "hanzi": "希望",
+    "pinyin": "xī wàng",
+    "arabic": "يأمل، يتمنى",
+    "type": "word"
+  },
+  {
+    "id": 113,
+    "lesson": 9,
+    "hanzi": "问题",
+    "pinyin": "wèn tí",
+    "arabic": "سؤال، مشكلة",
+    "type": "word"
+  },
+  {
+    "id": 114,
+    "lesson": 9,
+    "hanzi": "欢迎",
+    "pinyin": "huān yíng",
+    "arabic": "يُرحِّب",
+    "type": "word"
+  },
+  {
+    "id": 115,
+    "lesson": 9,
+    "hanzi": "上班",
+    "pinyin": "shàng bān",
+    "arabic": "يذهب إلى العمل، يباشر العمل",
+    "type": "word"
+  },
+  {
+    "id": 116,
+    "lesson": 9,
+    "hanzi": "懂",
+    "pinyin": "dǒng",
+    "arabic": "يفهم",
+    "type": "word"
+  },
+  {
+    "id": 117,
+    "lesson": 9,
+    "hanzi": "完",
+    "pinyin": "wán",
+    "arabic": "ينتهي",
+    "type": "word"
+  },
+  {
+    "id": 118,
+    "lesson": 9,
+    "hanzi": "题",
+    "pinyin": "tí",
+    "arabic": "سؤال",
+    "type": "word"
+  },
+  {
+    "id": 119,
+    "lesson": 10,
+    "hanzi": "课",
+    "pinyin": "kè",
+    "arabic": "درس، محاضرة",
+    "type": "word"
+  },
+  {
+    "id": 120,
+    "lesson": 10,
+    "hanzi": "帮助",
+    "pinyin": "bāng zhù",
+    "arabic": "يساعد",
+    "type": "word"
+  },
+  {
+    "id": 121,
+    "lesson": 10,
+    "hanzi": "别",
+    "pinyin": "bié",
+    "arabic": "لا، لا تفعل كذا كذا",
+    "type": "word"
+  },
+  {
+    "id": 122,
+    "lesson": 10,
+    "hanzi": "哥哥",
+    "pinyin": "gē ge",
+    "arabic": "الأخ الكبير",
+    "type": "word"
+  },
+  {
+    "id": 123,
+    "lesson": 10,
+    "hanzi": "鸡蛋",
+    "pinyin": "jī dàn",
+    "arabic": "بيض",
+    "type": "word"
+  },
+  {
+    "id": 124,
+    "lesson": 10,
+    "hanzi": "西瓜",
+    "pinyin": "xī guā",
+    "arabic": "بطيخ",
+    "type": "word"
+  },
+  {
+    "id": 125,
+    "lesson": 10,
+    "hanzi": "正在",
+    "pinyin": "zhèng zài",
+    "arabic": "حاليا",
+    "type": "word"
+  },
+  {
+    "id": 126,
+    "lesson": 10,
+    "hanzi": "手机",
+    "pinyin": "shǒu jī",
+    "arabic": "موبايل",
+    "type": "word"
+  },
+  {
+    "id": 127,
+    "lesson": 10,
+    "hanzi": "洗",
+    "pinyin": "xǐ",
+    "arabic": "يغسل",
+    "type": "word"
+  },
+  {
+    "id": 128,
+    "lesson": 11,
+    "hanzi": "唱歌",
+    "pinyin": "chàng gē",
+    "arabic": "يُغنِّي",
+    "type": "word"
+  },
+  {
+    "id": 129,
+    "lesson": 11,
+    "hanzi": "男",
+    "pinyin": "nán",
+    "arabic": "ذكر، رجل",
+    "type": "word"
+  },
+  {
+    "id": 130,
+    "lesson": 11,
+    "hanzi": "女",
+    "pinyin": "nǚ",
+    "arabic": "أنثى، امرأة",
+    "type": "word"
+  },
+  {
+    "id": 131,
+    "lesson": 11,
+    "hanzi": "孩子",
+    "pinyin": "hái zi",
+    "arabic": "طفل",
+    "type": "word"
+  },
+  {
+    "id": 132,
+    "lesson": 11,
+    "hanzi": "右边",
+    "pinyin": "yòu bian",
+    "arabic": "اليمين، جهة اليمين",
+    "type": "word"
+  },
+  {
+    "id": 133,
+    "lesson": 11,
+    "hanzi": "比",
+    "pinyin": "bǐ",
+    "arabic": "بالمقارنة مع",
+    "type": "word"
+  },
+  {
+    "id": 134,
+    "lesson": 11,
+    "hanzi": "便宜",
+    "pinyin": "pián yi",
+    "arabic": "رخيص",
+    "type": "word"
+  },
+  {
+    "id": 135,
+    "lesson": 11,
+    "hanzi": "说话",
+    "pinyin": "shuō huà",
+    "arabic": "يتكلم، يتحدث",
+    "type": "word"
+  },
+  {
+    "id": 136,
+    "lesson": 11,
+    "hanzi": "可能",
+    "pinyin": "kě néng",
+    "arabic": "ربما، من المحتمل",
+    "type": "word"
+  },
+  {
+    "id": 137,
+    "lesson": 11,
+    "hanzi": "去年",
+    "pinyin": "qù nián",
+    "arabic": "السنة الماضية",
+    "type": "word"
+  },
+  {
+    "id": 138,
+    "lesson": 11,
+    "hanzi": "姓",
+    "pinyin": "xìng",
+    "arabic": "اسم العائلة، اللقب",
+    "type": "word"
+  },
+  {
+    "id": 139,
+    "lesson": 12,
+    "hanzi": "得",
+    "pinyin": "de",
+    "arabic": "لفظة تتوسط بين فعل وتكملته للدلالة على الإمكان أو الإستطاعة",
+    "type": "word"
+  },
+  {
+    "id": 140,
+    "lesson": 12,
+    "hanzi": "妻子",
+    "pinyin": "qī zi",
+    "arabic": "زوجة",
+    "type": "word"
+  },
+  {
+    "id": 141,
+    "lesson": 12,
+    "hanzi": "雪",
+    "pinyin": "xuě",
+    "arabic": "ثلج",
+    "type": "word"
+  },
+  {
+    "id": 142,
+    "lesson": 12,
+    "hanzi": "零",
+    "pinyin": "líng",
+    "arabic": "صفر",
+    "type": "word"
+  },
+  {
+    "id": 143,
+    "lesson": 12,
+    "hanzi": "度",
+    "pinyin": "dù",
+    "arabic": "درجة",
+    "type": "word"
+  },
+  {
+    "id": 144,
+    "lesson": 12,
+    "hanzi": "穿",
+    "pinyin": "chuān",
+    "arabic": "يلبس، يرتدي",
+    "type": "word"
+  },
+  {
+    "id": 145,
+    "lesson": 12,
+    "hanzi": "进",
+    "pinyin": "jìn",
+    "arabic": "يدخل",
+    "type": "word"
+  },
+  {
+    "id": 146,
+    "lesson": 12,
+    "hanzi": "弟弟",
+    "pinyin": "dì di",
+    "arabic": "أخ صغير",
+    "type": "word"
+  },
+  {
+    "id": 147,
+    "lesson": 12,
+    "hanzi": "近",
+    "pinyin": "jìn",
+    "arabic": "قريب",
+    "type": "word"
+  },
+  {
+    "id": 148,
+    "lesson": 13,
+    "hanzi": "着",
+    "pinyin": "zhe",
+    "arabic": "حرف مساعد للدلالة على استمرارية الفعل أو حالة أو وضع ما",
+    "type": "word"
+  },
+  {
+    "id": 149,
+    "lesson": 13,
+    "hanzi": "手",
+    "pinyin": "shǒu",
+    "arabic": "يد",
+    "type": "word"
+  },
+  {
+    "id": 150,
+    "lesson": 13,
+    "hanzi": "拿",
+    "pinyin": "ná",
+    "arabic": "يحمل، يمسك",
+    "type": "word"
+  },
+  {
+    "id": 151,
+    "lesson": 13,
+    "hanzi": "铅笔",
+    "pinyin": "qiān bǐ",
+    "arabic": "قلم رصاص",
+    "type": "word"
+  },
+  {
+    "id": 152,
+    "lesson": 13,
+    "hanzi": "杨笑笑",
+    "pinyin": "yáng xiào xiao",
+    "arabic": "يانغ شياو شياو، اسم",
+    "type": "word"
+  },
+  {
+    "id": 153,
+    "lesson": 13,
+    "hanzi": "班",
+    "pinyin": "bān",
+    "arabic": "فصل",
+    "type": "word"
+  },
+  {
+    "id": 154,
+    "lesson": 13,
+    "hanzi": "长",
+    "pinyin": "zhǎng",
+    "arabic": "يكبر، ينمو",
+    "type": "word"
+  },
+  {
+    "id": 155,
+    "lesson": 13,
+    "hanzi": "笑",
+    "pinyin": "xiào",
+    "arabic": "يبتسم",
+    "type": "word"
+  },
+  {
+    "id": 156,
+    "lesson": 13,
+    "hanzi": "宾馆",
+    "pinyin": "bīn guǎn",
+    "arabic": "فندق",
+    "type": "word"
+  },
+  {
+    "id": 157,
+    "lesson": 13,
+    "hanzi": "一直",
+    "pinyin": "yī zhí",
+    "arabic": "دائما، باستمرار، لطالما، دغري، على طول",
+    "type": "word"
+  },
+  {
+    "id": 158,
+    "lesson": 13,
+    "hanzi": "往",
+    "pinyin": "wǎng",
+    "arabic": "نحو، باتجاه، صوب",
+    "type": "word"
+  },
+  {
+    "id": 159,
+    "lesson": 13,
+    "hanzi": "路口",
+    "pinyin": "lù kǒu",
+    "arabic": "تقاطع",
+    "type": "word"
+  },
+  {
+    "id": 160,
+    "lesson": 14,
+    "hanzi": "有意思",
+    "pinyin": "yǒu yì si",
+    "arabic": "ممتع، شَيِّق",
+    "type": "word"
+  },
+  {
+    "id": 161,
+    "lesson": 14,
+    "hanzi": "但是",
+    "pinyin": "dàn shì",
+    "arabic": "لكن",
+    "type": "word"
+  },
+  {
+    "id": 162,
+    "lesson": 14,
+    "hanzi": "虽然",
+    "pinyin": "suī rán",
+    "arabic": "رغم أن، على الرغم من",
+    "type": "word"
+  },
+  {
+    "id": 163,
+    "lesson": 14,
+    "hanzi": "次",
+    "pinyin": "cì",
+    "arabic": "مرة",
+    "type": "word"
+  },
+  {
+    "id": 164,
+    "lesson": 14,
+    "hanzi": "玩儿",
+    "pinyin": "wánr",
+    "arabic": "يلعب، يلهو",
+    "type": "word"
+  },
+  {
+    "id": 165,
+    "lesson": 14,
+    "hanzi": "晴",
+    "pinyin": "qíng",
+    "arabic": "صاف، رائق، صحو",
+    "type": "word"
+  },
+  {
+    "id": 166,
+    "lesson": 14,
+    "hanzi": "百",
+    "pinyin": "bǎi",
+    "arabic": "مائة",
+    "type": "word"
+  },
+  {
+    "id": 167,
+    "lesson": 15,
+    "hanzi": "日",
+    "pinyin": "rì",
+    "arabic": "يوم، تاريخ",
+    "type": "word"
+  },
+  {
+    "id": 168,
+    "lesson": 15,
+    "hanzi": "新年",
+    "pinyin": "xīn nián",
+    "arabic": "عام جديد",
+    "type": "word"
+  },
+  {
+    "id": 169,
+    "lesson": 15,
+    "hanzi": "票",
+    "pinyin": "piào",
+    "arabic": "تذكرة",
+    "type": "word"
+  },
+  {
+    "id": 170,
+    "lesson": 15,
+    "hanzi": "火车站",
+    "pinyin": "huǒ chē zhàn",
+    "arabic": "محطة قطار",
+    "type": "word"
+  },
+  {
+    "id": 171,
+    "lesson": 15,
+    "hanzi": "大家",
+    "pinyin": "dà jiā",
+    "arabic": "الكل، الجميع، كل شخص",
+    "type": "word"
+  },
+  {
+    "id": 172,
+    "lesson": 15,
+    "hanzi": "更",
+    "pinyin": "gèng",
+    "arabic": "أكثر",
+    "type": "word"
+  },
+  {
+    "id": 173,
+    "lesson": 15,
+    "hanzi": "妹妹",
+    "pinyin": "mèi mei",
+    "arabic": "أخت صغيرة",
+    "type": "word"
+  },
+  {
+    "id": 174,
+    "lesson": 15,
+    "hanzi": "阴天",
+    "pinyin": "yīn tiān",
+    "arabic": "غائم، مُكْفَهِرّ",
+    "type": "word"
+  }
+]
