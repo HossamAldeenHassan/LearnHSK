@@ -125,12 +125,12 @@ body {
   color: #1a1a1e;
 }
 
-.main-content { max-width: 820px; margin: 0 auto; padding: 20px 16px 48px; }
+.main-content { max-width: 840px; margin: 0 auto; padding: 20px 16px 48px; }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 10px 20px; border-radius: var(--radius); border: none; cursor: pointer;
-  font-family: inherit; font-size: 0.95rem; font-weight: 600; transition: all 0.18s; text-decoration: none;
+  padding: 10px 18px; border-radius: var(--radius); border: none; cursor: pointer;
+  font-family: inherit; font-size: 0.92rem; font-weight: 600; transition: all 0.18s; text-decoration: none;
 }
 .btn-primary { background: var(--red); color: #fff; }
 .btn-primary:hover { background: var(--red-light); transform: translateY(-1px); }
@@ -140,24 +140,24 @@ body {
 .btn-gold:hover { background: var(--gold-light); }
 .btn-ghost { background: transparent; color: var(--text2); border: 1px solid var(--border); }
 .btn-ghost:hover { color: var(--text); background: var(--bg3); }
-.btn-sm { padding: 6px 14px; font-size: 0.85rem; }
-.btn-lg { padding: 14px 28px; font-size: 1.05rem; }
+.btn-sm { padding: 6px 12px; font-size: 0.82rem; }
+.btn-lg { padding: 13px 26px; font-size: 1.02rem; }
 .btn-icon {
   padding: 8px 10px; border-radius: 8px; background: var(--bg3); border: 1px solid var(--border);
   color: var(--text2); cursor: pointer; font-size: 1.05rem; transition: all 0.18s;
 }
 .btn-icon:hover { color: var(--text); background: var(--bg4); }
 
-/* Views – JS controls display directly; CSS class is cosmetic only */
+/* Views */
 .view { display: none; animation: fadeIn 0.28s ease; }
 .view.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-.home-hero { text-align: center; padding: 24px 0 20px; }
-.home-hero h1 { font-size: 1.9rem; font-weight: 700; color: var(--red-light); margin-bottom: 6px; line-height: 1.25; }
-.home-hero p { color: var(--text2); font-size: 0.98rem; }
+.home-hero { text-align: center; padding: 22px 0 18px; }
+.home-hero h1 { font-size: 1.85rem; font-weight: 700; color: var(--red-light); margin-bottom: 6px; line-height: 1.25; }
+.home-hero p { color: var(--text2); font-size: 0.95rem; }
 
-/* HSK Level Selector Grid */
+/* Level Selector Grid */
 .level-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -214,19 +214,10 @@ body {
 
 .level-card-title { font-size: 1.02rem; font-weight: 700; color: var(--text); }
 .level-card-desc { font-size: 0.8rem; color: var(--text2); line-height: 1.4; }
-.level-card-counts {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-top: 4px;
-}
+.level-card-counts { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
 .level-mini-pill {
-  font-size: 0.73rem;
-  padding: 2px 8px;
-  border-radius: 6px;
-  background: var(--bg2);
-  color: var(--text2);
-  border: 1px solid var(--border);
+  font-size: 0.73rem; padding: 2px 8px; border-radius: 6px;
+  background: var(--bg2); color: var(--text2); border: 1px solid var(--border);
 }
 
 .nav-tabs {
@@ -306,33 +297,33 @@ body {
 /* Flashcard 3D */
 .flashcard-view-inner { max-width: 580px; margin: 0 auto; }
 .fc-autoplay-row {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  margin-bottom: 12px; font-size: 0.88rem; color: var(--text2);
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  margin-bottom: 12px; font-size: 0.88rem; color: var(--text2); flex-wrap: wrap;
 }
 .fc-scene {
-  width: 100%; min-height: 310px; perspective: 1000px; cursor: pointer; margin-bottom: 16px;
+  width: 100%; min-height: 320px; perspective: 1000px; cursor: pointer; margin-bottom: 16px;
 }
 .fc-card {
-  width: 100%; min-height: 310px; position: relative;
+  width: 100%; min-height: 320px; position: relative;
   transform-style: preserve-3d; transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 .fc-card.flipped { transform: rotateY(180deg); }
 .fc-face {
   position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
   background: var(--bg2); border: 1.5px solid var(--border); border-radius: 20px;
-  padding: 28px 24px; display: flex; flex-direction: column; align-items: center;
+  padding: 26px 22px; display: flex; flex-direction: column; align-items: center;
   justify-content: center; text-align: center; box-shadow: var(--shadow); gap: 10px;
 }
 .fc-back { transform: rotateY(180deg); background: var(--bg3); }
 .hanzi-big {
-  font-family: 'Noto Serif SC', serif; font-size: 3.6rem; font-weight: 700;
+  font-family: 'Noto Serif SC', serif; font-size: 3.8rem; font-weight: 700;
   color: var(--red-light); line-height: 1.25;
 }
 .pinyin-text { font-size: 1.35rem; color: var(--gold); font-weight: 600; }
 .arabic-big { font-size: 1.45rem; color: var(--text); font-weight: 700; line-height: 1.4; }
 .fc-example-box {
-  margin-top: 10px; padding: 10px 14px; border-radius: 12px;
-  background: var(--bg2); border: 1px solid var(--border); width: 100%;
+  margin-top: 8px; padding: 10px 14px; border-radius: 12px;
+  background: var(--bg2); border: 1px solid var(--border); width: 100%; text-align: right;
 }
 .fc-actions {
   display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px;
@@ -354,16 +345,16 @@ body {
   padding: 26px 20px; text-align: center; margin-bottom: 16px; box-shadow: var(--shadow);
 }
 .quiz-prompt-hanzi {
-  font-family: 'Noto Serif SC', serif; font-size: 3rem; font-weight: 700;
+  font-family: 'Noto Serif SC', serif; font-size: 3.1rem; font-weight: 700;
   color: var(--red-light); margin-bottom: 8px; line-height: 1.3;
 }
-.quiz-prompt-pinyin { font-size: 1.2rem; color: var(--gold); margin-bottom: 8px; font-weight: 500; }
-.quiz-prompt-arabic { font-size: 1.35rem; color: var(--text); font-weight: 700; margin-bottom: 8px; }
+.quiz-prompt-pinyin { font-size: 1.25rem; color: var(--gold); margin-bottom: 8px; font-weight: 500; }
+.quiz-prompt-arabic { font-size: 1.4rem; color: var(--text); font-weight: 700; margin-bottom: 8px; }
 
 .quiz-input-wrap { display: flex; gap: 8px; margin-bottom: 12px; }
 .quiz-input {
   flex: 1; padding: 12px 16px; border-radius: 12px; border: 1.5px solid var(--border);
-  background: var(--bg3); color: var(--text); font-family: inherit; font-size: 1rem; outline: none;
+  background: var(--bg3); color: var(--text); font-family: inherit; font-size: 1.05rem; outline: none;
 }
 .quiz-input:focus { border-color: var(--gold); }
 
@@ -427,6 +418,95 @@ body {
   margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);
 }
 
+/* Memory Game Grid */
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 16px 0;
+}
+.memory-card {
+  aspect-ratio: 1;
+  background: var(--bg3);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  user-select: none;
+}
+.memory-card:hover:not(.matched):not(.flipped) {
+  border-color: var(--gold);
+  background: var(--bg4);
+}
+.memory-card.flipped {
+  background: var(--bg2);
+  border-color: var(--gold);
+}
+.memory-card.matched {
+  background: rgba(39, 174, 96, 0.2);
+  border-color: var(--correct);
+  color: #2ecc71;
+  cursor: default;
+}
+
+/* Study / Breakdown Modal */
+.study-box {
+  text-align: right;
+  line-height: 1.6;
+}
+.study-badge-row {
+  display: flex; gap: 8px; align-items: center; justify-content: flex-start; margin-bottom: 12px; flex-wrap: wrap;
+}
+.study-section {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.study-section-title {
+  font-size: 0.85rem; font-weight: 700; color: var(--gold); margin-bottom: 4px; display: flex; align-items: center; gap: 6px;
+}
+
+/* Stroke Drawing Pad Canvas */
+.canvas-wrap {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 12px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg3);
+  overflow: hidden;
+}
+.canvas-ghost {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 130px;
+  color: rgba(255,255,255,0.12);
+  pointer-events: none;
+  user-select: none;
+}
+.light-mode .canvas-ghost {
+  color: rgba(0,0,0,0.1);
+}
+#strokeCanvas {
+  position: absolute;
+  inset: 0;
+  cursor: crosshair;
+  touch-action: none;
+}
+
 /* Results & Stats */
 .results-hero { text-align: center; padding: 20px 0; }
 .results-score { font-size: 3.2rem; font-weight: 700; color: var(--gold); }
@@ -460,7 +540,7 @@ body {
 .lesson-prog-fill { height: 100%; background: var(--correct); }
 .reset-btn-wrap { text-align: center; margin-top: 20px; }
 
-/* Browse / Dictionary Modal or View */
+/* Dictionary & Grammar Views */
 .dict-controls { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
 .dict-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px;
@@ -473,6 +553,18 @@ body {
 .dict-card .pinyin { font-size: 0.9rem; color: var(--gold); }
 .dict-card .arabic { font-size: 0.9rem; color: var(--text); }
 
+.grammar-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 14px;
+  padding: 18px; margin-bottom: 14px; line-height: 1.6;
+}
+.grammar-card h3 {
+  color: var(--gold); font-size: 1.15rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+}
+.grammar-example {
+  background: var(--bg3); border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 14px; margin-top: 8px;
+}
+
 /* Toast & Custom Modal */
 .toast {
   position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
@@ -483,13 +575,14 @@ body {
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 .modal-backdrop {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.65);
+  position: fixed; inset: 0; background: rgba(0,0,0,0.72);
   display: none; align-items: center; justify-content: center; z-index: 900; padding: 16px;
 }
 .modal-backdrop.active { display: flex; }
 .modal-box {
-  background: var(--bg2); border: 1px solid var(--border); border-radius: 16px;
-  padding: 24px; max-width: 400px; width: 100%; text-align: center; box-shadow: var(--shadow);
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 18px;
+  padding: 22px; max-width: 480px; width: 100%; box-shadow: var(--shadow);
+  max-height: 90vh; overflow-y: auto;
 }
 
 @media (max-width: 640px) {
@@ -497,6 +590,7 @@ body {
   .lesson-grid { grid-template-columns: repeat(5, 1fr); }
   .quiz-choices { grid-template-columns: 1fr; }
   .quiz-prompt-hanzi { font-size: 2.3rem; }
+  .memory-grid { grid-template-columns: repeat(3, 1fr); }
   .main-content { padding: 14px 10px 36px; }
 }
 </style>
@@ -506,7 +600,7 @@ body {
 <header class="app-header">
   <div class="app-logo" onclick="showHome()">
     <span class="logo-icon">🎋</span>
-    <span id="headerLogoTitle">تعلّم الصينية – HSK1 & HSK2</span>
+    <span id="headerLogoTitle">تعلّم الصينية – HSK 1 & HSK 2</span>
   </div>
   <div class="header-actions">
     <div class="header-level-pills" id="headerLevelSwitch">
@@ -514,6 +608,7 @@ body {
       <button class="header-level-pill active" data-level="2" onclick="selectHSKLevel('2')">HSK 2</button>
       <button class="header-level-pill" data-level="all" onclick="selectHSKLevel('all')">الكل 1+2</button>
     </div>
+    <button class="btn-icon" id="guideBtn" title="شروحات القواعد والدروس" onclick="showGuide()">📚</button>
     <button class="btn-icon" id="browseBtn" title="قاموس وتصفح الكلمات والجمل" onclick="showBrowse()">📖</button>
     <button class="btn-icon" id="statsBtn" title="الإحصائيات">📊</button>
     <button class="btn-icon" id="darkToggle" title="الوضع الليلي">🌙</button>
@@ -526,7 +621,7 @@ body {
   <div class="view active" id="homeView">
     <div class="home-hero">
       <h1 id="heroTitle">التطبيق التفاعلي 🇨🇳 – المستوى HSK 2</h1>
-      <p id="heroSubtitle">HSK2 – 174 كلمة أساسية و172 جملة تطبيقية (الدروس 1 – 15)</p>
+      <p id="heroSubtitle">HSK2 – 174 كلمة أساسية و172 جملة تطبيقية مع الكتابة والشرح والدراسة</p>
     </div>
 
     <!-- HSK LEVEL SELECTION CARD -->
@@ -575,22 +670,24 @@ body {
       </div>
     </div>
 
+    <!-- MAIN STUDY & QUIZ MODES -->
     <div class="nav-tabs" id="modeTabsBar">
-      <button class="nav-tab active" data-mode="flashcard">🃏 البطاقات</button>
-      <button class="nav-tab" data-mode="quiz_ar_zh">✍️ صيني←عربي</button>
-      <button class="nav-tab" data-mode="quiz_zh_ar">✍️ عربي←صيني</button>
-      <button class="nav-tab" data-mode="quiz_tf">✅ صح/خطأ</button>
-      <button class="nav-tab" data-mode="quiz_listen">🎧 استماع</button>
+      <button class="nav-tab active" data-mode="flashcard">🃏 البطاقات (إخفاء/إظهار)</button>
+      <button class="nav-tab" data-mode="quiz_ar_zh">✍️ كتابة: صيني ← ترجمة</button>
+      <button class="nav-tab" data-mode="quiz_zh_ar">✍️ كتابة: عربي ← صيني</button>
+      <button class="nav-tab" data-mode="quiz_memory">🎴 مطابقة الذاكرة</button>
+      <button class="nav-tab" data-mode="quiz_listen">🎧 استماع وكتابة</button>
     </div>
     <div class="nav-tabs" id="extraModeTabs" style="margin-top:8px;">
       <button class="nav-tab" data-mode="quiz_build">🧩 تركيب الجمل</button>
       <button class="nav-tab" data-mode="quiz_cloze">📝 اكمل الفراغ</button>
       <button class="nav-tab" data-mode="quiz_dictation">🎤 املاء مع كتابة</button>
       <button class="nav-tab" data-mode="quiz_tone">🎵 النغمات</button>
-      <button class="nav-tab" data-mode="quiz_record">🔴 تسجيل صوتي</button>
       <button class="nav-tab" data-mode="quiz_error">🔍 تصحيح الأخطاء</button>
+      <button class="nav-tab" data-mode="quiz_record">🔴 تسجيل صوتي</button>
     </div>
 
+    <!-- LESSON SELECTION -->
     <div class="card">
       <div class="card-title">
         <span>تحديد الدروس (1 – 15)</span>
@@ -603,6 +700,7 @@ body {
       <div class="lesson-grid" id="lessonGrid"></div>
     </div>
 
+    <!-- CONTENT TYPES -->
     <div class="card">
       <div class="card-title">إعدادات المحتوى</div>
       <div class="type-grid" id="typeGrid">
@@ -625,8 +723,9 @@ body {
       </div>
     </div>
 
+    <!-- SESSION OPTIONS -->
     <div class="card">
-      <div class="card-title">خيارات الاختبار</div>
+      <div class="card-title">خيارات الجلسة ونمط الإجابة</div>
       <div class="form-row">
         <div class="form-group">
           <label class="form-label" for="countSelect">عدد الأسئلة</label>
@@ -639,6 +738,13 @@ body {
           </select>
         </div>
         <div class="form-group">
+          <label class="form-label" for="answerFormatSelect">طريقة الإجابة في الترجمة</label>
+          <select class="form-select" id="answerFormatSelect">
+            <option value="type" selected>✍️ كتابة يدوية (لترجمة وحفظ حقيقي)</option>
+            <option value="choice">🔘 خيارات متعددة (اختياري)</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label class="form-label" for="orderSelect">الترتيب</label>
           <select class="form-select" id="orderSelect">
             <option value="random" selected>عشوائي</option>
@@ -648,14 +754,15 @@ body {
       </div>
     </div>
 
+    <!-- STUDY TOOLS & REVIEWS -->
     <div class="card">
-      <div class="card-title">أنماط المراجعة والقاموس</div>
+      <div class="card-title">أدوات الدراسة والمراجعة السريعة</div>
       <div class="form-row" style="justify-content:center;">
+        <button class="btn btn-gold" onclick="showGuide()">📚 شروحات وقواعد الدروس</button>
+        <button class="btn btn-secondary" onclick="showBrowse()">📖 قاموس الكلمات والجمل</button>
         <button class="btn btn-secondary" onclick="startReview('today')">📅 مراجعة اليوم</button>
         <button class="btn btn-secondary" onclick="startReview('mistakes')">❌ الأخطاء السابقة</button>
         <button class="btn btn-secondary" onclick="startReview('difficult')">😰 العناصر الصعبة</button>
-        <button class="btn btn-secondary" onclick="startReview('mixed')">🔀 مراجعة شاملة</button>
-        <button class="btn btn-gold" onclick="showBrowse()">📖 تصفح كلمات وجمل المستوى</button>
       </div>
     </div>
 
@@ -663,6 +770,21 @@ body {
       <span class="count-preview">العناصر المتاحة: <strong id="availableCount">0</strong></span>
       <button class="btn btn-primary btn-lg" id="startBtn">ابدأ الدراسة 🚀</button>
     </div>
+  </div>
+
+  <!-- GRAMMAR & STUDY GUIDE VIEW -->
+  <div class="view" id="guideView">
+    <div class="session-header" style="margin-bottom:16px">
+      <span class="session-title">📚 دليل شروحات القواعد والدروس</span>
+      <button class="btn btn-ghost btn-sm" onclick="showHome()">← الرئيسية</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">اختر درس الشرح للمستوى الحالي</div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;" id="guideLessonButtons"></div>
+    </div>
+
+    <div id="guideContentArea"></div>
   </div>
 
   <!-- BROWSE / DICTIONARY VIEW -->
@@ -694,15 +816,17 @@ body {
   <!-- FLASHCARD VIEW -->
   <div class="view" id="flashcardView">
     <div class="session-header">
-      <span class="session-title">البطاقات التعليمية</span>
+      <span class="session-title">🃏 البطاقات التعليمية</span>
       <span class="progress-text" id="fcProgress">0 / 0</span>
     </div>
     <div class="progress-bar-wrap"><div class="progress-bar-fill" id="fcProgressBar" style="width:0%"></div></div>
 
     <div class="flashcard-view-inner">
       <div class="fc-autoplay-row">
-        <input type="checkbox" id="fcAutoPlay" checked>
-        <label for="fcAutoPlay">تشغيل الصوت تلقائياً عند العرض</label>
+        <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer;">
+          <input type="checkbox" id="fcAutoPlay">
+          <span>تشغيل الصوت تلقائياً عند العرض</span>
+        </label>
       </div>
 
       <div class="fc-scene" id="fcScene" onclick="flipCard()">
@@ -714,8 +838,9 @@ body {
 
       <div class="fc-actions">
         <button class="fc-btn fc-btn-difficult" onclick="markCard('difficult')">😰 صعب</button>
-        <button class="fc-btn fc-btn-flip"      onclick="flipCard()">🔄 اقلب</button>
+        <button class="fc-btn fc-btn-flip"      onclick="flipCard()">🔄 اقلب البطاقة</button>
         <button class="fc-btn fc-btn-listen"    onclick="speakCurrentCard()">🔊 استمع</button>
+        <button class="fc-btn" style="border-color:var(--gold); color:var(--gold);" onclick="openStudyModalForCurrent(event)">🔍 تفكيك وشرح</button>
         <button class="fc-btn fc-btn-known"     onclick="markCard('known')">✅ عرفته</button>
         <button class="fc-btn fc-btn-next"      onclick="nextCard()">➡️ التالي</button>
       </div>
@@ -723,6 +848,29 @@ body {
       <div class="fc-end-row">
         <button class="btn btn-ghost btn-sm" onclick="endSession()">إنهاء الجلسة</button>
       </div>
+    </div>
+  </div>
+
+  <!-- MEMORY MATCH VIEW -->
+  <div class="view" id="memoryView">
+    <div class="session-header">
+      <span class="session-title">🎴 لعبة مطابقة الذاكرة (ربط الرمز بالمعنى)</span>
+      <span class="progress-text" id="memoryScoreText">أزواج: 0 / 6</span>
+    </div>
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="font-size:0.9rem; color:var(--text2);">اقلب البطاقات وطابق الرمز الصيني بمعناه العربي المقابل:</div>
+        <button class="btn btn-secondary btn-sm" onclick="initMemoryGame()">🔄 لعبة جديدة</button>
+      </div>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div id="memoryWinBox" style="display:none; text-align:center; padding:16px; background:rgba(39,174,96,0.15); border:1px solid var(--correct); border-radius:12px; margin-top:12px;">
+        <h3 style="color:#2ecc71; margin-bottom:4px;">🎉 رائع! طابقت جميع البطاقات بنجاح!</h3>
+        <p style="color:var(--text); font-size:0.9rem;">لقد قمت بربط الرموز الصينية بمعانيها بدقة ممتازة.</p>
+        <button class="btn btn-primary btn-sm" style="margin-top:10px;" onclick="initMemoryGame()">لعب جولة أخرى ➔</button>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:10px;">
+      <button class="btn btn-ghost btn-sm" onclick="showHome()">← العودة للرئيسية</button>
     </div>
   </div>
 
@@ -737,17 +885,28 @@ body {
     <div class="quiz-question-card" id="quizQuestionCard"></div>
 
     <div class="quiz-scroll-area">
+      <!-- Typing Answer Input Form -->
       <div id="typeAnswerWrap" style="display:none">
         <div class="quiz-input-wrap">
-          <input class="quiz-input" id="quizInput" type="text" placeholder="اكتب إجابتك هنا" autocomplete="off" autocapitalize="off">
-          <button class="btn btn-primary" onclick="submitTypeAnswer()">تأكيد</button>
+          <input class="quiz-input" id="quizInput" type="text" placeholder="اكتب إجابتك هنا..." autocomplete="off" autocapitalize="off">
+          <button class="btn btn-primary" id="submitTypeBtn" onclick="submitTypeAnswer()">تأكيد ↵</button>
+        </div>
+        <div style="display:flex; gap:8px; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:8px;">
+          <button class="btn btn-ghost btn-sm" id="typeHintBtn" onclick="showTypeHint()">💡 تلميح</button>
+          <button class="btn btn-ghost btn-sm" onclick="speakItem()">🔊 استمع للنطق</button>
+          <button class="btn btn-ghost btn-sm" id="typeStudyBtn" onclick="openStudyModalForCurrent(event)">🔍 شرح وتفكيك الرمز</button>
         </div>
       </div>
 
+      <!-- Multiple Choice Wrap -->
       <div id="mcWrap" style="display:none">
         <div class="quiz-choices" id="quizChoices"></div>
+        <div style="text-align:center; margin-top:6px;">
+          <button class="btn btn-ghost btn-sm" onclick="openStudyModalForCurrent(event)">🔍 شرح وتفكيك الرمز</button>
+        </div>
       </div>
 
+      <!-- True / False Wrap -->
       <div id="tfWrap" style="display:none">
         <div class="tf-choices">
           <button class="tf-btn" id="tfTrueBtn" onclick="submitTF(true)">✔️ صح</button>
@@ -755,6 +914,7 @@ body {
         </div>
       </div>
 
+      <!-- Sentence Builder Wrap -->
       <div id="buildWrap" style="display:none">
         <div class="built-area" id="builtArea"></div>
         <div class="word-blocks" id="wordBlocks"></div>
@@ -764,9 +924,11 @@ body {
         </div>
       </div>
 
+      <!-- Dictation Wrap -->
       <div id="dictationWrap" style="display:none">
         <div style="margin:12px 0; text-align:center;">
           <button class="btn btn-secondary btn-sm" onclick="speakItem()">🔊 استمع مجدداً</button>
+          <button class="btn btn-ghost btn-sm" onclick="speakSlow()" style="margin-right:8px;">🐢 نطق بطيء</button>
         </div>
         <div class="quiz-input-wrap">
           <input class="quiz-input" id="dictationInput" type="text" placeholder="اكتب ما سمعته بالصينية أو البينيين" autocomplete="off" autocapitalize="off">
@@ -774,6 +936,16 @@ body {
         </div>
       </div>
 
+      <!-- Tone Recognition Wrap -->
+      <div id="toneWrap" style="display:none">
+        <div id="toneCharDisplay" class="quiz-prompt-hanzi" style="font-size:3rem; margin:12px 0;"></div>
+        <div class="quiz-choices" id="toneChoices" style="grid-template-columns:1fr 1fr;"></div>
+        <div style="text-align:center; margin-top:8px;">
+          <button class="btn btn-ghost btn-sm" onclick="speakItem()">🔊 استمع</button>
+        </div>
+      </div>
+
+      <!-- Voice Recording Wrap -->
       <div id="recordWrap" style="display:none">
         <div class="record-wrap">
           <div class="record-btn-row">
@@ -785,14 +957,7 @@ body {
         </div>
       </div>
 
-      <div id="toneWrap" style="display:none">
-        <div id="toneCharDisplay" class="quiz-prompt-hanzi" style="font-size:3rem; margin:12px 0;"></div>
-        <div class="quiz-choices" id="toneChoices" style="grid-template-columns:1fr 1fr;"></div>
-        <div style="text-align:center; margin-top:8px;">
-          <button class="btn btn-ghost btn-sm" onclick="speakItem()">🔊 استمع</button>
-        </div>
-      </div>
-
+      <!-- Error Detection Wrap -->
       <div id="errorWrap" style="display:none">
         <div id="errorSentenceDisplay" style="font-family:'Noto Serif SC',serif;font-size:1.8rem;text-align:center;margin-bottom:6px;"></div>
         <div id="errorPinyinDisplay" class="quiz-prompt-pinyin" style="text-align:center;margin-bottom:10px;"></div>
@@ -875,9 +1040,68 @@ body {
 
 </div>
 
+<!-- Interactive Study & Radical Breakdown Modal -->
+<div class="modal-backdrop" id="studyModal">
+  <div class="modal-box study-box">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid var(--border); padding-bottom:8px;">
+      <h3 style="color:var(--gold); font-size:1.1rem;">🔍 بطاقة تفكيك وشرح الرمز</h3>
+      <button class="btn btn-ghost btn-sm" onclick="closeStudyModal()">✕ إغلاق</button>
+    </div>
+
+    <div class="study-badge-row" id="studyBadgeRow"></div>
+
+    <div style="text-align:center; margin-bottom:14px;">
+      <div class="chinese-text" id="studyHanzi" style="font-family:'Noto Serif SC',serif; font-size:3.5rem; color:var(--red-light); line-height:1.2;"></div>
+      <div class="pinyin-text" id="studyPinyin" style="font-size:1.35rem; color:var(--gold); margin-top:4px;"></div>
+      <div class="arabic-text" id="studyArabic" style="font-size:1.3rem; font-weight:700; color:var(--text); margin-top:2px;"></div>
+      <div style="display:flex; gap:8px; justify-content:center; margin-top:8px;">
+        <button class="btn btn-secondary btn-sm" onclick="speakCurrentStudy(0.85)">🔊 نطق عادي</button>
+        <button class="btn btn-ghost btn-sm" onclick="speakCurrentStudy(0.55)">🐢 نطق بطيء وواضح</button>
+      </div>
+    </div>
+
+    <!-- Interactive Hanzi Writing / Stroke Pad -->
+    <div class="study-section" style="text-align:center;">
+      <div class="study-section-title" style="justify-content:center;">✍️ لوحة تدريب رسم الرمز باليد (米字格)</div>
+      <div class="canvas-wrap">
+        <div class="canvas-ghost" id="canvasGhost"></div>
+        <canvas id="strokeCanvas" width="200" height="200"></canvas>
+      </div>
+      <div style="display:flex; gap:8px; justify-content:center;">
+        <button class="btn btn-ghost btn-sm" onclick="clearCanvas()">مسح الرسم</button>
+        <button class="btn btn-ghost btn-sm" onclick="toggleGhostGuide()">تبديل الشفافية</button>
+      </div>
+    </div>
+
+    <!-- Character Components Breakdown -->
+    <div class="study-section">
+      <div class="study-section-title">🧩 تفكيك أجزاء الرمز (Radicals & Components)</div>
+      <div id="studyBreakdown" style="font-size:0.92rem; color:var(--text);"></div>
+    </div>
+
+    <!-- Mnemonic / Memory Hook -->
+    <div class="study-section">
+      <div class="study-section-title">💡 حيلة الذاكرة وطريقة الحفظ السريع</div>
+      <div id="studyMnemonic" style="font-size:0.92rem; color:var(--text);"></div>
+    </div>
+
+    <!-- Grammar / Usage Notes -->
+    <div class="study-section">
+      <div class="study-section-title">📖 القواعد وسياق الاستخدام</div>
+      <div id="studyGrammar" style="font-size:0.92rem; color:var(--text);"></div>
+    </div>
+
+    <!-- Example Sentence -->
+    <div class="study-section">
+      <div class="study-section-title">💬 جملة تطبيقية نموذجية</div>
+      <div id="studyExample" style="font-size:0.92rem; color:var(--text);"></div>
+    </div>
+  </div>
+</div>
+
 <!-- Reset Confirmation Modal -->
 <div class="modal-backdrop" id="resetModal">
-  <div class="modal-box">
+  <div class="modal-box" style="text-align:center;">
     <h3 style="margin-bottom:8px; color:var(--red-light);">تأكيد تصفير البيانات</h3>
     <p style="color:var(--text2); font-size:0.92rem; margin-bottom:18px;">هل أنت متأكد من حذف جميع سجلات التقدم والأخطاء المحفوظة؟</p>
     <div style="display:flex; gap:10px; justify-content:center;">
@@ -890,11 +1114,11 @@ body {
 <div class="toast" id="toast"></div>
 
 <script>
-// Built-in HSK2 Fallback Data (ensures zero errors even offline or before hosting JSON files)
+// Built-in HSK2 Fallback Data
 const FALLBACK_VOCAB_HSK2 = [{"id": 1, "lesson": 1, "hanzi": "旅游", "pinyin": "lǚ yóu", "arabic": "يسافر، يتسيّح", "type": "word"}, {"id": 2, "lesson": 1, "hanzi": "觉得", "pinyin": "jué de", "arabic": "يعتقد أن، يرى أن", "type": "word"}, {"id": 3, "lesson": 1, "hanzi": "最", "pinyin": "zuì", "arabic": "ظرف بمعنى الأكثر، الأكثر سرعة، الأكثر برودة الخ", "type": "word"}, {"id": 4, "lesson": 1, "hanzi": "为什么", "pinyin": "wèi shén me", "arabic": "لماذا", "type": "word"}, {"id": 5, "lesson": 1, "hanzi": "也", "pinyin": "yě", "arabic": "أيضا، كذلك", "type": "word"}, {"id": 6, "lesson": 1, "hanzi": "运动", "pinyin": "yùn dòng", "arabic": "الرياضة", "type": "word"}, {"id": 7, "lesson": 1, "hanzi": "踢足球", "pinyin": "tī zú qiú", "arabic": "يلعب كرة القدم", "type": "word"}, {"id": 8, "lesson": 1, "hanzi": "一起", "pinyin": "yī qǐ", "arabic": "معا، سويا", "type": "word"}, {"id": 9, "lesson": 1, "hanzi": "要", "pinyin": "yào", "arabic": "يريد", "type": "word"}, {"id": 10, "lesson": 1, "hanzi": "新", "pinyin": "xīn", "arabic": "جديد", "type": "word"}, {"id": 11, "lesson": 1, "hanzi": "它", "pinyin": "tā", "arabic": "هو أو هي لغير العاقل", "type": "word"}, {"id": 12, "lesson": 1, "hanzi": "眼睛", "pinyin": "yǎn jing", "arabic": "العيون", "type": "word"}, {"id": 13, "lesson": 1, "hanzi": "花花", "pinyin": "huā hua", "arabic": "هوا هوا، اسم", "type": "word"}, {"id": 14, "lesson": 2, "hanzi": "生病", "pinyin": "shēng bìng", "arabic": "يمرض", "type": "word"}, {"id": 15, "lesson": 2, "hanzi": "每", "pinyin": "měi", "arabic": "كل، كل يوم، كل شهر، كل سنة", "type": "word"}, {"id": 16, "lesson": 2, "hanzi": "早上", "pinyin": "zǎo shang", "arabic": "الصباح، صباحاً", "type": "word"}, {"id": 17, "lesson": 2, "hanzi": "跑步", "pinyin": "pǎo bù", "arabic": "يجري", "type": "word"}, {"id": 18, "lesson": 2, "hanzi": "起床", "pinyin": "qǐ chuáng", "arabic": "ينهض من الفراش", "type": "word"}, {"id": 19, "lesson": 2, "hanzi": "药", "pinyin": "yào", "arabic": "دواء", "type": "word"}, {"id": 20, "lesson": 2, "hanzi": "身体", "pinyin": "shēn tǐ", "arabic": "صحة، جسم", "type": "word"}, {"id": 21, "lesson": 2, "hanzi": "出院", "pinyin": "chū yuàn", "arabic": "يخرج من المستشفى", "type": "word"}, {"id": 22, "lesson": 2, "hanzi": "出", "pinyin": "chū", "arabic": "يخرج", "type": "word"}, {"id": 23, "lesson": 2, "hanzi": "高", "pinyin": "gāo", "arabic": "طويل، مرتفع", "type": "word"}, {"id": 24, "lesson": 2, "hanzi": "米", "pinyin": "mǐ", "arabic": "متر", "type": "word"}, {"id": 25, "lesson": 2, "hanzi": "知道", "pinyin": "zhī dào", "arabic": "يعرف", "type": "word"}, {"id": 26, "lesson": 2, "hanzi": "休息", "pinyin": "xiū xi", "arabic": "يستريح", "type": "word"}, {"id": 27, "lesson": 2, "hanzi": "忙", "pinyin": "máng", "arabic": "مشغول", "type": "word"}, {"id": 28, "lesson": 2, "hanzi": "时间", "pinyin": "shí jiān", "arabic": "وقت", "type": "word"}, {"id": 29, "lesson": 3, "hanzi": "手表", "pinyin": "shǒu biǎo", "arabic": "ساعة اليد", "type": "word"}, {"id": 30, "lesson": 3, "hanzi": "千", "pinyin": "qiān", "arabic": "ألف", "type": "word"}, {"id": 31, "lesson": 3, "hanzi": "报纸", "pinyin": "bào zhǐ", "arabic": "صحيفة، جريدة", "type": "word"}, {"id": 32, "lesson": 3, "hanzi": "送", "pinyin": "sòng", "arabic": "يرسل، يهدي، يُسلِّم", "type": "word"}, {"id": 33, "lesson": 3, "hanzi": "一下", "pinyin": "yī xià", "arabic": "تُوضَع بعد الفعل لتدل على فعل شيء ما مرة واحدة أو المحاولة، برهة قصيرة", "type": "word"}, {"id": 34, "lesson": 3, "hanzi": "牛奶", "pinyin": "niú nǎi", "arabic": "لبن", "type": "word"}, {"id": 35, "lesson": 3, "hanzi": "房间", "pinyin": "fáng jiān", "arabic": "غرفة", "type": "word"}, {"id": 36, "lesson": 3, "hanzi": "丈夫", "pinyin": "zhàng fu", "arabic": "زوج", "type": "word"}, {"id": 37, "lesson": 3, "hanzi": "旁边", "pinyin": "páng biān", "arabic": "بجانب", "type": "word"}, {"id": 38, "lesson": 3, "hanzi": "真", "pinyin": "zhēn", "arabic": "حقاً", "type": "word"}, {"id": 39, "lesson": 3, "hanzi": "粉色", "pinyin": "fěn sè", "arabic": "اللون الوردي", "type": "word"}, {"id": 40, "lesson": 3, "hanzi": "粉", "pinyin": "fěn", "arabic": "وردي", "type": "word"}, {"id": 41, "lesson": 3, "hanzi": "颜色", "pinyin": "yán sè", "arabic": "لون", "type": "word"}, {"id": 42, "lesson": 3, "hanzi": "左边", "pinyin": "zuǒ bian", "arabic": "الجانب الأيسر، اليسار", "type": "word"}, {"id": 43, "lesson": 3, "hanzi": "红色", "pinyin": "hóng sè", "arabic": "اللون الأحمر", "type": "word"}, {"id": 44, "lesson": 3, "hanzi": "红", "pinyin": "hóng", "arabic": "أحمر", "type": "word"}, {"id": 45, "lesson": 4, "hanzi": "生日", "pinyin": "shēng rì", "arabic": "عيد ميلاد", "type": "word"}, {"id": 46, "lesson": 4, "hanzi": "快乐", "pinyin": "kuài lè", "arabic": "سعيد", "type": "word"}, {"id": 47, "lesson": 4, "hanzi": "给", "pinyin": "gěi", "arabic": "لـ، لأجل", "type": "word"}, {"id": 48, "lesson": 4, "hanzi": "接", "pinyin": "jiē", "arabic": "يتلقَّى، يرد على الهاتف", "type": "word"}, {"id": 49, "lesson": 4, "hanzi": "晚上", "pinyin": "wǎn shang", "arabic": "المساء", "type": "word"}, {"id": 50, "lesson": 4, "hanzi": "问", "pinyin": "wèn", "arabic": "يسأل", "type": "word"}, {"id": 51, "lesson": 4, "hanzi": "非常", "pinyin": "fēi cháng", "arabic": "جداً، للغاية", "type": "word"}, {"id": 52, "lesson": 4, "hanzi": "开始", "pinyin": "kāi shǐ", "arabic": "يبدأ", "type": "word"}, {"id": 53, "lesson": 4, "hanzi": "已经", "pinyin": "yǐ jīng", "arabic": "بالفعل", "type": "word"}, {"id": 54, "lesson": 4, "hanzi": "长", "pinyin": "cháng", "arabic": "طويل", "type": "word"}, {"id": 55, "lesson": 4, "hanzi": "两", "pinyin": "liǎng", "arabic": "اثنان", "type": "word"}, {"id": 56, "lesson": 4, "hanzi": "帮", "pinyin": "bāng", "arabic": "يساعد", "type": "word"}, {"id": 57, "lesson": 4, "hanzi": "介绍", "pinyin": "jiè shào", "arabic": "يُعرِّف بنفسه، يعرض على فلان وظيفة أو عملاً ما", "type": "word"}, {"id": 58, "lesson": 5, "hanzi": "外面", "pinyin": "wài miàn", "arabic": "الخارج", "type": "word"}, {"id": 59, "lesson": 5, "hanzi": "准备", "pinyin": "zhǔn bèi", "arabic": "يُجهِّز، يُحضِّر، يستعد", "type": "word"}, {"id": 60, "lesson": 5, "hanzi": "就", "pinyin": "jiù", "arabic": "حالما، ما ان، تستخدم للإشارة إلى استنتاج أو قرار ما", "type": "word"}, {"id": 61, "lesson": 5, "hanzi": "鱼", "pinyin": "yú", "arabic": "سمك", "type": "word"}, {"id": 62, "lesson": 5, "hanzi": "吧", "pinyin": "ba", "arabic": "حرف مساعد يستخدم في نهاية الجملة للتعبير عن اقتراح للقيام بأمر ما", "type": "word"}, {"id": 63, "lesson": 5, "hanzi": "件", "pinyin": "jiàn", "arabic": "كلمة كمية تستخدم مع الملابس", "type": "word"}, {"id": 64, "lesson": 5, "hanzi": "还", "pinyin": "hái", "arabic": "ما زال، لا يزال", "type": "word"}, {"id": 65, "lesson": 5, "hanzi": "可以", "pinyin": "kě yǐ", "arabic": "مقبول، لا بأس به", "type": "word"}, {"id": 66, "lesson": 5, "hanzi": "不错", "pinyin": "bù cuò", "arabic": "لا بأس به، مقبول، جيد", "type": "word"}, {"id": 67, "lesson": 5, "hanzi": "考试", "pinyin": "kǎo shì", "arabic": "امتحان", "type": "word"}, {"id": 68, "lesson": 5, "hanzi": "意思", "pinyin": "yì si", "arabic": "معنى", "type": "word"}, {"id": 69, "lesson": 5, "hanzi": "咖啡", "pinyin": "kā fēi", "arabic": "قهوة", "type": "word"}, {"id": 70, "lesson": 5, "hanzi": "对", "pinyin": "duì", "arabic": "لـ", "type": "word"}, {"id": 71, "lesson": 5, "hanzi": "以后", "pinyin": "yǐ hòu", "arabic": "بعد ذلك، لاحقا", "type": "word"}, {"id": 72, "lesson": 6, "hanzi": "门", "pinyin": "mén", "arabic": "باب، بوابة", "type": "word"}, {"id": 73, "lesson": 6, "hanzi": "外", "pinyin": "wài", "arabic": "خارج، خارجي", "type": "word"}, {"id": 74, "lesson": 6, "hanzi": "自行车", "pinyin": "zì xíng chē", "arabic": "دراجة", "type": "word"}, {"id": 75, "lesson": 6, "hanzi": "羊肉", "pinyin": "yáng ròu", "arabic": "لحم الغنم", "type": "word"}, {"id": 76, "lesson": 6, "hanzi": "好吃", "pinyin": "hǎo chī", "arabic": "لذيذ، شَهيّ", "type": "word"}, {"id": 77, "lesson": 6, "hanzi": "面条", "pinyin": "miàn tiáo", "arabic": "شعرية، نودلز", "type": "word"}, {"id": 78, "lesson": 6, "hanzi": "打篮球", "pinyin": "dǎ lán qiú", "arabic": "يلعب كرة السلة", "type": "word"}, {"id": 79, "lesson": 6, "hanzi": "因为", "pinyin": "yīn wèi", "arabic": "بسبب", "type": "word"}, {"id": 80, "lesson": 6, "hanzi": "所以", "pinyin": "suǒ yǐ", "arabic": "لذلك", "type": "word"}, {"id": 81, "lesson": 6, "hanzi": "游泳", "pinyin": "yóu yǒng", "arabic": "يسبح", "type": "word"}, {"id": 82, "lesson": 6, "hanzi": "经常", "pinyin": "jīng cháng", "arabic": "دائما، غالبا", "type": "word"}, {"id": 83, "lesson": 6, "hanzi": "公斤", "pinyin": "gōng jīn", "arabic": "كيلو جرام", "type": "word"}, {"id": 84, "lesson": 6, "hanzi": "姐姐", "pinyin": "jiě jie", "arabic": "الأخت الكبيرة", "type": "word"}, {"id": 85, "lesson": 7, "hanzi": "教室", "pinyin": "jiào shì", "arabic": "حجرة الدرس، غرفة الدرس", "type": "word"}, {"id": 86, "lesson": 7, "hanzi": "机场", "pinyin": "jī chǎng", "arabic": "مطار", "type": "word"}, {"id": 87, "lesson": 7, "hanzi": "路", "pinyin": "lù", "arabic": "طريق", "type": "word"}, {"id": 88, "lesson": 7, "hanzi": "离", "pinyin": "lí", "arabic": "يبعد عن", "type": "word"}, {"id": 89, "lesson": 7, "hanzi": "公司", "pinyin": "gōng sī", "arabic": "شركة", "type": "word"}, {"id": 90, "lesson": 7, "hanzi": "远", "pinyin": "yuǎn", "arabic": "بعيد", "type": "word"}, {"id": 91, "lesson": 7, "hanzi": "公共汽车", "pinyin": "gōng gòng qì chē", "arabic": "أتوبيس عام", "type": "word"}, {"id": 92, "lesson": 7, "hanzi": "小时", "pinyin": "xiǎo shí", "arabic": "ساعة", "type": "word"}, {"id": 93, "lesson": 7, "hanzi": "慢", "pinyin": "màn", "arabic": "بطيء", "type": "word"}, {"id": 94, "lesson": 7, "hanzi": "快", "pinyin": "kuài", "arabic": "سريع", "type": "word"}, {"id": 95, "lesson": 7, "hanzi": "过", "pinyin": "guò", "arabic": "يقضي، يمر", "type": "word"}, {"id": 96, "lesson": 7, "hanzi": "走", "pinyin": "zǒu", "arabic": "يمشي", "type": "word"}, {"id": 97, "lesson": 7, "hanzi": "到", "pinyin": "dào", "arabic": "يصل", "type": "word"}, {"id": 98, "lesson": 8, "hanzi": "再", "pinyin": "zài", "arabic": "مرة ثانية", "type": "word"}, {"id": 99, "lesson": 8, "hanzi": "让", "pinyin": "ràng", "arabic": "يدع، دعني أفكر قليلا", "type": "word"}, {"id": 100, "lesson": 8, "hanzi": "告诉", "pinyin": "gào su", "arabic": "يخبر", "type": "word"}, {"id": 101, "lesson": 8, "hanzi": "等", "pinyin": "děng", "arabic": "ينتظر", "type": "word"}, {"id": 102, "lesson": 8, "hanzi": "找", "pinyin": "zhǎo", "arabic": "يبحث عن شيء أو شخص أو يريد شخص في أمر ما", "type": "word"}, {"id": 103, "lesson": 8, "hanzi": "事情", "pinyin": "shì qing", "arabic": "أمر، شأن", "type": "word"}, {"id": 104, "lesson": 8, "hanzi": "服务员", "pinyin": "fú wù yuán", "arabic": "نادل", "type": "word"}, {"id": 105, "lesson": 8, "hanzi": "白", "pinyin": "bái", "arabic": "أبيض، أبيض اللون", "type": "word"}, {"id": 106, "lesson": 8, "hanzi": "黑", "pinyin": "hēi", "arabic": "أسود، أسود اللون", "type": "word"}, {"id": 107, "lesson": 8, "hanzi": "贵", "pinyin": "guì", "arabic": "غالي", "type": "word"}, {"id": 108, "lesson": 9, "hanzi": "错", "pinyin": "cuò", "arabic": "خاطئ", "type": "word"}, {"id": 109, "lesson": 9, "hanzi": "从", "pinyin": "cóng", "arabic": "من", "type": "word"}, {"id": 110, "lesson": 9, "hanzi": "跳舞", "pinyin": "tiào wǔ", "arabic": "يرقص", "type": "word"}, {"id": 111, "lesson": 9, "hanzi": "第一", "pinyin": "dì yī", "arabic": "الأول", "type": "word"}, {"id": 112, "lesson": 9, "hanzi": "希望", "pinyin": "xī wàng", "arabic": "يأمل، يتمنى", "type": "word"}, {"id": 113, "lesson": 9, "hanzi": "问题", "pinyin": "wèn tí", "arabic": "سؤال، مشكلة", "type": "word"}, {"id": 114, "lesson": 9, "hanzi": "欢迎", "pinyin": "huān yíng", "arabic": "يُرحِّب", "type": "word"}, {"id": 115, "lesson": 9, "hanzi": "上班", "pinyin": "shàng bān", "arabic": "يذهب إلى العمل، يباشر العمل", "type": "word"}, {"id": 116, "lesson": 9, "hanzi": "懂", "pinyin": "dǒng", "arabic": "يفهم", "type": "word"}, {"id": 117, "lesson": 9, "hanzi": "完", "pinyin": "wán", "arabic": "ينتهي", "type": "word"}, {"id": 118, "lesson": 9, "hanzi": "题", "pinyin": "tí", "arabic": "سؤال", "type": "word"}, {"id": 119, "lesson": 10, "hanzi": "课", "pinyin": "kè", "arabic": "درس، محاضرة", "type": "word"}, {"id": 120, "lesson": 10, "hanzi": "帮助", "pinyin": "bāng zhù", "arabic": "يساعد", "type": "word"}, {"id": 121, "lesson": 10, "hanzi": "别", "pinyin": "bié", "arabic": "لا، لا تفعل كذا كذا", "type": "word"}, {"id": 122, "lesson": 10, "hanzi": "哥哥", "pinyin": "gē ge", "arabic": "الأخ الكبير", "type": "word"}, {"id": 123, "lesson": 10, "hanzi": "鸡蛋", "pinyin": "jī dàn", "arabic": "بيض", "type": "word"}, {"id": 124, "lesson": 10, "hanzi": "西瓜", "pinyin": "xī guā", "arabic": "بطيخ", "type": "word"}, {"id": 125, "lesson": 10, "hanzi": "正在", "pinyin": "zhèng zài", "arabic": "حاليا", "type": "word"}, {"id": 126, "lesson": 10, "hanzi": "手机", "pinyin": "shǒu jī", "arabic": "موبايل", "type": "word"}, {"id": 127, "lesson": 10, "hanzi": "洗", "pinyin": "xǐ", "arabic": "يغسل", "type": "word"}, {"id": 128, "lesson": 11, "hanzi": "唱歌", "pinyin": "chàng gē", "arabic": "يُغنِّي", "type": "word"}, {"id": 129, "lesson": 11, "hanzi": "男", "pinyin": "nán", "arabic": "ذكر، رجل", "type": "word"}, {"id": 130, "lesson": 11, "hanzi": "女", "pinyin": "nǚ", "arabic": "أنثى، امرأة", "type": "word"}, {"id": 131, "lesson": 11, "hanzi": "孩子", "pinyin": "hái zi", "arabic": "طفل", "type": "word"}, {"id": 132, "lesson": 11, "hanzi": "右边", "pinyin": "yòu bian", "arabic": "اليمين، جهة اليمين", "type": "word"}, {"id": 133, "lesson": 11, "hanzi": "比", "pinyin": "bǐ", "arabic": "بالمقارنة مع", "type": "word"}, {"id": 134, "lesson": 11, "hanzi": "便宜", "pinyin": "pián yi", "arabic": "رخيص", "type": "word"}, {"id": 135, "lesson": 11, "hanzi": "说话", "pinyin": "shuō huà", "arabic": "يتكلم، يتحدث", "type": "word"}, {"id": 136, "lesson": 11, "hanzi": "可能", "pinyin": "kě néng", "arabic": "ربما، من المحتمل", "type": "word"}, {"id": 137, "lesson": 11, "hanzi": "去年", "pinyin": "qù nián", "arabic": "السنة الماضية", "type": "word"}, {"id": 138, "lesson": 11, "hanzi": "姓", "pinyin": "xìng", "arabic": "اسم العائلة، اللقب", "type": "word"}, {"id": 139, "lesson": 12, "hanzi": "得", "pinyin": "de", "arabic": "لفظة تتوسط بين فعل وتكملته للدلالة على الإمكان أو الإستطاعة", "type": "word"}, {"id": 140, "lesson": 12, "hanzi": "妻子", "pinyin": "qī zi", "arabic": "زوجة", "type": "word"}, {"id": 141, "lesson": 12, "hanzi": "雪", "pinyin": "xuě", "arabic": "ثلج", "type": "word"}, {"id": 142, "lesson": 12, "hanzi": "零", "pinyin": "líng", "arabic": "صفر", "type": "word"}, {"id": 143, "lesson": 12, "hanzi": "度", "pinyin": "dù", "arabic": "درجة", "type": "word"}, {"id": 144, "lesson": 12, "hanzi": "穿", "pinyin": "chuān", "arabic": "يلبس، يرتدي", "type": "word"}, {"id": 145, "lesson": 12, "hanzi": "进", "pinyin": "jìn", "arabic": "يدخل", "type": "word"}, {"id": 146, "lesson": 12, "hanzi": "弟弟", "pinyin": "dì di", "arabic": "أخ صغير", "type": "word"}, {"id": 147, "lesson": 12, "hanzi": "近", "pinyin": "jìn", "arabic": "قريب", "type": "word"}, {"id": 148, "lesson": 13, "hanzi": "着", "pinyin": "zhe", "arabic": "حرف مساعد للدلالة على استمرارية الفعل أو حالة أو وضع ما", "type": "word"}, {"id": 149, "lesson": 13, "hanzi": "手", "pinyin": "shǒu", "arabic": "يد", "type": "word"}, {"id": 150, "lesson": 13, "hanzi": "拿", "pinyin": "ná", "arabic": "يحمل، يمسك", "type": "word"}, {"id": 151, "lesson": 13, "hanzi": "铅笔", "pinyin": "qiān bǐ", "arabic": "قلم رصاص", "type": "word"}, {"id": 152, "lesson": 13, "hanzi": "杨笑笑", "pinyin": "yáng xiào xiao", "arabic": "يانغ شياو شياو، اسم", "type": "word"}, {"id": 153, "lesson": 13, "hanzi": "班", "pinyin": "bān", "arabic": "فصل", "type": "word"}, {"id": 154, "lesson": 13, "hanzi": "长", "pinyin": "zhǎng", "arabic": "يكبر، ينمو", "type": "word"}, {"id": 155, "lesson": 13, "hanzi": "笑", "pinyin": "xiào", "arabic": "يبتسم", "type": "word"}, {"id": 156, "lesson": 13, "hanzi": "宾馆", "pinyin": "bīn guǎn", "arabic": "فندق", "type": "word"}, {"id": 157, "lesson": 13, "hanzi": "一直", "pinyin": "yī zhí", "arabic": "دائما، باستمرار، لطالما، دغري، على طول", "type": "word"}, {"id": 158, "lesson": 13, "hanzi": "往", "pinyin": "wǎng", "arabic": "نحو، باتجاه، صوب", "type": "word"}, {"id": 159, "lesson": 13, "hanzi": "路口", "pinyin": "lù kǒu", "arabic": "تقاطع", "type": "word"}, {"id": 160, "lesson": 14, "hanzi": "有意思", "pinyin": "yǒu yì si", "arabic": "ممتع، شَيِّق", "type": "word"}, {"id": 161, "lesson": 14, "hanzi": "但是", "pinyin": "dàn shì", "arabic": "لكن", "type": "word"}, {"id": 162, "lesson": 14, "hanzi": "虽然", "pinyin": "suī rán", "arabic": "رغم أن، على الرغم من", "type": "word"}, {"id": 163, "lesson": 14, "hanzi": "次", "pinyin": "cì", "arabic": "مرة", "type": "word"}, {"id": 164, "lesson": 14, "hanzi": "玩儿", "pinyin": "wánr", "arabic": "يلعب، يلهو", "type": "word"}, {"id": 165, "lesson": 14, "hanzi": "晴", "pinyin": "qíng", "arabic": "صاف، رائق، صحو", "type": "word"}, {"id": 166, "lesson": 14, "hanzi": "百", "pinyin": "bǎi", "arabic": "مائة", "type": "word"}, {"id": 167, "lesson": 15, "hanzi": "日", "pinyin": "rì", "arabic": "يوم، تاريخ", "type": "word"}, {"id": 168, "lesson": 15, "hanzi": "新年", "pinyin": "xīn nián", "arabic": "عام جديد", "type": "word"}, {"id": 169, "lesson": 15, "hanzi": "票", "pinyin": "piào", "arabic": "تذكرة", "type": "word"}, {"id": 170, "lesson": 15, "hanzi": "火车站", "pinyin": "huǒ chē zhàn", "arabic": "محطة قطار", "type": "word"}, {"id": 171, "lesson": 15, "hanzi": "大家", "pinyin": "dà jiā", "arabic": "الكل، الجميع، كل شخص", "type": "word"}, {"id": 172, "lesson": 15, "hanzi": "更", "pinyin": "gèng", "arabic": "أكثر", "type": "word"}, {"id": 173, "lesson": 15, "hanzi": "妹妹", "pinyin": "mèi mei", "arabic": "أخت صغيرة", "type": "word"}, {"id": 174, "lesson": 15, "hanzi": "阴天", "pinyin": "yīn tiān", "arabic": "غائم، مُكْفَهِرّ", "type": "word"}];
 const FALLBACK_SENTENCES_HSK2 = [{"id": 1, "lesson": 1, "keyword_id": 1, "hanzi": "我想去中国旅游。", "pinyin": "wǒ xiǎng qù zhōng guó lǚ yóu", "arabic": "أريد أن أذهب إلى الصين للسياحة.", "type": "sentence"}, {"id": 2, "lesson": 1, "keyword_id": 2, "hanzi": "我觉得这个电影很好看。", "pinyin": "wǒ jué de zhè ge diàn yǐng hěn hǎo kàn", "arabic": "أعتقد أن هذا الفيلم جميل جدًا.", "type": "sentence"}, {"id": 3, "lesson": 1, "keyword_id": 3, "hanzi": "他是我最好的朋友。", "pinyin": "tā shì wǒ zuì hǎo de péng yǒu", "arabic": "هو أفضل صديق لي.", "type": "sentence"}, {"id": 4, "lesson": 1, "keyword_id": 4, "hanzi": "你为什么不去？", "pinyin": "nǐ wèi shén me bù qù", "arabic": "لماذا لا تذهب؟", "type": "sentence"}, {"id": 5, "lesson": 1, "keyword_id": 5, "hanzi": "我喜欢看书，他也喜欢看书。", "pinyin": "wǒ xǐ huān kàn shū, tā yě xǐ huān kàn shū", "arabic": "أنا أحب القراءة، وهو أيضًا يحبها.", "type": "sentence"}, {"id": 6, "lesson": 1, "keyword_id": 6, "hanzi": "我每天都运动。", "pinyin": "wǒ měi tiān dōu yùn dòng", "arabic": "أمارس الرياضة كل يوم.", "type": "sentence"}, {"id": 7, "lesson": 1, "keyword_id": 7, "hanzi": "他们在踢足球。", "pinyin": "tā men zài tī zú qiú", "arabic": "إنهم يلعبون كرة القدم.", "type": "sentence"}, {"id": 8, "lesson": 1, "keyword_id": 8, "hanzi": "我们一起去旅游吧。", "pinyin": "wǒ men yì qǐ qù lǚ yóu ba", "arabic": "هيا نذهب معًا للسياحة.", "type": "sentence"}, {"id": 9, "lesson": 1, "keyword_id": 9, "hanzi": "我明天要去北京。", "pinyin": "wǒ míng tiān yào qù běi jīng", "arabic": "سأذهب إلى بكين غدًا.", "type": "sentence"}, {"id": 10, "lesson": 1, "keyword_id": 10, "hanzi": "我买了一本新书。", "pinyin": "wǒ mǎi le yī běn xīn shū", "arabic": "اشتريت كتابًا جديدًا.", "type": "sentence"}, {"id": 11, "lesson": 1, "keyword_id": 11, "hanzi": "这是我的猫，它很可爱。", "pinyin": "zhè shì wǒ de māo, tā hěn kě ài", "arabic": "هذه قطتي، إنها جميلة ومحبوبة جدًا.", "type": "sentence"}, {"id": 12, "lesson": 1, "keyword_id": 12, "hanzi": "他的眼睛很大。", "pinyin": "tā de yǎn jīng hěn dà", "arabic": "عيناه كبيرتان.", "type": "sentence"}, {"id": 13, "lesson": 1, "keyword_id": 13, "hanzi": "花花是我的小猫。", "pinyin": "huā huā shì wǒ de xiǎo māo", "arabic": "هوا هوا هي قطتي الصغيرة.", "type": "sentence"}, {"id": 14, "lesson": 2, "keyword_id": 14, "hanzi": "他生病了。", "pinyin": "tā shēng bìng le", "arabic": "إنه مريض.", "type": "sentence"}, {"id": 15, "lesson": 2, "keyword_id": 15, "hanzi": "我每天学习。", "pinyin": "wǒ měi tiān xué xí", "arabic": "أذاكر كل يوم.", "type": "sentence"}, {"id": 16, "lesson": 2, "keyword_id": 16, "hanzi": "早上好！", "pinyin": "zǎo shàng hǎo", "arabic": "صباح الخير!", "type": "sentence"}, {"id": 17, "lesson": 2, "keyword_id": 17, "hanzi": "我喜欢跑步。", "pinyin": "wǒ xǐ huān pǎo bù", "arabic": "أحب الجري.", "type": "sentence"}, {"id": 18, "lesson": 2, "keyword_id": 18, "hanzi": "我七点起床。", "pinyin": "wǒ qī diǎn qǐ chuáng", "arabic": "أستيقظ الساعة السابعة.", "type": "sentence"}, {"id": 19, "lesson": 2, "keyword_id": 19, "hanzi": "吃药吧。", "pinyin": "chī yào ba", "arabic": "تناول الدواء.", "type": "sentence"}, {"id": 20, "lesson": 2, "keyword_id": 20, "hanzi": "我身体很好。", "pinyin": "wǒ shēn tǐ hěn hǎo", "arabic": "صحتي جيدة جدًا.", "type": "sentence"}, {"id": 21, "lesson": 2, "keyword_id": 21, "hanzi": "他明天出院。", "pinyin": "tā míng tiān chū yuàn", "arabic": "سيخرج من المستشفى غدًا.", "type": "sentence"}, {"id": 22, "lesson": 2, "keyword_id": 22, "hanzi": "我们出去玩吧。", "pinyin": "wǒ men chū qù wán ba", "arabic": "هيا نخرج لنلعب.", "type": "sentence"}, {"id": 23, "lesson": 2, "keyword_id": 23, "hanzi": "他很高。", "pinyin": "tā hěn gāo", "arabic": "إنه طويل جدًا.", "type": "sentence"}, {"id": 24, "lesson": 2, "keyword_id": 25, "hanzi": "我知道。", "pinyin": "wǒ zhī dào", "arabic": "أنا أعرف.", "type": "sentence"}, {"id": 25, "lesson": 2, "keyword_id": 26, "hanzi": "多休息！", "pinyin": "duō xiū xī", "arabic": "استرح أكثر!", "type": "sentence"}, {"id": 26, "lesson": 2, "keyword_id": 27, "hanzi": "我很忙。", "pinyin": "wǒ hěn máng", "arabic": "أنا مشغول جدًا.", "type": "sentence"}, {"id": 27, "lesson": 2, "keyword_id": 28, "hanzi": "你明天有时间吗？", "pinyin": "nǐ míng tiān yǒu shí jiān ma", "arabic": "هل عندك وقت غدًا؟", "type": "sentence"}, {"id": 28, "lesson": 3, "keyword_id": 29, "hanzi": "这是我的手表。", "pinyin": "zhè shì wǒ de shǒu biǎo", "arabic": "هذه ساعتي.", "type": "sentence"}, {"id": 29, "lesson": 3, "keyword_id": 30, "hanzi": "我有一千块钱。", "pinyin": "wǒ yǒu yī qiān kuài qián", "arabic": "معي ألف يوان.", "type": "sentence"}, {"id": 30, "lesson": 3, "keyword_id": 31, "hanzi": "他在看报纸。", "pinyin": "tā zài kàn bào zhǐ", "arabic": "إنه يقرأ الجريدة.", "type": "sentence"}, {"id": 31, "lesson": 3, "keyword_id": 32, "hanzi": "妈妈送我一件衣服。", "pinyin": "mā mā sòng wǒ yī jiàn yī fú", "arabic": "أهدتني أمي ثوبًا.", "type": "sentence"}, {"id": 32, "lesson": 3, "keyword_id": 33, "hanzi": "请等一下。", "pinyin": "qǐng děng yí xià", "arabic": "انتظر قليلًا من فضلك.", "type": "sentence"}, {"id": 33, "lesson": 3, "keyword_id": 34, "hanzi": "我每天喝牛奶。", "pinyin": "wǒ měi tiān hē niú nǎi", "arabic": "أشرب الحليب كل يوم.", "type": "sentence"}, {"id": 34, "lesson": 3, "keyword_id": 35, "hanzi": "我的房间很大。", "pinyin": "wǒ de fáng jiān hěn dà", "arabic": "غرفتي كبيرة جدًا.", "type": "sentence"}, {"id": 35, "lesson": 3, "keyword_id": 36, "hanzi": "她的丈夫是医生。", "pinyin": "tā de zhàng fū shì yī shēng", "arabic": "زوجها طبيب.", "type": "sentence"}, {"id": 36, "lesson": 3, "keyword_id": 37, "hanzi": "学校在银行旁边。", "pinyin": "xué xiào zài yín háng páng biān", "arabic": "المدرسة بجانب البنك.", "type": "sentence"}, {"id": 37, "lesson": 3, "keyword_id": 38, "hanzi": "你真漂亮！", "pinyin": "nǐ zhēn piào liàng", "arabic": "أنتِ جميلة حقًا!", "type": "sentence"}, {"id": 38, "lesson": 3, "keyword_id": 39, "hanzi": "她喜欢粉色。", "pinyin": "tā xǐ huān fěn sè", "arabic": "هي تحب اللون الوردي.", "type": "sentence"}, {"id": 39, "lesson": 3, "keyword_id": 41, "hanzi": "你喜欢什么颜色？", "pinyin": "nǐ xǐ huān shén me yán sè", "arabic": "أي لون تحب؟", "type": "sentence"}, {"id": 40, "lesson": 3, "keyword_id": 42, "hanzi": "银行在商店左边。", "pinyin": "yín háng zài shāng diàn zuǒ biān", "arabic": "البنك على يسار المتجر.", "type": "sentence"}, {"id": 41, "lesson": 3, "keyword_id": 43, "hanzi": "国旗是红色的。", "pinyin": "guó qí shì hóng sè de", "arabic": "العلم الوطني لونه أحمر.", "type": "sentence"}, {"id": 42, "lesson": 3, "keyword_id": 44, "hanzi": "他穿红衣服。", "pinyin": "tā chuān hóng yī fú", "arabic": "إنه يرتدي ملابس حمراء.", "type": "sentence"}, {"id": 43, "lesson": 4, "keyword_id": 45, "hanzi": "今天是我的生日。", "pinyin": "jīn tiān shì wǒ de shēng rì", "arabic": "اليوم عيد ميلادي.", "type": "sentence"}, {"id": 44, "lesson": 4, "keyword_id": 46, "hanzi": "祝你生日快乐！", "pinyin": "zhù nǐ shēng rì kuài lè", "arabic": "أتمنى لك عيد ميلاد سعيدًا!", "type": "sentence"}, {"id": 45, "lesson": 4, "keyword_id": 47, "hanzi": "他给我写了一封信。", "pinyin": "tā gěi wǒ xiě le yī fēng xìn", "arabic": "كتب لي رسالة.", "type": "sentence"}, {"id": 46, "lesson": 4, "keyword_id": 48, "hanzi": "我去机场接朋友。", "pinyin": "wǒ qù jī chǎng jiē péng yǒu", "arabic": "سأذهب إلى المطار لاستقبال صديقي.", "type": "sentence"}, {"id": 47, "lesson": 4, "keyword_id": 49, "hanzi": "晚上我们一起吃饭吧。", "pinyin": "wǎn shàng wǒ men yì qǐ chī fàn ba", "arabic": "هيا نتناول العشاء معًا في المساء.", "type": "sentence"}, {"id": 48, "lesson": 4, "keyword_id": 50, "hanzi": "他问老师一个问题。", "pinyin": "tā wèn lǎo shī yí gè wèn tí", "arabic": "سأل الأستاذ سؤالًا.", "type": "sentence"}, {"id": 49, "lesson": 4, "keyword_id": 51, "hanzi": "我非常喜欢中国。", "pinyin": "wǒ fēi cháng xǐ huān zhōng guó", "arabic": "أحب الصين كثيرًا جدًا.", "type": "sentence"}, {"id": 50, "lesson": 4, "keyword_id": 52, "hanzi": "我们开始上课吧。", "pinyin": "wǒ men kāi shǐ shàng kè ba", "arabic": "هيا نبدأ الدرس.", "type": "sentence"}, {"id": 51, "lesson": 4, "keyword_id": 53, "hanzi": "他已经来了。", "pinyin": "tā yǐ jīng lái le", "arabic": "لقد جاء بالفعل.", "type": "sentence"}, {"id": 52, "lesson": 4, "keyword_id": 54, "hanzi": "这条路很长。", "pinyin": "zhè tiáo lù hěn cháng", "arabic": "هذا الطريق طويل جدًا.", "type": "sentence"}, {"id": 53, "lesson": 4, "keyword_id": 55, "hanzi": "我有两本书。", "pinyin": "wǒ yǒu liǎng běn shū", "arabic": "عندي كتابان.", "type": "sentence"}, {"id": 54, "lesson": 4, "keyword_id": 56, "hanzi": "请你帮我一下。", "pinyin": "qǐng nǐ bāng wǒ yī xià", "arabic": "ساعدني قليلًا من فضلك.", "type": "sentence"}, {"id": 55, "lesson": 4, "keyword_id": 57, "hanzi": "我来介绍一下我的朋友。", "pinyin": "wǒ lái jiè shào yī xià wǒ de péng yǒu", "arabic": "سأقدم لكم صديقي، أعرفكم به.", "type": "sentence"}, {"id": 56, "lesson": 5, "keyword_id": 58, "hanzi": "我们去外面走走。", "pinyin": "wǒ men qù wài miàn zǒu zǒu", "arabic": "هيا نخرج لنتمشى قليلًا في الخارج.", "type": "sentence"}, {"id": 57, "lesson": 5, "keyword_id": 59, "hanzi": "我准备考试。", "pinyin": "wǒ zhǔn bèi kǎo shì", "arabic": "أستعد للامتحان.", "type": "sentence"}, {"id": 58, "lesson": 5, "keyword_id": 60, "hanzi": "你来了我就走。", "pinyin": "nǐ lái le wǒ jiù zǒu", "arabic": "إذا جئت سأرحل.", "type": "sentence"}, {"id": 59, "lesson": 5, "keyword_id": 61, "hanzi": "我爱吃鱼。", "pinyin": "wǒ ài chī yú", "arabic": "أحب أكل السمك.", "type": "sentence"}, {"id": 60, "lesson": 5, "keyword_id": 62, "hanzi": "我们走吧。", "pinyin": "wǒ men zǒu ba", "arabic": "هيا نذهب.", "type": "sentence"}, {"id": 61, "lesson": 5, "keyword_id": 63, "hanzi": "我昨天买了一件衣服。", "pinyin": "wǒ zuó tiān mǎi le yī jiàn yī fú", "arabic": "اشتريت أمس قطعة ملابس.", "type": "sentence"}, {"id": 62, "lesson": 5, "keyword_id": 64, "hanzi": "他还在学校。", "pinyin": "tā hái zài xué xiào", "arabic": "ما زال في المدرسة.", "type": "sentence"}, {"id": 63, "lesson": 5, "keyword_id": 65, "hanzi": "你可以进来。", "pinyin": "nǐ kě yǐ jìn lái", "arabic": "يمكنك أن تدخل.", "type": "sentence"}, {"id": 64, "lesson": 5, "keyword_id": 66, "hanzi": "这本书不错。", "pinyin": "zhè běn shū bù cuò", "arabic": "هذا الكتاب جيد.", "type": "sentence"}, {"id": 65, "lesson": 5, "keyword_id": 67, "hanzi": "我明天有考试。", "pinyin": "wǒ míng tiān yǒu kǎo shì", "arabic": "غدًا عندي امتحان.", "type": "sentence"}, {"id": 66, "lesson": 5, "keyword_id": 68, "hanzi": "这个词什么意思？", "pinyin": "zhè ge cí shén me yì si", "arabic": "ما معنى هذه الكلمة؟", "type": "sentence"}, {"id": 67, "lesson": 5, "keyword_id": 69, "hanzi": "我每天喝咖啡。", "pinyin": "wǒ měi tiān hē kā fēi", "arabic": "أشرب القهوة كل يوم.", "type": "sentence"}, {"id": 68, "lesson": 5, "keyword_id": 70, "hanzi": "这个事儿对我很重要。", "pinyin": "zhè ge shì ér duì wǒ hěn zhòng yào", "arabic": "هذا الأمر مهم جدًا لي.", "type": "sentence"}, {"id": 69, "lesson": 5, "keyword_id": 71, "hanzi": "我们吃饭以后去看电影。", "pinyin": "wǒ men chī fàn yǐ hòu qù kàn diàn yǐng", "arabic": "سنذهب لمشاهدة فيلم بعد الأكل.", "type": "sentence"}, {"id": 70, "lesson": 6, "keyword_id": 72, "hanzi": "请关门。", "pinyin": "qǐng guān mén", "arabic": "أغلق الباب من فضلك.", "type": "sentence"}, {"id": 71, "lesson": 6, "keyword_id": 73, "hanzi": "他在学校外。", "pinyin": "tā zài xué xiào wài", "arabic": "إنه خارج المدرسة.", "type": "sentence"}, {"id": 72, "lesson": 6, "keyword_id": 74, "hanzi": "我每天骑自行车去学校。", "pinyin": "wǒ měi tiān qí zì xíng chē qù xué xiào", "arabic": "أذهب كل يوم إلى المدرسة بالدراجة.", "type": "sentence"}, {"id": 73, "lesson": 6, "keyword_id": 75, "hanzi": "我不太喜欢吃羊肉。", "pinyin": "wǒ bù tài xǐ huān chī yáng ròu", "arabic": "لا أحب أكل لحم الغنم كثيرًا.", "type": "sentence"}, {"id": 74, "lesson": 6, "keyword_id": 76, "hanzi": "这个菜真好吃。", "pinyin": "zhè ge cài zhēn hǎo chī", "arabic": "هذا الطعام لذيذ حقًا.", "type": "sentence"}, {"id": 75, "lesson": 6, "keyword_id": 77, "hanzi": "我喜欢吃面条。", "pinyin": "wǒ xǐ huān chī miàn tiáo", "arabic": "أحب أكل المعكرونة.", "type": "sentence"}, {"id": 76, "lesson": 6, "keyword_id": 78, "hanzi": "他常常打篮球。", "pinyin": "tā cháng cháng dǎ lán qiú", "arabic": "إنه يلعب كرة السلة دائمًا.", "type": "sentence"}, {"id": 77, "lesson": 6, "keyword_id": 79, "hanzi": "我不去，因为我很忙。", "pinyin": "wǒ bù qù, yīn wèi wǒ hěn máng", "arabic": "لن أذهب لأنني مشغول جدًا.", "type": "sentence"}, {"id": 78, "lesson": 6, "keyword_id": 80, "hanzi": "他很累，所以不去。", "pinyin": "tā hěn lèi, suǒ yǐ bù qù", "arabic": "إنه متعب جدًا، لذلك لن يذهب.", "type": "sentence"}, {"id": 79, "lesson": 6, "keyword_id": 81, "hanzi": "我会游泳。", "pinyin": "wǒ huì yóu yǒng", "arabic": "يمكنني السباحة.", "type": "sentence"}, {"id": 80, "lesson": 6, "keyword_id": 82, "hanzi": "我经常去图书馆。", "pinyin": "wǒ jīng cháng qù tú shū guǎn", "arabic": "أذهب دائمًا إلى المكتبة.", "type": "sentence"}, {"id": 81, "lesson": 6, "keyword_id": 83, "hanzi": "我75公斤。", "pinyin": "wǒ 75 gōng jīn", "arabic": "وزني خمسة وسبعون كيلوغرامًا.", "type": "sentence"}, {"id": 82, "lesson": 6, "keyword_id": 84, "hanzi": "我有一个姐姐。", "pinyin": "wǒ yǒu yí gè jiě jiě", "arabic": "لدي أخت كبيرة.", "type": "sentence"}, {"id": 83, "lesson": 7, "keyword_id": 85, "hanzi": "学生在教室里学习。", "pinyin": "xué shēng zài jiào shì lǐ xué xí", "arabic": "يدرس الطلاب في حجرة الدرس.", "type": "sentence"}, {"id": 84, "lesson": 7, "keyword_id": 86, "hanzi": "我去机场接朋友。", "pinyin": "wǒ qù jī chǎng jiē péng yǒu", "arabic": "سأذهب إلى المطار لاستقبال صديقي.", "type": "sentence"}, {"id": 85, "lesson": 7, "keyword_id": 87, "hanzi": "这条路很长。", "pinyin": "zhè tiáo lù hěn cháng", "arabic": "هذا الطريق طويل جدًا.", "type": "sentence"}, {"id": 86, "lesson": 7, "keyword_id": 88, "hanzi": "学校离我家很近。", "pinyin": "xué xiào lí wǒ jiā hěn jìn", "arabic": "المدرسة قريبة من بيتي.", "type": "sentence"}, {"id": 87, "lesson": 7, "keyword_id": 89, "hanzi": "我在一家公司工作。", "pinyin": "wǒ zài yī jiā gōng sī gōng zuò", "arabic": "أعمل في شركة.", "type": "sentence"}, {"id": 88, "lesson": 7, "keyword_id": 90, "hanzi": "公园很远。", "pinyin": "gōng yuán hěn yuǎn", "arabic": "الحديقة بعيدة.", "type": "sentence"}, {"id": 89, "lesson": 7, "keyword_id": 91, "hanzi": "我坐公共汽车去上班。", "pinyin": "wǒ zuò gōng gòng qì chē qù shàng bān", "arabic": "أذهب إلى العمل بالأوتوبيس العام.", "type": "sentence"}, {"id": 90, "lesson": 7, "keyword_id": 92, "hanzi": "我一个小时后才能到。", "pinyin": "wǒ yí gè xiǎo shí hòu cái néng dào", "arabic": "لن أصل إلا بعد ساعة.", "type": "sentence"}, {"id": 91, "lesson": 7, "keyword_id": 93, "hanzi": "他说话很慢。", "pinyin": "tā shuō huà hěn màn", "arabic": "إنه بطيء جدًا في الكلام.", "type": "sentence"}, {"id": 92, "lesson": 7, "keyword_id": 94, "hanzi": "火车很快。", "pinyin": "huǒ chē hěn kuài", "arabic": "القطار سريع جدًا.", "type": "sentence"}, {"id": 93, "lesson": 7, "keyword_id": 95, "hanzi": "我们一起过生日吧。", "pinyin": "wǒ men yì qǐ guò shēng rì ba", "arabic": "هيا نحتفل معًا بعيد الميلاد.", "type": "sentence"}, {"id": 94, "lesson": 7, "keyword_id": 96, "hanzi": "我每天走路去学校。", "pinyin": "wǒ měi tiān zǒu lù qù xué xiào", "arabic": "أذهب كل يوم إلى المدرسة ماشيًا.", "type": "sentence"}, {"id": 95, "lesson": 7, "keyword_id": 97, "hanzi": "你什么时候到家？", "pinyin": "nǐ shén me shí hòu dào jiā", "arabic": "متى ستصل إلى البيت؟", "type": "sentence"}, {"id": 96, "lesson": 8, "keyword_id": 98, "hanzi": "请您再说一遍。", "pinyin": "qǐng nín zài shuō yī biàn", "arabic": "كرر ما قلت مرة أخرى من فضلك.", "type": "sentence"}, {"id": 97, "lesson": 8, "keyword_id": 99, "hanzi": "妈妈让我多喝水。", "pinyin": "mā mā ràng wǒ duō hē shuǐ", "arabic": "طلبت مني أمي أن أشرب من الماء أكثر.", "type": "sentence"}, {"id": 98, "lesson": 8, "keyword_id": 100, "hanzi": "请告诉我你的名字。", "pinyin": "qǐng gào sù wǒ nǐ de míng zì", "arabic": "أخبرني باسمك من فضلك.", "type": "sentence"}, {"id": 99, "lesson": 8, "keyword_id": 101, "hanzi": "请等一下。", "pinyin": "qǐng děng yí xià", "arabic": "انتظر قليلًا من فضلك.", "type": "sentence"}, {"id": 100, "lesson": 8, "keyword_id": 102, "hanzi": "我在找我的手机。", "pinyin": "wǒ zài zhǎo wǒ de shǒu jī", "arabic": "أبحث عن هاتفي.", "type": "sentence"}, {"id": 101, "lesson": 8, "keyword_id": 103, "hanzi": "他有很多事情要做。", "pinyin": "tā yǒu hěn duō shì qíng yào zuò", "arabic": "لديه أمور كثيرة يحتاج القيام بها.", "type": "sentence"}, {"id": 102, "lesson": 8, "keyword_id": 104, "hanzi": "服务员，请给我菜单。", "pinyin": "fú wù yuán, qǐng gěi wǒ cài dān", "arabic": "أيها النادل، أعطني قائمة الطعام من فضلك.", "type": "sentence"}, {"id": 103, "lesson": 8, "keyword_id": 105, "hanzi": "墙是白的。", "pinyin": "qiáng shì bái de", "arabic": "الجدار لونه أبيض.", "type": "sentence"}, {"id": 104, "lesson": 8, "keyword_id": 106, "hanzi": "他穿黑衣服。", "pinyin": "tā chuān hēi yī fú", "arabic": "إنه يرتدي ملابس سوداء.", "type": "sentence"}, {"id": 105, "lesson": 8, "keyword_id": 107, "hanzi": "这件衣服很贵。", "pinyin": "zhè jiàn yī fú hěn guì", "arabic": "هذا الثوب غالٍ جدًا.", "type": "sentence"}, {"id": 106, "lesson": 9, "keyword_id": 108, "hanzi": "我错了，对不起。", "pinyin": "wǒ cuò le, duì bù qǐ", "arabic": "أنا أخطأت، آسف.", "type": "sentence"}, {"id": 107, "lesson": 9, "keyword_id": 109, "hanzi": "他从北京来。", "pinyin": "tā cóng běi jīng lái", "arabic": "إنه جاء من بكين.", "type": "sentence"}, {"id": 108, "lesson": 9, "keyword_id": 110, "hanzi": "她喜欢跳舞。", "pinyin": "tā xǐ huān tiào wǔ", "arabic": "هي تحب الرقص.", "type": "sentence"}, {"id": 109, "lesson": 9, "keyword_id": 111, "hanzi": "他是班里第一。", "pinyin": "tā shì bān lǐ dì yī", "arabic": "هو الأول في الصف.", "type": "sentence"}, {"id": 110, "lesson": 9, "keyword_id": 112, "hanzi": "我希望你快乐。", "pinyin": "wǒ xī wàng nǐ kuài lè", "arabic": "أتمنى لك السعادة.", "type": "sentence"}, {"id": 111, "lesson": 9, "keyword_id": 113, "hanzi": "你有什么问题吗？", "pinyin": "nǐ yǒu shén me wèn tí ma", "arabic": "هل عندك أي سؤال؟", "type": "sentence"}, {"id": 112, "lesson": 9, "keyword_id": 114, "hanzi": "欢迎你来埃及。", "pinyin": "huān yíng nǐ lái āi jí", "arabic": "مرحبًا بك في مصر.", "type": "sentence"}, {"id": 113, "lesson": 9, "keyword_id": 115, "hanzi": "爸爸每天早上七点上班。", "pinyin": "bà bà měi tiān zǎo shàng qī diǎn shàng bān", "arabic": "يذهب أبي إلى العمل الساعة السابعة صباحًا كل يوم.", "type": "sentence"}, {"id": 114, "lesson": 9, "keyword_id": 116, "hanzi": "我不懂这个词的意思。", "pinyin": "wǒ bù dǒng zhè ge cí de yì si", "arabic": "أنا لا أفهم معنى هذه الكلمة.", "type": "sentence"}, {"id": 115, "lesson": 9, "keyword_id": 117, "hanzi": "我写完作业了。", "pinyin": "wǒ xiě wán zuò yè le", "arabic": "انتهيت من كتابة الواجبات.", "type": "sentence"}, {"id": 116, "lesson": 9, "keyword_id": 118, "hanzi": "这道题很容易。", "pinyin": "zhè dào tí hěn róng yì", "arabic": "هذا السؤال سهل جدًا.", "type": "sentence"}, {"id": 117, "lesson": 10, "keyword_id": 119, "hanzi": "我有一节中文课。", "pinyin": "wǒ yǒu yī jié zhōng wén kè", "arabic": "عندي محاضرة لغة صينية.", "type": "sentence"}, {"id": 118, "lesson": 10, "keyword_id": 120, "hanzi": "他帮助了我。", "pinyin": "tā bāng zhù le wǒ", "arabic": "ساعدني.", "type": "sentence"}, {"id": 119, "lesson": 10, "keyword_id": 121, "hanzi": "别说话！", "pinyin": "bié shuō huà", "arabic": "لا تتكلم!", "type": "sentence"}, {"id": 120, "lesson": 10, "keyword_id": 122, "hanzi": "我哥哥很高。", "pinyin": "wǒ gē gē hěn gāo", "arabic": "أخي طويل جدًا.", "type": "sentence"}, {"id": 121, "lesson": 10, "keyword_id": 123, "hanzi": "我喜欢吃鸡蛋。", "pinyin": "wǒ xǐ huān chī jī dàn", "arabic": "أحب أن آكل البيض.", "type": "sentence"}, {"id": 122, "lesson": 10, "keyword_id": 124, "hanzi": "西瓜很甜。", "pinyin": "xī guā hěn tián", "arabic": "البطيخ حلو جدًا.", "type": "sentence"}, {"id": 123, "lesson": 10, "keyword_id": 125, "hanzi": "我正在看书。", "pinyin": "wǒ zhèng zài kàn shū", "arabic": "أنا أقرأ كتابًا الآن.", "type": "sentence"}, {"id": 124, "lesson": 10, "keyword_id": 126, "hanzi": "她的手机很新。", "pinyin": "tā de shǒu jī hěn xīn", "arabic": "هاتفها جديد جدًا.", "type": "sentence"}, {"id": 125, "lesson": 10, "keyword_id": 127, "hanzi": "他在洗衣服。", "pinyin": "tā zài xǐ yī fú", "arabic": "إنه يغسل الملابس.", "type": "sentence"}, {"id": 126, "lesson": 11, "keyword_id": 128, "hanzi": "我喜欢唱歌。", "pinyin": "wǒ xǐ huān chàng gē", "arabic": "أحب الغناء.", "type": "sentence"}, {"id": 127, "lesson": 11, "keyword_id": 129, "hanzi": "他是男学生。", "pinyin": "tā shì nán xué shēng", "arabic": "إنه طالب.", "type": "sentence"}, {"id": 128, "lesson": 11, "keyword_id": 130, "hanzi": "她是女老师。", "pinyin": "tā shì nǚ lǎo shī", "arabic": "هي معلمة أستاذة.", "type": "sentence"}, {"id": 129, "lesson": 11, "keyword_id": 131, "hanzi": "那个孩子很可爱。", "pinyin": "nà ge hái zi hěn kě ài", "arabic": "ذلك الطفل جميل ومحبوب جدًا.", "type": "sentence"}, {"id": 130, "lesson": 11, "keyword_id": 132, "hanzi": "银行在右边。", "pinyin": "yín háng zài yòu biān", "arabic": "البنك على اليمين.", "type": "sentence"}, {"id": 131, "lesson": 11, "keyword_id": 133, "hanzi": "今天比昨天热。", "pinyin": "jīn tiān bǐ zuó tiān rè", "arabic": "اليوم أحر من أمس.", "type": "sentence"}, {"id": 132, "lesson": 11, "keyword_id": 134, "hanzi": "这件衣服很便宜。", "pinyin": "zhè jiàn yī fú hěn pián yi", "arabic": "هذا الثوب رخيص جدًا.", "type": "sentence"}, {"id": 133, "lesson": 11, "keyword_id": 135, "hanzi": "请小声说话。", "pinyin": "qǐng xiǎo shēng shuō huà", "arabic": "تكلم بصوت منخفض من فضلك.", "type": "sentence"}, {"id": 134, "lesson": 11, "keyword_id": 136, "hanzi": "他今天可能不来。", "pinyin": "tā jīn tiān kě néng bù lái", "arabic": "المحتمل ألا يأتي اليوم.", "type": "sentence"}, {"id": 135, "lesson": 11, "keyword_id": 137, "hanzi": "我去年去了北京。", "pinyin": "wǒ qù nián qù le běi jīng", "arabic": "ذهبت إلى بكين العام الماضي.", "type": "sentence"}, {"id": 136, "lesson": 11, "keyword_id": 138, "hanzi": "我姓王。", "pinyin": "wǒ xìng wáng", "arabic": "لقبي وانغ.", "type": "sentence"}, {"id": 137, "lesson": 12, "keyword_id": 139, "hanzi": "他说得很好。", "pinyin": "tā shuō de hěn hǎo", "arabic": "إنه يتكلم بطريقة جيدة جدًا.", "type": "sentence"}, {"id": 138, "lesson": 12, "keyword_id": 140, "hanzi": "他爱他的妻子。", "pinyin": "tā ài tā de qī zǐ", "arabic": "إنه يحب زوجته.", "type": "sentence"}, {"id": 139, "lesson": 12, "keyword_id": 141, "hanzi": "外面下雪了。", "pinyin": "wài miàn xià xuě le", "arabic": "تتساقط الثلوج في الخارج.", "type": "sentence"}, {"id": 140, "lesson": 12, "keyword_id": 142, "hanzi": "今天零下五度。", "pinyin": "jīn tiān líng xià wǔ dù", "arabic": "درجة الحرارة اليوم خمس تحت الصفر.", "type": "sentence"}, {"id": 141, "lesson": 12, "keyword_id": 143, "hanzi": "今天三十度。", "pinyin": "jīn tiān sān shí dù", "arabic": "اليوم ثلاثون درجة.", "type": "sentence"}, {"id": 142, "lesson": 12, "keyword_id": 144, "hanzi": "她穿红衣服。", "pinyin": "tā chuān hóng yī fú", "arabic": "إنها ترتدي ملابس حمراء.", "type": "sentence"}, {"id": 143, "lesson": 12, "keyword_id": 145, "hanzi": "请进！", "pinyin": "qǐng jìn", "arabic": "تفضل بالدخول!", "type": "sentence"}, {"id": 144, "lesson": 12, "keyword_id": 146, "hanzi": "我弟弟很聪明。", "pinyin": "wǒ dì di hěn cōng míng", "arabic": "أخي الصغير ذكي جدًا.", "type": "sentence"}, {"id": 145, "lesson": 12, "keyword_id": 147, "hanzi": "学校离我家很近。", "pinyin": "xué xiào lí wǒ jiā hěn jìn", "arabic": "المدرسة قريبة من بيتي.", "type": "sentence"}, {"id": 146, "lesson": 13, "keyword_id": 148, "hanzi": "他笑着跟我说话。", "pinyin": "tā xiào zhe gēn wǒ shuō huà", "arabic": "هو يتكلم معي وهو يبتسم.", "type": "sentence"}, {"id": 147, "lesson": 13, "keyword_id": 149, "hanzi": "我的手很冷。", "pinyin": "wǒ de shǒu hěn lěng", "arabic": "يدي باردة جدًا.", "type": "sentence"}, {"id": 148, "lesson": 13, "keyword_id": 150, "hanzi": "请你拿一支铅笔。", "pinyin": "qǐng nǐ ná yī zhī qiān bǐ", "arabic": "أمسك قلم رصاص من فضلك.", "type": "sentence"}, {"id": 149, "lesson": 13, "keyword_id": 151, "hanzi": "我用铅笔写字。", "pinyin": "wǒ yòng qiān bǐ xiě zì", "arabic": "أكتب بقلم الرصاص.", "type": "sentence"}, {"id": 150, "lesson": 13, "keyword_id": 152, "hanzi": "杨笑笑是我的同学。", "pinyin": "yáng xiào xiào shì wǒ de tóng xué", "arabic": "يانغ شياو شياو زميلتي في الصف.", "type": "sentence"}, {"id": 151, "lesson": 13, "keyword_id": 153, "hanzi": "我们班有三十个学生。", "pinyin": "wǒ men bān yǒu sān shí gè xué shēng", "arabic": "في فصلنا ثلاثون طالبًا.", "type": "sentence"}, {"id": 152, "lesson": 13, "keyword_id": 154, "hanzi": "他长得很高。", "pinyin": "tā zhǎng de hěn gāo", "arabic": "إنه طويل القامة.", "type": "sentence"}, {"id": 153, "lesson": 13, "keyword_id": 155, "hanzi": "孩子们笑得很开心。", "pinyin": "hái zi men xiào de hěn kāi xīn", "arabic": "يضحك الأطفال بسعادة كبيرة.", "type": "sentence"}, {"id": 154, "lesson": 13, "keyword_id": 156, "hanzi": "我们住在这个宾馆。", "pinyin": "wǒ men zhù zài zhè ge bīn guǎn", "arabic": "نقيم في هذا الفندق.", "type": "sentence"}, {"id": 155, "lesson": 13, "keyword_id": 157, "hanzi": "他一直在学习。", "pinyin": "tā yì zhí zài xué xí", "arabic": "إنه يذاكر دائمًا.", "type": "sentence"}, {"id": 156, "lesson": 13, "keyword_id": 158, "hanzi": "往前走，就到学校了。", "pinyin": "wǎng qián zǒu, jiù dào xué xiào le", "arabic": "امشِ إلى الأمام وستصل إلى المدرسة.", "type": "sentence"}, {"id": 157, "lesson": 13, "keyword_id": 159, "hanzi": "学校在下一个路口。", "pinyin": "xué xiào zài xià yí gè lù kǒu", "arabic": "المدرسة عند التقاطع القادم.", "type": "sentence"}, {"id": 158, "lesson": 14, "keyword_id": 160, "hanzi": "这本书很有意思。", "pinyin": "zhè běn shū hěn yǒu yì si", "arabic": "هذا الكتاب ممتع جدًا.", "type": "sentence"}, {"id": 159, "lesson": 14, "keyword_id": 161, "hanzi": "我想去公园，但是下雨了。", "pinyin": "wǒ xiǎng qù gōng yuán, dàn shì xià yǔ le", "arabic": "أريد الذهاب إلى الحديقة، لكنها أمطرت.", "type": "sentence"}, {"id": 160, "lesson": 14, "keyword_id": 162, "hanzi": "虽然天气很冷，他还是去跑步。", "pinyin": "suī rán tiān qì hěn lěng, tā hái shì qù pǎo bù", "arabic": "مع أن الجو بارد جدًا، لكنه خرج ليجري.", "type": "sentence"}, {"id": 161, "lesson": 14, "keyword_id": 163, "hanzi": "我去过北京两次。", "pinyin": "wǒ qù guò běi jīng liǎng cì", "arabic": "ذهبت إلى بكين مرتين.", "type": "sentence"}, {"id": 162, "lesson": 14, "keyword_id": 164, "hanzi": "孩子们在外面玩儿。", "pinyin": "hái zi men zài wài miàn wán ér", "arabic": "الأطفال يلعبون في الخارج.", "type": "sentence"}, {"id": 163, "lesson": 14, "keyword_id": 165, "hanzi": "今天是晴天。", "pinyin": "jīn tiān shì qíng tiān", "arabic": "اليوم مشمس.", "type": "sentence"}, {"id": 164, "lesson": 14, "keyword_id": 166, "hanzi": "一百个人在开会。", "pinyin": "yì bǎi gè rén zài kāi huì", "arabic": "مئة شخص في الاجتماع.", "type": "sentence"}, {"id": 165, "lesson": 15, "keyword_id": 167, "hanzi": "今天是星期日。", "pinyin": "jīn tiān shì xīng qī rì", "arabic": "اليوم يوم الأحد.", "type": "sentence"}, {"id": 166, "lesson": 15, "keyword_id": 168, "hanzi": "新年快乐！", "pinyin": "xīn nián kuài lè", "arabic": "كل عام وأنت بخير!", "type": "sentence"}, {"id": 167, "lesson": 15, "keyword_id": 169, "hanzi": "我买了一张火车票。", "pinyin": "wǒ mǎi le yī zhāng huǒ chē piào", "arabic": "اشتريت تذكرة قطار.", "type": "sentence"}, {"id": 168, "lesson": 15, "keyword_id": 170, "hanzi": "火车站离这儿很近。", "pinyin": "huǒ chē zhàn lí zhè ér hěn jìn", "arabic": "محطة القطار قريبة جدًا من هنا.", "type": "sentence"}, {"id": 169, "lesson": 15, "keyword_id": 171, "hanzi": "大家都来了。", "pinyin": "dà jiā dōu lái le", "arabic": "حضر الجميع.", "type": "sentence"}, {"id": 170, "lesson": 15, "keyword_id": 172, "hanzi": "今天比昨天更冷。", "pinyin": "jīn tiān bǐ zuó tiān gèng lěng", "arabic": "اليوم أبرد من أمس.", "type": "sentence"}, {"id": 171, "lesson": 15, "keyword_id": 173, "hanzi": "我有一个妹妹。", "pinyin": "wǒ yǒu yí gè mèi mèi", "arabic": "لدي أخت صغيرة.", "type": "sentence"}, {"id": 172, "lesson": 15, "keyword_id": 174, "hanzi": "今天是阴天，没有太阳。", "pinyin": "jīn tiān shì yīn tiān, méi yǒu tài yáng", "arabic": "اليوم غائم وليس فيه شمس.", "type": "sentence"}];
 
-// Built-in HSK1 Starter Fallback Data (used only if fetch('data/vocab.json') and GitHub raw fetch both fail)
+// Built-in HSK1 Starter Fallback Data
 const FALLBACK_VOCAB_HSK1 = [
   { id: 1, lesson: 1, hanzi: "你", pinyin: "nǐ", arabic: "أنت", type: "word" },
   { id: 2, lesson: 1, hanzi: "好", pinyin: "hǎo", arabic: "جيد / بخير", type: "word" },
@@ -957,14 +1181,123 @@ let session = {
 };
 
 let userProgress = {
-  studied: {},    // key -> { attempts, correct, status: 'known'|'difficult'|'learning', lastSeen }
+  studied: {},
   history: []
 };
 
+let currentStudyItem = null;
 let mediaRecorder = null;
 let recordedChunks = [];
 let recordedAudioUrl = null;
 
+// Drawing Pad Canvas State
+let canvasDrawing = false;
+let canvasCtx = null;
+let ghostVisible = true;
+
+// Pre-compiled Character Etymologies & Radicals Database
+const CHARACTER_STUDY_DB = {
+  "旅游": {
+    radicals: "旅 (راية/جماعة من الناس) + 游 (مجرى الماء/سباحة)",
+    mnemonic: "تخيل جماعة تخرج معاً في رحلة تجول وسياحة مستمرة مثل تدفق الماء.",
+    grammar: "تستخدم كفعل أو اسم. مثال: 去...旅游 (يذهب للسياحة في مكان ما)."
+  },
+  "觉得": {
+    radicals: "觉 (حاسة/رؤية) + 得 (حصول/وصول)",
+    mnemonic: "ما تراه عيناك وتشعر به حواسك يكوّن في عقلك فكرة أو انطباعاً.",
+    grammar: "فعل رأي يتبعه جملة كاملة: 我觉得... (أعتقد أن... / أرى أن...)."
+  },
+  "最": {
+    radicals: "曰 (شمس/كلام) + 取 (أخذ/التقاط)",
+    mnemonic: "الشمس في أعلى نقطة في السماء، لذلك تشير كلمة 最 إلى الذروة والأفضلية المطلقة.",
+    grammar: "ظرف يأتي قبل الصفة أو الفعل النفسي: 最好 (الأفضل)، 最喜欢 (الأكثر تفضيلاً)."
+  },
+  "为什么": {
+    radicals: "为 (لأجل/سبب) + 什么 (أداة الاستفهام 'ماذا')",
+    mnemonic: "تسأل مباشرة عن السبب: 'لأجل ماذا حدث هذا؟'.",
+    grammar: "توضع قبل الفعل أو الفاعل: 你为什么不去؟ (لماذا لا تذهب؟)."
+  },
+  "运动": {
+    radicals: "运 (حركة/نقل) + 动 (قوة تؤدي إلى نشاط)",
+    mnemonic: "حركة الجسم ونقل الطاقة بقوة تصنع الرياضة والنشاط البدني.",
+    grammar: "تستخدم كفعل (يمارس الرياضة) أو اسم (الرياضة عموماً): 我每天都运动."
+  },
+  "踢足球": {
+    radicals: "踢 (جذر القدم 𧾷) + 足 (قدم) + 球 (كرة من اليشم)",
+    mnemonic: "حركة القدم لضرب كرة مستديرة، المعنى واضح من رمز القدم 𧾷.",
+    grammar: "فعل ومفعول به. نقول 踢足球 (يلعب كرة قدم) وليس 打足球."
+  },
+  "休息": {
+    radicals: "休 (شخص 亻 يستند إلى شجرة 木) + 息 (أنفاس تخرج من القلب 心)",
+    mnemonic: "إنسان يجلس تحت ظل شجرة ليستريح ويستعيد أنفاسه وهدوء قلبه.",
+    grammar: "فعل: 休息一下 (استرح قليلاً)، 多休息 (استرح أكثر)."
+  },
+  "生病": {
+    radicals: "生 (ظهور/تولّد) + 病 (رمز المرض 疒 يحيط بعلامة الألم)",
+    mnemonic: "تولد حالة مرضية في الجسد، جذر 疒 يعبر دائماً عن الأمراض والأوبئة.",
+    grammar: "فعل لازم: 他生病了 (هو مريض/أصيب بالمرض)."
+  },
+  "离": {
+    radicals: "离 (فصل/ابتعاد بين كيانين)",
+    mnemonic: "قياس الفاصل والمسافة بين نقطة بداية ونقطة وصول.",
+    grammar: "حرف جر المسافة: A 离 B 很近/很远 (مكان A يبعد عن B مسافة قريبة/بعيدة)."
+  },
+  "比": {
+    radicals: "比 (شخصان يقفان جنباً إلى جنب للمقارنة)",
+    mnemonic: "اثنان يقفان في صف واحد لمقارنة الطول أو المهارة.",
+    grammar: "أداة المقارنة الأساسية: A 比 B + الصفة (مثال: 今天比昨天热 اليوم أحر من أمس)."
+  },
+  "虽然": {
+    radicals: "虽 (على الرغم) + 然 (كذلك/هكذا)",
+    mnemonic: "الاعتراف بالحالة الأولى قبل تقديم المفاجأة أو الاستدراك.",
+    grammar: "ترتبط مع 但是: 虽然...，但是... (على الرغم من... لكن...)."
+  },
+  "因为": {
+    radicals: "因 (سبب محاط) + 为 (لأجل)",
+    mnemonic: "تقديم العلة والدافع خلف حدوث الشيء.",
+    grammar: "ترتبط مع 所以: 因为...，所以... (بسبب كذا... لذلك كانت النتيجة كذا...)."
+  },
+  "得": {
+    radicals: "彳 (خطوة) + 旦 (شروق) + 寸 (بوصة/قياس)",
+    mnemonic: "قياس مدى جودة أو سرعة الخطوات التي قطعتها.",
+    grammar: "مكمل الدرجة: الفعل + 得 + الصفة (مثال: 他说得很好 يتكلم بطريقة ممتازة)."
+  },
+  "好": {
+    radicals: "女 (امرأة/أم) + 子 (طفل)",
+    mnemonic: "الأم مع طفلها تمثل في الثقافة الصينية أسمى معاني الخير والسعادة والسلام.",
+    grammar: "صفة عامة تعني جيد/بخير، وتستخدم كتحية: 你好 (مرحباً)."
+  },
+  "男": {
+    radicals: "田 (حقل زراعي) + 力 (قوة)",
+    mnemonic: "الشخص الذي يبذل قوته البدنية للعمل في الحقل هو الرجل.",
+    grammar: "تستخدم كصفة: 男学生 (طالب ذكر)، 男老师 (معلم رجل)."
+  }
+};
+
+function getStudyInfo(item) {
+  if (!item) return null;
+  const custom = CHARACTER_STUDY_DB[item.hanzi];
+  if (custom) return custom;
+
+  const clean = item.hanzi.replace(/[。？！，、.!?,\s]/g, '');
+  const chars = Array.from(clean);
+  const radInfo = chars.length > 1
+    ? `تتكون من مقاطع صينية متكاملة: (${chars.join(' + ')})، حيث يعطي كل مقطع بعداً صوتياً ودلالياً للمعنى العام.`
+    : `رمز صيني أصيل، ركز على تمييز التشكيل العام وعدد الضربات والخطوط الأساسية.`;
+
+  const mnem = chars.length > 1
+    ? `اربط بين الرموز (${chars.join(' و ')}) لترسيخ المعنى «${item.arabic}» في ذهنك.`
+    : `تأمل شكل الرمز وتخيل المعنى «${item.arabic}» كلوحة مصغرة.`;
+
+  let gram = `كلمة مستوى HSK ${item.hsk} في الدرس ${item.lesson}.`;
+  if (item.type === 'sentence') gram = `جملة تطبيقية توضح السياق الطبيعي للحديث الصيني في مواقف الحياة اليومية.`;
+  else if (item.hanzi.endsWith('边')) gram = `اسم اتجاه ومكان (مثل 左边 يسار، 右边 يمين).`;
+  else if (item.arabic.includes('يلعب') || item.arabic.includes('يذهب') || item.arabic.includes('يشرب')) gram = `فعل حدثي يعبر عن نشاط، يأتي بعد الفاعل ويتبعه المفعول به مباشرة.`;
+
+  return { radicals: radInfo, mnemonic: mnem, grammar: gram };
+}
+
+// Data fetching helper with timeout
 async function fetchJsonWithFallback(urls, fallbackData) {
   for (const url of urls) {
     try {
@@ -1007,6 +1340,7 @@ async function init() {
   loadProgress();
   buildLessonGrid();
   attachTabListeners();
+  initCanvas();
 
   document.getElementById('selectAllLessons').onclick = () => {
     LESSONS.forEach(l => selectedLessons.add(l));
@@ -1054,7 +1388,7 @@ async function init() {
     if (e.key === 'Enter' && !session.answered) submitErrorAnswer();
   });
 
-  // Initialize immediately with built-in data so UI is interactive at 0ms
+  // Synchronous immediate startup
   dataByLevel[1].vocab = normalizeItems(FALLBACK_VOCAB_HSK1, 'word', 1);
   dataByLevel[1].sentences = normalizeItems(FALLBACK_SENTENCES_HSK1, 'sentence', 1);
   dataByLevel[1].dialogues = normalizeItems(FALLBACK_DIALOGUES_HSK1, 'dialogue', 1);
@@ -1064,7 +1398,7 @@ async function init() {
   updateLevelCountPills();
   selectHSKLevel(selectedHSKLevel);
 
-  // Asynchronously load full JSON files (data/vocab.json, data/vocab_hsk2.json, etc.)
+  // Background fetch of full datasets
   const ghBase = 'https://raw.githubusercontent.com/HossamAldeenHassan/LearnHSK/main/data/';
   const [v1, s1, d1, v2, s2] = await Promise.all([
     fetchJsonWithFallback(['data/vocab.json', './vocab.json', ghBase + 'vocab.json'], FALLBACK_VOCAB_HSK1),
@@ -1087,7 +1421,6 @@ async function init() {
 function selectHSKLevel(level) {
   selectedHSKLevel = String(level);
 
-  // Sync active level in level cards & header pills
   document.querySelectorAll('#levelGrid .level-card').forEach(card => {
     card.classList.toggle('selected', card.dataset.level === selectedHSKLevel);
   });
@@ -1095,13 +1428,12 @@ function selectHSKLevel(level) {
     pill.classList.toggle('active', pill.dataset.level === selectedHSKLevel);
   });
 
-  // Combine active level datasets
   if (selectedHSKLevel === '1') {
     allVocab = [...dataByLevel[1].vocab];
     allSentences = [...dataByLevel[1].sentences];
     allDialogues = [...dataByLevel[1].dialogues];
     document.getElementById('heroTitle').textContent = 'التطبيق التفاعلي 🇨🇳 – المستوى HSK 1';
-    document.getElementById('heroSubtitle').textContent = `HSK1 – ${allVocab.length} مفردة، ${allSentences.length} جملة، والمحادثات`;
+    document.getElementById('heroSubtitle').textContent = `HSK1 – ${allVocab.length} مفردة، ${allSentences.length} جملة، ومحادثات كاملة مع أدوات الحفظ`;
     document.getElementById('headerLogoTitle').textContent = 'تعلّم الصينية – HSK 1';
     const tag = document.getElementById('activeLevelTag');
     tag.className = 'level-badge hsk1';
@@ -1111,7 +1443,7 @@ function selectHSKLevel(level) {
     allSentences = [...dataByLevel[2].sentences];
     allDialogues = [];
     document.getElementById('heroTitle').textContent = 'التطبيق التفاعلي 🇨🇳 – المستوى HSK 2';
-    document.getElementById('heroSubtitle').textContent = `HSK2 – ${allVocab.length} كلمة أساسية و${allSentences.length} جملة تطبيقية (الدروس 1 – 15)`;
+    document.getElementById('heroSubtitle').textContent = `HSK2 – ${allVocab.length} كلمة أساسية و${allSentences.length} جملة تطبيقية مع الكتابة والشرح والدراسة`;
     document.getElementById('headerLogoTitle').textContent = 'تعلّم الصينية – HSK 2';
     const tag = document.getElementById('activeLevelTag');
     tag.className = 'level-badge hsk2';
@@ -1121,14 +1453,13 @@ function selectHSKLevel(level) {
     allSentences = [...dataByLevel[1].sentences, ...dataByLevel[2].sentences];
     allDialogues = [...dataByLevel[1].dialogues];
     document.getElementById('heroTitle').textContent = 'التطبيق التفاعلي 🇨🇳 – المستويان HSK 1 + HSK 2';
-    document.getElementById('heroSubtitle').textContent = `مراجعة شاملة تضم ${allVocab.length} كلمة و${allSentences.length} جملة من المستويين`;
+    document.getElementById('heroSubtitle').textContent = `مراجعة شاملة تضم ${allVocab.length} كلمة و${allSentences.length} جملة من المستويين معاً`;
     document.getElementById('headerLogoTitle').textContent = 'تعلّم الصينية – HSK 1 & 2';
     const tag = document.getElementById('activeLevelTag');
     tag.className = 'level-badge hskall';
     tag.textContent = 'المستوى الحالي: HSK 1 + 2';
   }
 
-  // Rebuild vocabMap for word segmentation
   vocabMap.clear();
   for (const w of dataByLevel[1].vocab) vocabMap.set(w.hanzi, true);
   for (const w of dataByLevel[2].vocab) vocabMap.set(w.hanzi, true);
@@ -1190,7 +1521,6 @@ function getFilteredItems() {
   if (types.has('sentence')) items.push(...allSentences.filter(x => selectedLessons.has(x.lesson)));
   if (types.has('dialogue')) items.push(...allDialogues.filter(x => selectedLessons.has(x.lesson)));
 
-  // Mode-specific filtering
   if (currentMode === 'quiz_build' || currentMode === 'quiz_cloze' || currentMode === 'quiz_error') {
     const sentOnly = items.filter(x => x.type === 'sentence' || (x.hanzi && x.hanzi.length >= 3));
     if (sentOnly.length > 0) items = sentOnly;
@@ -1211,27 +1541,25 @@ function updateCount() {
   document.getElementById('availableCount').textContent = items.length;
 }
 
-// Arabic normalization & flexible comparison
-const FILLER_WORDS = new Set(['من','في','على','إلى','عن','مع','أن','إن','هذا','هذه','ذلك','تلك','هو','هي','أنا','نحن','أنت','هم','ما','لا','جدا','قليلا','فضلك']);
+// Arabic & Chinese text normalization
 function _normWord(w) {
   w = w
-    .replace(/[\u0610-\u061A\u064B-\u065F\u0670\u0651]/g, '')
-    .replace(/\u0640/g, '')
+    .replace(/[ؐ-ًؚ-ّٰٟ]/g, '')
+    .replace(/ـ/g, '')
     .replace(/[أإآ]/g, 'ا')
     .replace(/ة/g, 'ه')
     .replace(/ى/g, 'ي')
     .replace(/[ؤئ]/g, 'ء')
     .toLowerCase()
     .trim();
-  if (!w) return null;
-  return w;
+  return w || null;
 }
 
 function flexibleNormArabic(raw) {
   if (!raw) return [];
   let s = raw
-    .replace(/[\u0610-\u061A\u064B-\u065F\u0670\u0651]/g, '')
-    .replace(/\u0640/g, '')
+    .replace(/[ؐ-ًؚ-ّٰٟ]/g, '')
+    .replace(/ـ/g, '')
     .replace(/[أإآ]/g, 'ا')
     .replace(/ة/g, 'ه')
     .replace(/ى/g, 'ي')
@@ -1247,7 +1575,6 @@ function compareArabic(userAnswer, correctAnswer) {
   const uNorm = flexibleNormArabic(userAnswer);
   if (uNorm.length === 0) return false;
 
-  // Check comma/slash separated parts
   const parts = correctAnswer.split(/[،,\/\|]/).map(p => p.trim()).filter(Boolean);
   for (const part of parts) {
     const pWords = flexibleNormArabic(part);
@@ -1261,6 +1588,36 @@ function compareArabic(userAnswer, correctAnswer) {
     if (cSet.has(w)) matched++;
   }
   return matched >= Math.max(1, Math.ceil(cSet.size * 0.5));
+}
+
+function normalizePinyin(str) {
+  if (!str) return '';
+  return str.toLowerCase()
+    .replace(/[āáǎà]/g, 'a')
+    .replace(/[ēéěè]/g, 'e')
+    .replace(/[īíǐì]/g, 'i')
+    .replace(/[ōóǒò]/g, 'o')
+    .replace(/[ūúǔù]/g, 'u')
+    .replace(/[ǖǘǚǜü]/g, 'v')
+    .replace(/[1-5]/g, '')
+    .replace(/[^a-z]/g, '');
+}
+
+function compareChineseInput(userAnswer, targetItem) {
+  if (!userAnswer || !targetItem) return false;
+  const uClean = userAnswer.trim();
+  const targetHanziClean = targetItem.hanzi.replace(/[。？！，、.!?,\s]/g, '');
+  const userHanziClean = uClean.replace(/[。？！，、.!?,\s]/g, '');
+
+  // Exact Hanzi match
+  if (userHanziClean === targetHanziClean) return true;
+
+  // Pinyin match
+  const normUser = normalizePinyin(uClean);
+  const normTarget = normalizePinyin(targetItem.pinyin);
+  if (normUser && normTarget && (normUser === normTarget)) return true;
+
+  return false;
 }
 
 function segmentWords(sentence) {
@@ -1341,7 +1698,10 @@ function renderBrowseView() {
       <div>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:6px;">
           <div class="hanzi chinese-text">${item.hanzi}</div>
-          <button class="btn-icon" style="padding:4px 8px; font-size:0.9rem;" onclick="speakText('${item.hanzi.replace(/'/g, "\\'")}')">🔊</button>
+          <div style="display:flex; gap:4px;">
+            <button class="btn-icon" style="padding:4px 8px; font-size:0.9rem;" onclick="speakText('${item.hanzi.replace(/'/g, "\'")}')">🔊</button>
+            <button class="btn-icon" style="padding:4px 8px; font-size:0.9rem; color:var(--gold);" title="شرح وتفكيك الرمز" onclick="openStudyModalFromHanzi('${item.hanzi.replace(/'/g, "\'")}')">🔍</button>
+          </div>
         </div>
         <div class="pinyin pinyin-text" style="text-align:right;">${item.pinyin || ''}</div>
         <div class="arabic arabic-text" style="text-align:right; margin-top:4px;">${item.arabic || ''}</div>
@@ -1352,6 +1712,16 @@ function renderBrowseView() {
       </div>
     </div>
   `).join('');
+}
+
+function openStudyModalFromHanzi(hanzi) {
+  const item = allVocab.find(x => x.hanzi === hanzi) || allSentences.find(x => x.hanzi === hanzi);
+  if (item) openStudyModal(item);
+}
+
+function showGuide() {
+  showView('guideView');
+  renderGuideView();
 }
 
 function showToast(msg) {
@@ -1377,14 +1747,14 @@ function toggleTheme() {
   try { localStorage.setItem('learnhsk_theme', isLight ? 'light' : 'dark'); } catch (e) {}
 }
 
-// Speech Synthesis
-function speakText(text) {
+// Audio Speech
+function speakText(text, rate = 0.85) {
   if (!text || !('speechSynthesis' in window)) return;
   try {
     window.speechSynthesis.cancel();
     const uttr = new SpeechSynthesisUtterance(text);
     uttr.lang = 'zh-CN';
-    uttr.rate = 0.85;
+    uttr.rate = rate;
     window.speechSynthesis.speak(uttr);
   } catch (e) {}
 }
@@ -1399,7 +1769,16 @@ function speakItem() {
   if (item) speakText(item.hanzi);
 }
 
-// Session & Reviews
+function speakSlow() {
+  const item = session.items[session.index];
+  if (item) speakText(item.hanzi, 0.55);
+}
+
+function speakCurrentStudy(rate) {
+  if (currentStudyItem) speakText(currentStudyItem.hanzi, rate);
+}
+
+// Session Management
 function shuffleArray(arr) {
   const copy = [...arr];
   for (let i = copy.length - 1; i > 0; i--) {
@@ -1410,6 +1789,12 @@ function shuffleArray(arr) {
 }
 
 function startSession() {
+  if (currentMode === 'quiz_memory') {
+    showView('memoryView');
+    initMemoryGame();
+    return;
+  }
+
   let pool = getFilteredItems();
   if (pool.length === 0) {
     showToast('⚠️ الرجاء اختيار درس واحد أو نوع محتوى متاح على الأقل');
@@ -1490,7 +1875,7 @@ function launchSessionWithItems(items, mode) {
   }
 }
 
-// Flashcard Logic
+// FLASHCARD VIEW (Pinyin toggle on front, grouped with Arabic on back)
 function renderFlashcard() {
   const item = session.items[session.index];
   if (!item) {
@@ -1507,7 +1892,7 @@ function renderFlashcard() {
   document.getElementById('fcProgress').textContent = `${current} / ${total}`;
   document.getElementById('fcProgressBar').style.width = `${Math.round((current / total) * 100)}%`;
 
-  // Find example sentence if item is a word
+  // Example sentence on back
   let exampleHtml = '';
   if (item.type === 'word') {
     const levelSents = dataByLevel[item.hsk]?.sentences || [];
@@ -1515,7 +1900,7 @@ function renderFlashcard() {
     if (ex) {
       exampleHtml = `
         <div class="fc-example-box">
-          <div style="font-size:0.75rem; color:var(--text2); margin-bottom:4px;">مثال تطبيقي:</div>
+          <div style="font-size:0.75rem; color:var(--text2); margin-bottom:2px;">مثال تطبيقي:</div>
           <div class="chinese-text" style="font-family:'Noto Serif SC',serif; font-size:1.25rem; color:var(--red-light);">${ex.hanzi}</div>
           <div class="pinyin-text" style="font-size:0.9rem; color:var(--gold);">${ex.pinyin}</div>
           <div class="arabic-text" style="font-size:0.9rem; color:var(--text); margin-top:2px;">${ex.arabic}</div>
@@ -1524,6 +1909,7 @@ function renderFlashcard() {
     }
   }
 
+  // FRONT: Hanzi ONLY by default, with toggle button for Pinyin (no spoiler!)
   document.getElementById('fcFront').innerHTML = `
     <div style="display:flex; gap:8px; align-items:center; justify-content:center; margin-bottom:6px;">
       <span class="level-badge hsk${item.hsk}">HSK ${item.hsk}</span>
@@ -1531,16 +1917,20 @@ function renderFlashcard() {
       <span class="level-mini-pill">${item.type === 'word' ? 'كلمة' : item.type === 'sentence' ? 'جملة' : 'محادثة'}</span>
     </div>
     <div class="hanzi-big">${item.hanzi}</div>
-    <div class="pinyin-text">${item.pinyin || ''}</div>
-    <div style="font-size:0.8rem; color:var(--text3); margin-top:10px;">انقر على البطاقة لقلبها وإظهار المعنى</div>
+    <div style="margin-top:8px;">
+      <button class="btn btn-ghost btn-sm" id="fcTogglePinyinBtn" onclick="toggleFrontPinyin(event)" style="font-size:0.78rem;">👁️ إظهار البينيين</button>
+      <div id="fcFrontPinyin" class="pinyin-text" style="display:none; margin-top:6px; font-size:1.2rem; color:var(--gold);">${item.pinyin || ''}</div>
+    </div>
+    <div style="font-size:0.8rem; color:var(--text3); margin-top:12px;">انقر في أي مكان لقلب البطاقة وإظهار المعنى مع البينيين</div>
   `;
 
+  // BACK: Pinyin grouped with Arabic translation + breakdown button
   document.getElementById('fcBack').innerHTML = `
     <div style="display:flex; gap:8px; align-items:center; justify-content:center; margin-bottom:4px;">
       <span class="level-badge hsk${item.hsk}">HSK ${item.hsk} · درس ${item.lesson}</span>
     </div>
-    <div class="chinese-text" style="font-family:'Noto Serif SC',serif; font-size:1.8rem; color:var(--red-light);">${item.hanzi}</div>
-    <div class="pinyin-text" style="font-size:1rem;">${item.pinyin || ''}</div>
+    <div class="chinese-text" style="font-family:'Noto Serif SC',serif; font-size:2rem; color:var(--red-light);">${item.hanzi}</div>
+    <div class="pinyin-text" style="font-size:1.3rem; color:var(--gold); margin:2px 0;">[ ${item.pinyin || ''} ]</div>
     <div class="arabic-big">${item.arabic || ''}</div>
     ${exampleHtml}
   `;
@@ -1548,6 +1938,16 @@ function renderFlashcard() {
   if (document.getElementById('fcAutoPlay').checked) {
     speakText(item.hanzi);
   }
+}
+
+function toggleFrontPinyin(event) {
+  if (event) event.stopPropagation();
+  const pEl = document.getElementById('fcFrontPinyin');
+  const btn = document.getElementById('fcTogglePinyinBtn');
+  if (!pEl || !btn) return;
+  const isHidden = pEl.style.display === 'none';
+  pEl.style.display = isHidden ? 'block' : 'none';
+  btn.textContent = isHidden ? '🙈 إخفاء البينيين' : '👁️ إظهار البينيين';
 }
 
 function flipCard() {
@@ -1576,12 +1976,12 @@ function nextCard() {
   }
 }
 
-// Quiz Engine
+// QUIZ ENGINE WITH TYPING MODES
 const MODE_LABELS = {
-  quiz_ar_zh: '✍️ اختبار: صيني ← عربي',
-  quiz_zh_ar: '✍️ اختبار: عربي ← صيني',
-  quiz_tf: '✅ صح أم خطأ',
-  quiz_listen: '🎧 اختبار الاستماع',
+  quiz_ar_zh: '✍️ ترجمة: صيني ← كتابة المعنى',
+  quiz_zh_ar: '✍️ كتابة: عربي ← كتابة الصيني',
+  quiz_memory: '🎴 مطابقة الذاكرة',
+  quiz_listen: '🎧 استماع وكتابة',
   quiz_build: '🧩 تركيب الجمل والكلمات',
   quiz_cloze: '📝 إكمال الفراغ في الجملة',
   quiz_dictation: '🎤 الإملاء الصوتي',
@@ -1619,37 +2019,85 @@ function renderQuizQuestion() {
     <div style="display:flex; justify-content:center; gap:8px; margin-bottom:10px;">
       <span class="level-badge hsk${item.hsk}">HSK ${item.hsk}</span>
       <span class="level-mini-pill">درس ${item.lesson}</span>
+      <span class="level-mini-pill">${item.type === 'word' ? 'كلمة' : 'جملة'}</span>
     </div>
   `;
 
   const mode = session.mode;
+  const answerFormat = document.getElementById('answerFormatSelect').value;
 
+  // 1) QUIZ_AR_ZH: Chinese prompt -> User writes Arabic/English translation
   if (mode === 'quiz_ar_zh') {
     qCard.innerHTML = `
       ${badgeHeader}
       <div class="quiz-prompt-hanzi">${item.hanzi}</div>
-      <div class="quiz-prompt-pinyin">${item.pinyin || ''}</div>
-      <button class="btn btn-ghost btn-sm" onclick="speakItem()">🔊 استمع</button>
+      <div id="quizPromptPinyinBox" class="quiz-prompt-pinyin" style="display:none;">${item.pinyin || ''}</div>
+      <div style="font-size:0.9rem; color:var(--text2); margin-top:6px;">ترجم العبارة الصينية أعلاه واكتب معناها بنفسك:</div>
     `;
-    renderMultipleChoice(item, 'arabic');
+
+    if (answerFormat === 'type') {
+      document.getElementById('typeAnswerWrap').style.display = 'block';
+      const inp = document.getElementById('quizInput');
+      inp.value = '';
+      inp.placeholder = 'اكتب المعنى أو الترجمة هنا (عربي)...';
+      inp.disabled = false;
+      inp.focus();
+    } else {
+      renderMultipleChoice(item, 'arabic');
+    }
     speakText(item.hanzi);
-  } else if (mode === 'quiz_zh_ar') {
+  }
+
+  // 2) QUIZ_ZH_AR: Arabic prompt -> User writes Chinese Hanzi or Pinyin
+  else if (mode === 'quiz_zh_ar') {
     qCard.innerHTML = `
       ${badgeHeader}
       <div class="quiz-prompt-arabic">${item.arabic}</div>
-      <div style="font-size:0.85rem; color:var(--text2);">اختر العبارة الصينية الصحيحة</div>
+      <div style="font-size:0.9rem; color:var(--text2); margin-top:6px;">اكتب الرمز الصيني (Hanzi) أو البينيين (Pinyin) المقابل:</div>
     `;
-    renderMultipleChoice(item, 'hanzi');
-  } else if (mode === 'quiz_tf') {
+
+    if (answerFormat === 'type') {
+      document.getElementById('typeAnswerWrap').style.display = 'block';
+      const inp = document.getElementById('quizInput');
+      inp.value = '';
+      inp.placeholder = 'اكتب الرمز الصيني أو البينيين...';
+      inp.disabled = false;
+      inp.focus();
+    } else {
+      renderMultipleChoice(item, 'hanzi');
+    }
+  }
+
+  // 3) QUIZ_LISTEN: Listen audio -> type translation or multiple choice
+  else if (mode === 'quiz_listen') {
+    qCard.innerHTML = `
+      ${badgeHeader}
+      <div style="padding:14px 0;">
+        <button class="btn btn-gold btn-lg" onclick="speakItem()">🔊 اضغط للاستماع</button>
+        <button class="btn btn-ghost btn-sm" onclick="speakSlow()" style="margin-right:8px;">🐢 نطق بطيء</button>
+      </div>
+      <div style="font-size:0.9rem; color:var(--text2);">استمع جيداً ثم اكتب ما فهمته من المعنى:</div>
+    `;
+    if (answerFormat === 'type') {
+      document.getElementById('typeAnswerWrap').style.display = 'block';
+      const inp = document.getElementById('quizInput');
+      inp.value = '';
+      inp.placeholder = 'اكتب المعنى المسموع بالعربية...';
+      inp.disabled = false;
+      inp.focus();
+    } else {
+      renderMultipleChoice(item, 'arabic');
+    }
+    speakText(item.hanzi);
+  }
+
+  // 4) True / False
+  else if (mode === 'quiz_tf') {
     const isTrue = Math.random() >= 0.5;
     let shownArabic = item.arabic;
     if (!isTrue) {
       const others = getPoolForDistractors(item).filter(x => x.arabic !== item.arabic);
-      if (others.length > 0) {
-        shownArabic = others[Math.floor(Math.random() * others.length)].arabic;
-      } else {
-        shownArabic = item.arabic;
-      }
+      shownArabic = others.length > 0 ? others[Math.floor(Math.random() * others.length)].arabic : item.arabic;
     }
     session.tfCorrectAnswer = (shownArabic === item.arabic);
     qCard.innerHTML = `
@@ -1664,17 +2112,10 @@ function renderQuizQuestion() {
     document.getElementById('tfTrueBtn').disabled = false;
     document.getElementById('tfFalseBtn').disabled = false;
     speakText(item.hanzi);
-  } else if (mode === 'quiz_listen') {
-    qCard.innerHTML = `
-      ${badgeHeader}
-      <div style="padding:16px 0;">
-        <button class="btn btn-gold btn-lg" onclick="speakItem()">🔊 اضغط للاستماع</button>
-      </div>
-      <div style="font-size:0.9rem; color:var(--text2);">استمع جيداً ثم اختر المعنى الصحيح</div>
-    `;
-    renderMultipleChoice(item, 'arabic');
-    speakText(item.hanzi);
-  } else if (mode === 'quiz_build') {
+  }
+
+  // 5) Sentence / Word Builder
+  else if (mode === 'quiz_build') {
     qCard.innerHTML = `
       ${badgeHeader}
       <div class="quiz-prompt-arabic">${item.arabic}</div>
@@ -1687,7 +2128,10 @@ function renderQuizQuestion() {
     session.builtOrder = [];
     document.getElementById('buildWrap').style.display = 'block';
     renderBuildArea();
-  } else if (mode === 'quiz_cloze') {
+  }
+
+  // 6) Cloze / Fill in the blank
+  else if (mode === 'quiz_cloze') {
     let blocks = segmentWords(item.hanzi);
     if (blocks.length === 0) blocks = [item.hanzi];
     const hideIdx = Math.floor(Math.random() * blocks.length);
@@ -1700,11 +2144,15 @@ function renderQuizQuestion() {
       <div class="quiz-prompt-arabic" style="font-size:1.1rem; color:var(--text2);">${item.arabic}</div>
     `;
     renderClozeChoices(item, targetWord);
-  } else if (mode === 'quiz_dictation') {
+  }
+
+  // 7) Dictation
+  else if (mode === 'quiz_dictation') {
     qCard.innerHTML = `
       ${badgeHeader}
       <div style="padding:10px 0;">
         <button class="btn btn-gold btn-lg" onclick="speakItem()">🔊 استمع واكتب</button>
+        <button class="btn btn-ghost btn-sm" onclick="speakSlow()" style="margin-right:8px;">🐢 نطق بطيء</button>
       </div>
       <div class="quiz-prompt-arabic" style="font-size:1.05rem; color:var(--text2);">${item.arabic}</div>
     `;
@@ -1714,17 +2162,23 @@ function renderQuizQuestion() {
     dInput.disabled = false;
     dInput.focus();
     speakText(item.hanzi);
-  } else if (mode === 'quiz_tone') {
+  }
+
+  // 8) Tone Recognition
+  else if (mode === 'quiz_tone') {
     qCard.innerHTML = `
       ${badgeHeader}
       <div class="quiz-prompt-arabic">${item.arabic}</div>
-      <div style="font-size:0.9rem; color:var(--text2);">اختر النطق الصوتي (Pinyin) الصحيح بالنغمات الصحيحة</div>
+      <div style="font-size:0.9rem; color:var(--text2);">اختر النطق الصوتي (Pinyin) الصحيح بالنغمات الصحيحة:</div>
     `;
     document.getElementById('toneWrap').style.display = 'block';
     document.getElementById('toneCharDisplay').textContent = item.hanzi;
     renderToneChoices(item);
     speakText(item.hanzi);
-  } else if (mode === 'quiz_record') {
+  }
+
+  // 9) Voice Recording
+  else if (mode === 'quiz_record') {
     qCard.innerHTML = `
       ${badgeHeader}
       <div class="quiz-prompt-hanzi">${item.hanzi}</div>
@@ -1737,13 +2191,52 @@ function renderQuizQuestion() {
     document.getElementById('recordStartBtn').disabled = false;
     document.getElementById('recordStopBtn').disabled = true;
     document.getElementById('recordPlayBtn').disabled = true;
-  } else if (mode === 'quiz_error') {
+  }
+
+  // 10) Error Detection
+  else if (mode === 'quiz_error') {
     qCard.innerHTML = `
       ${badgeHeader}
       <div class="quiz-prompt-arabic">${item.arabic}</div>
     `;
     setupErrorQuestion(item);
   }
+}
+
+function showTypeHint() {
+  const item = session.items[session.index];
+  if (!item) return;
+  if (session.mode === 'quiz_ar_zh') {
+    const pBox = document.getElementById('quizPromptPinyinBox');
+    if (pBox) pBox.style.display = 'block';
+    showToast(`💡 البينيين: ${item.pinyin}`);
+  } else if (session.mode === 'quiz_zh_ar') {
+    const firstChar = item.hanzi ? item.hanzi[0] : '';
+    showToast(`💡 يبدأ بـ: ${firstChar} (البينيين: ${item.pinyin})`);
+  }
+}
+
+function submitTypeAnswer() {
+  if (session.answered) return;
+  const item = session.items[session.index];
+  const input = document.getElementById('quizInput');
+  const val = input.value.trim();
+  if (!val) {
+    showToast('اكتب إجابتك أولاً ثم اضغط تأكيد');
+    return;
+  }
+  input.disabled = true;
+
+  let isCorrect = false;
+  if (session.mode === 'quiz_ar_zh' || session.mode === 'quiz_listen') {
+    isCorrect = compareArabic(val, item.arabic) || val === item.hanzi;
+  } else if (session.mode === 'quiz_zh_ar') {
+    isCorrect = compareChineseInput(val, item);
+  } else {
+    isCorrect = compareArabic(val, item.arabic) || compareChineseInput(val, item);
+  }
+
+  finalizeQuizAnswer(isCorrect, `${item.hanzi} [${item.pinyin}] = ${item.arabic}`);
 }
 
 function getPoolForDistractors(item) {
@@ -1777,7 +2270,7 @@ function renderMultipleChoice(item, field) {
         if (b.textContent === item[field]) b.classList.add('correct');
       });
       if (!isCorrect) btn.classList.add('wrong');
-      finalizeQuizAnswer(isCorrect, `${item.hanzi} (${item.pinyin}) — ${item.arabic}`);
+      finalizeQuizAnswer(isCorrect, `${item.hanzi} [${item.pinyin}] = ${item.arabic}`);
     };
     choicesEl.appendChild(btn);
   });
@@ -1819,16 +2312,7 @@ function submitTF(userChoice) {
   document.getElementById('tfTrueBtn').disabled = true;
   document.getElementById('tfFalseBtn').disabled = true;
   const isCorrect = (userChoice === session.tfCorrectAnswer);
-  finalizeQuizAnswer(isCorrect, `${item.hanzi} = ${item.arabic}`);
-}
-
-function submitTypeAnswer() {
-  if (session.answered) return;
-  const item = session.items[session.index];
-  const val = document.getElementById('quizInput').value.trim();
-  if (!val) return;
-  const isCorrect = compareArabic(val, item.arabic) || val === item.hanzi;
-  finalizeQuizAnswer(isCorrect, `${item.hanzi} — ${item.arabic}`);
+  finalizeQuizAnswer(isCorrect, `${item.hanzi} [${item.pinyin}] = ${item.arabic}`);
 }
 
 function renderBuildArea() {
@@ -1892,11 +2376,8 @@ function submitDictationAnswer() {
   if (!val) return;
   input.disabled = true;
 
-  const cleanTarget = item.hanzi.replace(/[。？！，、.!?,\s]/g, '');
-  const cleanVal = val.replace(/[。？！，、.!?,\s]/g, '');
-  const pinyinClean = (item.pinyin || '').toLowerCase().replace(/\s+/g, '');
-  const isCorrect = (cleanVal === cleanTarget) || (val.toLowerCase().replace(/\s+/g, '') === pinyinClean);
-  finalizeQuizAnswer(isCorrect, `${item.hanzi} (${item.pinyin}) — ${item.arabic}`);
+  const isCorrect = compareChineseInput(val, item) || compareArabic(val, item.arabic);
+  finalizeQuizAnswer(isCorrect, `${item.hanzi} [${item.pinyin}] = ${item.arabic}`);
 }
 
 function generateToneDistractors(pinyin) {
@@ -1953,11 +2434,11 @@ function renderToneChoices(item) {
   });
 }
 
-// Voice Recording Mode
+// Recording Mode
 async function startRecording() {
   const statusEl = document.getElementById('recordStatus');
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-    statusEl.textContent = 'التسجيل الصوتي غير مدعوم في هذا المتصفح — تم احتساب التمرين الصوتي.';
+    statusEl.textContent = 'التسجيل الصوتي غير مدعوم في هذا المتصفح — تم احتساب التدرب الصوتي.';
     finalizeQuizAnswer(true, 'تم الاستماع والتدرب على النطق بنجاح');
     return;
   }
@@ -1970,18 +2451,18 @@ async function startRecording() {
       const blob = new Blob(recordedChunks, { type: 'audio/webm' });
       recordedAudioUrl = URL.createObjectURL(blob);
       document.getElementById('recordPlayBtn').disabled = false;
-      statusEl.textContent = 'تم تسجيل صوتك بنجاح! يمكنك الاستماع إليه أو الانتقال للسؤال التالي.';
+      statusEl.textContent = 'تم تسجيل صوتك بنجاح! يمكنك الاستماع إليه أو الانتقال للتالي.';
       const item = session.items[session.index];
-      finalizeQuizAnswer(true, `أحسنت التدرب على نطق: ${item.hanzi} (${item.pinyin})`);
+      finalizeQuizAnswer(true, `أحسنت التدرب على نطق: ${item.hanzi} [${item.pinyin}]`);
     };
     mediaRecorder.start();
-    statusEl.textContent = '🔴 جاري التسجيل... انطق الآن ثم اضغط إيقاف';
+    statusEl.textContent = '🔴 جاري التسجيل... انطق الكلمة ثم اضغط إيقاف';
     document.getElementById('recordStartBtn').disabled = true;
     document.getElementById('recordStopBtn').disabled = false;
   } catch (err) {
     statusEl.textContent = 'تعذر الوصول للميكروفون — يمكنك التدرب بالاستماع المباشر.';
     const item = session.items[session.index];
-    finalizeQuizAnswer(true, `${item.hanzi} (${item.pinyin})`);
+    finalizeQuizAnswer(true, `${item.hanzi} [${item.pinyin}]`);
   }
 }
 
@@ -2000,7 +2481,7 @@ function playRecording() {
   }
 }
 
-// Error Detection Mode
+// Error detection
 function setupErrorQuestion(item) {
   const wrap = document.getElementById('errorWrap');
   wrap.style.display = 'block';
@@ -2008,7 +2489,7 @@ function setupErrorQuestion(item) {
   document.getElementById('errorInput').value = '';
 
   const cleanChars = Array.from(item.hanzi);
-  const hanziIndices = cleanChars.map((c, idx) => /[\u4e00-\u9fff]/.test(c) ? idx : -1).filter(i => i >= 0);
+  const hanziIndices = cleanChars.map((c, idx) => /[一-鿿]/.test(c) ? idx : -1).filter(i => i >= 0);
   const replaceIdx = hanziIndices.length > 0 ? hanziIndices[Math.floor(Math.random() * hanziIndices.length)] : 0;
   const originalChar = cleanChars[replaceIdx];
 
@@ -2067,7 +2548,7 @@ function finalizeQuizAnswer(isCorrect, detailText) {
   if (isCorrect) {
     session.correct++;
     fb.className = 'correct';
-    fb.innerHTML = `✨ إجابة صحيحة! <div class="feedback-answer" style="margin-top:4px; font-weight:500;">${detailText}</div>`;
+    fb.innerHTML = `✨ إجابة صحيحة! أحسنت <div class="feedback-answer" style="margin-top:4px; font-weight:500;">${detailText}</div>`;
     speakText(item.hanzi);
   } else {
     session.wrong++;
@@ -2110,7 +2591,7 @@ function endSession() {
         <div>
           <span class="level-badge hsk${m.hsk}" style="margin-left:6px;">HSK ${m.hsk}</span>
           <strong class="mistake-hanzi" style="font-family:'Noto Serif SC',serif; font-size:1.25rem; color:var(--red-light);">${m.hanzi}</strong>
-          <span style="color:var(--gold); margin:0 8px;">${m.pinyin || ''}</span>
+          <span style="color:var(--gold); margin:0 8px;">[${m.pinyin || ''}]</span>
         </div>
         <div class="mistake-arabic" style="color:var(--text);">${m.arabic || ''}</div>
       </div>
@@ -2130,7 +2611,320 @@ function retryMistakes() {
   launchSessionWithItems(uniqueMistakes, session.mode);
 }
 
-// Progress & Stats Storage
+// MEMORY MATCH GAME LOGIC
+let memoryCards = [];
+let flippedMemoryCards = [];
+let memoryMatches = 0;
+let memoryTotalPairs = 6;
+
+function initMemoryGame() {
+  const pool = shuffleArray(allVocab.filter(x => selectedLessons.has(x.lesson))).slice(0, memoryTotalPairs);
+  if (pool.length < 3) {
+    showToast('الرجاء تحديد دروس تحتوي على كلمات كافية للعبة');
+    showHome();
+    return;
+  }
+  memoryTotalPairs = pool.length;
+  memoryMatches = 0;
+  flippedMemoryCards = [];
+  document.getElementById('memoryWinBox').style.display = 'none';
+  document.getElementById('memoryScoreText').textContent = `أزواج: 0 / ${memoryTotalPairs}`;
+
+  const deck = [];
+  pool.forEach(item => {
+    deck.push({ id: item.id, type: 'hanzi', text: item.hanzi, item });
+    deck.push({ id: item.id, type: 'arabic', text: item.arabic, item });
+  });
+  memoryCards = shuffleArray(deck);
+
+  const grid = document.getElementById('memoryGrid');
+  grid.innerHTML = '';
+  memoryCards.forEach((c, idx) => {
+    const el = document.createElement('div');
+    el.className = 'memory-card';
+    el.id = `memCard_${idx}`;
+    el.innerHTML = `<span style="font-size:1.4rem; color:var(--text3);">🀄</span>`;
+    el.onclick = () => handleMemoryCardClick(idx);
+    grid.appendChild(el);
+  });
+}
+
+function handleMemoryCardClick(idx) {
+  const cardData = memoryCards[idx];
+  const cardEl = document.getElementById(`memCard_${idx}`);
+  if (!cardEl || cardEl.classList.contains('flipped') || cardEl.classList.contains('matched')) return;
+  if (flippedMemoryCards.length >= 2) return;
+
+  // Reveal card
+  cardEl.classList.add('flipped');
+  if (cardData.type === 'hanzi') {
+    cardEl.innerHTML = `<span style="font-family:'Noto Serif SC',serif; font-size:1.8rem; color:var(--red-light);">${cardData.text}</span>`;
+    speakText(cardData.text);
+  } else {
+    cardEl.innerHTML = `<span style="font-size:0.95rem; color:var(--text);">${cardData.text}</span>`;
+  }
+
+  flippedMemoryCards.push({ idx, data: cardData });
+
+  if (flippedMemoryCards.length === 2) {
+    const [c1, c2] = flippedMemoryCards;
+    if (c1.data.id === c2.data.id && c1.data.type !== c2.data.type) {
+      // Match!
+      document.getElementById(`memCard_${c1.idx}`).classList.add('matched');
+      document.getElementById(`memCard_${c2.idx}`).classList.add('matched');
+      memoryMatches++;
+      document.getElementById('memoryScoreText').textContent = `أزواج: ${memoryMatches} / ${memoryTotalPairs}`;
+      flippedMemoryCards = [];
+      if (memoryMatches === memoryTotalPairs) {
+        document.getElementById('memoryWinBox').style.display = 'block';
+      }
+    } else {
+      // No match
+      setTimeout(() => {
+        const el1 = document.getElementById(`memCard_${c1.idx}`);
+        const el2 = document.getElementById(`memCard_${c2.idx}`);
+        if (el1) { el1.classList.remove('flipped'); el1.innerHTML = `<span style="font-size:1.4rem; color:var(--text3);">🀄</span>`; }
+        if (el2) { el2.classList.remove('flipped'); el2.innerHTML = `<span style="font-size:1.4rem; color:var(--text3);">🀄</span>`; }
+        flippedMemoryCards = [];
+      }, 1000);
+    }
+  }
+}
+
+// INTERACTIVE CHARACTER STUDY & DECOMPOSITION MODAL
+function openStudyModalForCurrent(event) {
+  if (event) event.stopPropagation();
+  const item = session.items ? session.items[session.index] : null;
+  if (item) openStudyModal(item);
+}
+
+function openStudyModal(item) {
+  currentStudyItem = item;
+  const info = getStudyInfo(item);
+
+  document.getElementById('studyBadgeRow').innerHTML = `
+    <span class="level-badge hsk${item.hsk}">المستوى HSK ${item.hsk}</span>
+    <span class="level-mini-pill">درس ${item.lesson}</span>
+    <span class="level-mini-pill">${item.type === 'word' ? 'مفردة' : 'جملة'}</span>
+  `;
+
+  document.getElementById('studyHanzi').textContent = item.hanzi;
+  document.getElementById('studyPinyin').textContent = `[ ${item.pinyin || ''} ]`;
+  document.getElementById('studyArabic').textContent = item.arabic || '';
+
+  document.getElementById('studyBreakdown').textContent = info ? info.radicals : 'رمز صيني تركيبي.';
+  document.getElementById('studyMnemonic').textContent = info ? info.mnemonic : 'اربط بين نطق الكلمة ومعناها لتثبيتها في الذاكرة.';
+  document.getElementById('studyGrammar').textContent = info ? info.grammar : `تستخدم في المستوى HSK ${item.hsk} ضمن الدرس ${item.lesson}.`;
+
+  // Example sentence
+  let exText = item.hanzi;
+  if (item.type === 'word') {
+    const sents = dataByLevel[item.hsk]?.sentences || [];
+    const ex = sents.find(s => s.keyword_id === item.id) || sents.find(s => s.hanzi.includes(item.hanzi));
+    if (ex) exText = `${ex.hanzi} (${ex.pinyin}) — ${ex.arabic}`;
+  }
+  document.getElementById('studyExample').textContent = exText;
+
+  // Setup ghost guide on canvas
+  const ghost = document.getElementById('canvasGhost');
+  if (ghost) ghost.textContent = item.hanzi.length <= 2 ? item.hanzi : item.hanzi[0];
+  clearCanvas();
+
+  document.getElementById('studyModal').classList.add('active');
+  speakText(item.hanzi);
+}
+
+function closeStudyModal() {
+  document.getElementById('studyModal').classList.remove('active');
+}
+
+// STROKE DRAWING PAD CANVAS
+function initCanvas() {
+  const canvas = document.getElementById('strokeCanvas');
+  if (!canvas) return;
+  canvasCtx = canvas.getContext('2d');
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return {
+      x: (clientX - rect.left) * (canvas.width / rect.width),
+      y: (clientY - rect.top) * (canvas.height / rect.height)
+    };
+  }
+
+  function start(e) {
+    e.preventDefault();
+    canvasDrawing = true;
+    const p = getPos(e);
+    canvasCtx.beginPath();
+    canvasCtx.moveTo(p.x, p.y);
+  }
+
+  function draw(e) {
+    if (!canvasDrawing) return;
+    e.preventDefault();
+    const p = getPos(e);
+    canvasCtx.lineWidth = 9;
+    canvasCtx.lineCap = 'round';
+    canvasCtx.lineJoin = 'round';
+    canvasCtx.strokeStyle = document.body.classList.contains('light-mode') ? '#c0392b' : '#f0c060';
+    canvasCtx.lineTo(p.x, p.y);
+    canvasCtx.stroke();
+  }
+
+  function stop(e) {
+    if (!canvasDrawing) return;
+    canvasDrawing = false;
+    canvasCtx.closePath();
+  }
+
+  canvas.addEventListener('mousedown', start);
+  canvas.addEventListener('mousemove', draw);
+  window.addEventListener('mouseup', stop);
+
+  canvas.addEventListener('touchstart', start, { passive: false });
+  canvas.addEventListener('touchmove', draw, { passive: false });
+  canvas.addEventListener('touchend', stop);
+}
+
+function clearCanvas() {
+  const canvas = document.getElementById('strokeCanvas');
+  if (canvas && canvasCtx) {
+    canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+
+function toggleGhostGuide() {
+  const ghost = document.getElementById('canvasGhost');
+  if (ghost) {
+    ghostVisible = !ghostVisible;
+    ghost.style.display = ghostVisible ? 'flex' : 'none';
+  }
+}
+
+// GRAMMAR & STUDY GUIDE VIEW DATA
+const GRAMMAR_GUIDES = [
+  {
+    level: 1,
+    lesson: 1,
+    title: "ترتيب الجملة والتحيات الأساسية (你好 / 您好)",
+    rules: [
+      "ترتيب الجملة الصينية الأساسي يماثل العربية: فاعل (Subject) + فعل (Verb) + مفعول (Object).",
+      "الفرق بين 你 (أنت العادية) و 您 (أنت للاحترام والتوقير للشيوخ والأساتذة).",
+      "صيغة الجمع مع الضمائر: إضافة 们 بعد الضمير (你 -> 你们، 我 -> 我们، 他 -> 他们)."
+    ],
+    example: "你是学生 (أنت طالب). 您好 (مرحباً بحضرتك)."
+  },
+  {
+    level: 1,
+    lesson: 2,
+    title: "الشكر والاعتذار والنفي بـ 不",
+    rules: [
+      "كلمة 谢谢 (شكراً) والرد عليها بـ 不客气 (عفواً / لا داعي للتكلف).",
+      "الاعتذار بـ 对不起 (آسف) والرد بـ 没关系 (لا بأس / لا مشكلة).",
+      "حرف النفي 不 (bù): يوضع مباشرة قبل الفعل أو الصفة (我不去 أنا لا أذهب، 不好 ليس جيداً)."
+    ],
+    example: "对不起，我迟到了 (آسف، لقد تأخرت). 不客气 (عفواً)."
+  },
+  {
+    level: 2,
+    lesson: 1,
+    title: "أفعال الرغبة والظروف (要 / 最 / 觉得)",
+    rules: [
+      "فعل الرغبة والمستقبل 要 (yào): يأتي قبل الفعل الرئيسي ليعني 'يريد' أو 'سوف يقوم بكذا'.",
+      "الظرف 最 (zuì): يفيد التفضيل المطلق (Superlative) ويوضع قبل الصفة: 最好 (الأفضل).",
+      "فعل التعبير عن الرأي 觉得 (jué de): يتبعه جملة كاملة توضح انطباعك أو اعتقادك."
+    ],
+    example: "我明天要去北京 (سأذهب إلى بكين غداً). 他是我最好的朋友 (هو أفضل صديق لي)."
+  },
+  {
+    level: 2,
+    lesson: 7,
+    title: "التعبير عن المسافة والبعد بواسطة 离 (lí)",
+    rules: [
+      "قالب قياس المسافة بين مكانين: [المكان الأول] + 离 + [المكان الثاني] + [الصفة/المسافة].",
+      "الصفات الأكثر شيوعاً مع 离: 很近 (قريب جداً) و 很远 (بعيد جداً).",
+      "لا نضع كلمة 在 قبل 离 مباشرة."
+    ],
+    example: "学校离我家很近 (المدرسة قريبة من بيتي). 公园很远 (الحديقة بعيدة)."
+  },
+  {
+    level: 2,
+    lesson: 11,
+    title: "أسلوب المقارنة بواسطة 比 (bǐ)",
+    rules: [
+      "قالب المقارنة بين شيئين أو شخصين: A + 比 + B + [الصفة].",
+      "إذا أردت توضيح الزيادة الكبيرة نضع 更 (gèng) أو 多了 بعد الصفة.",
+      "لا نستخدم 很 داخل جملة المقارنة بـ 比."
+    ],
+    example: "今天比昨天热 (اليوم أحر من أمس). 今天比昨天更冷 (اليوم أبرد من أمس)."
+  },
+  {
+    level: 2,
+    lesson: 12,
+    title: "مكمل الدرجة بواسطة 得 (de)",
+    rules: [
+      "تستخدم 得 للربط بين الفعل والصفة التي توضح درجة أو أسلوب أدائه.",
+      "القالب: الفعل + 得 + (很) + الصفة.",
+      "مثال على مهارة الحديث أو الكتابة أو الجري."
+    ],
+    example: "他说得很好 (هو يتحدث بطريقة جيدة جداً). 他长得很高 (هو نما طويلاً)."
+  },
+  {
+    level: 2,
+    lesson: 14,
+    title: "أدوات الربط: 虽然...但是... و 因为...所以...",
+    rules: [
+      "أداة التعارض والاستدراك: 虽然 (على الرغم من...) + 但是 (لكن...).",
+      "أداة السبب والنتيجة: 因为 (لأن/بسبب...) + 所以 (لذلك/لهذا السبب...).",
+      "يجوز حذف ولكن الأفضل استخدام الزوجين معاً في مستوى HSK 2."
+    ],
+    example: "虽然天气很冷，他还是去跑步 (على الرغم من أن الجو بارد، لكنه خرج ليجري)."
+  }
+];
+
+function renderGuideView() {
+  const btnContainer = document.getElementById('guideLessonButtons');
+  const targetLvl = selectedHSKLevel === 'all' ? 2 : parseInt(selectedHSKLevel, 10);
+  const relevantGuides = GRAMMAR_GUIDES.filter(g => g.level === targetLvl || selectedHSKLevel === 'all');
+
+  btnContainer.innerHTML = relevantGuides.map((g, i) => `
+    <button class="btn btn-secondary btn-sm" onclick="showGuideItem(${i})">
+      HSK ${g.level} - درس ${g.lesson}: ${g.title.slice(0, 18)}...
+    </button>
+  `).join('');
+
+  showGuideItem(0);
+}
+
+function showGuideItem(idx) {
+  const area = document.getElementById('guideContentArea');
+  const targetLvl = selectedHSKLevel === 'all' ? 2 : parseInt(selectedHSKLevel, 10);
+  const relevantGuides = GRAMMAR_GUIDES.filter(g => g.level === targetLvl || selectedHSKLevel === 'all');
+  const g = relevantGuides[idx] || GRAMMAR_GUIDES[0];
+  if (!g) return;
+
+  area.innerHTML = `
+    <div class="grammar-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <span class="level-badge hsk${g.level}">HSK ${g.level} · درس ${g.lesson}</span>
+      </div>
+      <h3>${g.title}</h3>
+      <ul style="padding-right:20px; margin-top:8px;">
+        ${g.rules.map(r => `<li style="margin-bottom:6px;">${r}</li>`).join('')}
+      </ul>
+      <div class="grammar-example">
+        <div style="font-size:0.8rem; color:var(--gold); font-weight:700; margin-bottom:4px;">مثال تطبيقي:</div>
+        <div class="chinese-text" style="font-family:'Noto Serif SC',serif; font-size:1.35rem; color:var(--red-light);">${g.example.split('(')[0]}</div>
+        <div class="arabic-text" style="font-size:0.95rem; color:var(--text); margin-top:2px;">(${g.example.split('(')[1] || ''}</div>
+      </div>
+    </div>
+  `;
+}
+
+// Progress & Storage
 function recordItemProgress(item, isCorrect, explicitStatus) {
   if (!item || !item.uid) return;
   const cur = userProgress.studied[item.uid] || {
@@ -2156,13 +2950,13 @@ function recordItemProgress(item, isCorrect, explicitStatus) {
 
 function saveProgress() {
   try {
-    localStorage.setItem('learnhsk_progress_v2', JSON.stringify(userProgress));
+    localStorage.setItem('learnhsk_progress_v3', JSON.stringify(userProgress));
   } catch (e) {}
 }
 
 function loadProgress() {
   try {
-    const raw = localStorage.getItem('learnhsk_progress_v2');
+    const raw = localStorage.getItem('learnhsk_progress_v3');
     if (raw) userProgress = JSON.parse(raw);
   } catch (e) {}
 }
@@ -2211,7 +3005,7 @@ function renderWeakList() {
       <div>
         <span class="level-badge hsk${w.hsk || 2}" style="margin-left:6px;">HSK ${w.hsk || 2}</span>
         <strong class="weak-hanzi" style="font-family:'Noto Serif SC',serif; font-size:1.2rem; color:var(--red-light);">${w.hanzi}</strong>
-        <span style="color:var(--gold); margin:0 6px;">${w.pinyin || ''}</span>
+        <span style="color:var(--gold); margin:0 6px;">[${w.pinyin || ''}]</span>
         <span class="weak-arabic" style="color:var(--text);">${w.arabic || ''}</span>
       </div>
       <span class="level-mini-pill" style="color:var(--wrong);">${w.wrongCount} أخطاء</span>
@@ -2249,7 +3043,7 @@ function closeResetModal() {
 
 function executeReset() {
   userProgress = { studied: {}, history: [] };
-  try { localStorage.removeItem('learnhsk_progress_v2'); } catch (e) {}
+  try { localStorage.removeItem('learnhsk_progress_v3'); } catch (e) {}
   closeResetModal();
   showStats();
   showToast('تم تصفير سجل الإحصائيات بنجاح');
